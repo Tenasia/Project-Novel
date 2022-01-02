@@ -19,7 +19,7 @@ define Applicant = Character("Applicant", color ="90EE90", ctc="ctc", ctc_pause=
 define Shinazu = Character("Shinazu",color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled" )
 
 
-define config.rollback_enabled = True
+define config.rollback_enabled = False
 
 
 
@@ -54,7 +54,7 @@ label splashscreen:
     # $ renpy.movie_cutscene("images/Osu.mp4") 
     return 
 label start:
-
+    $ save_name = "Prologue"
     stop music fadeout 1.0
     stop movie
     
@@ -88,7 +88,7 @@ label start:
     Thought "A decade had passed. While the financial situation was not a problem somehow. There has been no communication between him and his family."
 
 label prologue:
-   
+    $ save_name = "Prologue"
     scene bg living_room
     with fade
     Thought "..." 
