@@ -100,22 +100,30 @@ style frame:
 
 screen say(who, what):
     style_prefix "say"
-
+    # window background Transform(Frame("gui/textbox1.png",0.5,0.5), alpha=persistent.window_opacity)
+    # window background Transform(Frame("gui/bar/Auto.png",x,y), alpha=persistent.window_opacity)
     key "mousedown_4" action ShowMenu("history")
     key "mouseup_3" action ShowMenu("quick_game_menu")
     
     window:
+        background Transform(Frame("gui/textbox1.png", xalign=50, yoffset=-100, ysize=500), alpha=persistent.window_opacity)
         id "window"
         yalign 0.956
         ysize 175
+        # if who is not None:
+
+        #     # window:
+        #     #     id "namebox"
+        #     #     style "namebox"
+        #         text who id "who"
         if who is not None:
-
-            window:
-                id "namebox"
-                style "namebox"
+            hbox:
+                xalign 0.5
+                yalign 0.5
+                yoffset -150
                 text who id "who"
-
-        text what id "what"
+        hbox:
+            text what id "what"
 
     
     ## If there's a side image, display it above the text. Do not display on the
@@ -873,27 +881,27 @@ style pref_bar:
 
 style text_speed:
     yalign 0.5
-    xysize(352, 27)
+    xysize(500, 27)
     left_bar "gui/bar/Text.png"
-    thumb "gui/thumb_with_paint.png"
+    # thumb "gui/thumb_with_paint.png"
 
 style auto_speed:
     yalign 0.5
-    xysize(352, 27)
+    xysize(500, 27)
     left_bar "gui/bar/Auto.png"
-    thumb "gui/thumb_with_paint.png"
+    # thumb "gui/thumb_with_paint.png"
 
 style music_volume:
     yalign 0.5
-    xysize(352, 27)
+    xysize(500, 27)
     left_bar "gui/bar/Music.png"
-    thumb "gui/thumb_with_paint.png"
+    # thumb "gui/thumb_with_paint.png"
 
 style sfx_volume:
     yalign 0.5
-    xysize(352, 27)
+    xysize(500, 27)
     left_bar "gui/bar/Sfx.png"
-    thumb "gui/thumb_with_paint.png"
+    # thumb "gui/thumb_with_paint.png"
 
 style bold_text:
     bold True
@@ -902,36 +910,314 @@ style hovered_text:
     background None
     hover_background "#c05d5d"
 
+
+
+
+
+init python:
+    def ResetToDefaults():
+        _preferences.text_cps = config.default_text_cps
+        _preferences.afm_time = config.default_afm_time
+        _preferences.afm_enable = config.default_afm_enable
+        _preferences.set_volume('sfx', 1.0)
+        _preferences.set_volume('music', 1.0)
+        # persistent('window_opacity', 1.0)
+        renpy.restart_interaction()
+
+
+# screen preview_text_test:
+#     # frame:
+#     #     add Transform(Frame("gui/textbox_preview.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444), alpha=persistent.window_opacity)
+
+screen text_test():
+    zorder 100
+    # add "gui/preview_textbox.png" xsize 444 ysize 222 
+    frame:
+        
+        xalign 0.4975 yalign 0.55
+        background None
+        text "This is a test." slow_cps True color "#000000" yoffset -7.5 xoffset 10
+        
+        hbox:
+            add Transform(Frame("gui/preview_textbox.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444, xoffset=867.5, yoffset=542.5), alpha=persistent.window_opacity)
+            text "This is a test." slow_cps True color "#ffffff" yoffset -7.5 xoffset 10
+        
+    timer 2.0 action Hide("text_test")
+
+screen sound_settings():
+    tag menu
+    key "mousedown_3" action Return()   
+    use game_menu(_("Configurations"), scroll="viewport")
+    hbox:
+        xsize 1000
+        xalign 0.5025
+        yalign 0.1525
+        spacing 0
+        text "CONFIGURATIONS" xoffset 975 yoffset 15 size 40
+        # imagebutton:
+    #             idle "gui/gui_buttons/GUI save_load_pages/nine.png"
+    #             hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton_hovered.png"
+    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
+    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
+    #             action FilePage(9)
+        
+        imagebutton:
+            xoffset 7.5
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("preferences")
+        # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
+        imagebutton:
+            xoffset -40
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("text_settings")
+        imagebutton:
+            xoffset -87.5
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("sound_settings")
+    frame:
+        xpadding 150
+        ypadding 150
+        background "gui/frame_bg1.png"
+        # xalign 0.86
+        # yalign 0.35
+        xoffset 855
+        yoffset 230
+        
+        hbox:
+            # xalign 0.5
+            # yalign 0.5
+            yoffset 50
+            xoffset -75
+            vbox:
+                spacing 50
+                xoffset -35
+                yoffset -175
+                hbox:
+                    text "MUSIC VOLUME" xalign 0.5 size 33       
+                hbox:
+                    text "SFX VOLUME" xalign 0.5 size 33
+
+            vbox:
+                spacing 60
+                xoffset 65
+                yoffset -170
+                hbox:
+                    spacing 10
+                    bar:
+                        style "music_volume"
+                        value Preference("music volume")
+                hbox:
+                    spacing 10
+                    bar:
+                        style "sfx_volume"
+                        value Preference("sound volume")
+        hbox:
+            xalign 0.5
+            yalign 0.5
+            xoffset 310
+            yoffset 250
+            textbutton "Reset to Default" action ResetToDefaults
+
+screen text_settings():
+    tag menu
+    key "mousedown_3" action Return()   
+    use game_menu(_("Configurations"), scroll="viewport")
+    hbox:
+        xsize 1000
+        xalign 0.5025
+        yalign 0.1525
+        spacing 0
+        text "CONFIGURATIONS" xoffset 975 yoffset 15 size 40
+        # imagebutton:
+    #             idle "gui/gui_buttons/GUI save_load_pages/nine.png"
+    #             hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton_hovered.png"
+    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
+    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
+    #             action FilePage(9)
+        
+        imagebutton:
+            xoffset 7.5
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("preferences")
+        # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
+        imagebutton:
+            xoffset -40
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("text_settings")
+        imagebutton:
+            xoffset -87.5
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("sound_settings")
+    frame:
+        xpadding 150
+        ypadding 150
+        background "gui/frame_bg1.png"
+        # xalign 0.86
+        # yalign 0.35
+        xoffset 855
+        yoffset 230
+        # xoffset 350
+        
+        hbox:
+            yoffset 50
+            xoffset -75
+            vbox:
+                spacing 60
+                xoffset -35
+                yoffset -175
+                hbox:
+                    
+                    text "TEXTBOX OPACITY" xalign 0.5 size 30      
+                hbox:
+                    yoffset -12.5
+                    text "TEXT SPEED" xalign 0.5 size 30
+                hbox:
+                    yoffset -25
+                    text "AUTOPLAY SPEED" xalign 0.5 size 30
+            vbox:
+                spacing 70
+                xoffset 55
+                yoffset -170
+                hbox:
+                    spacing 10
+                    bar:
+                        style "text_speed" 
+                        value FieldValue(persistent, "window_opacity", range=1.0)
+                hbox:
+                    spacing 10
+                    yoffset -12.5
+                    bar:
+                        style "text_speed"
+                        value Preference("text speed")
+                hbox:
+                    spacing 10
+                    yoffset -25
+                    bar:
+                        style "auto_speed"
+                        value Preference("auto-forward time")
+        hbox:
+            xalign 0.5
+            yalign 0.5
+            xoffset 310
+            yoffset 250
+            textbutton "Reset to Default" action ResetToDefaults
+        # hbox:
+        #     xalign 0.5
+        #     yalign 0.5
+        #     yoffset -25
+        #     xoffset -50
+        #     xsize 200
+        #     ysize 50
+        #     spacing 150
+        #     frame:
+        #         background None
+        #         add Transform(Frame("gui/preview_textbox.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444, xoffset= -20, yoffset= 75), alpha=persistent.window_opacity)
+        #         # background "gui/preview_textbox.png"
+        #         hbox:
+        #             xsize 440
+        #             ysize 222
+        #             if "text_test" == True:
+        #                 text "None"
+        #             if persistent.window_opacity > 0.5: 
+        #                 text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#000000" yoffset -7.5 xoffset 10
+        #             else:
+        #                 text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#ffffff" yoffset -7.5 xoffset 10
+
+        #         xsize 500
+        #         xoffset 87.5
+        #         yoffset 155
+
+        # textbutton "Preview Text Speed" action Show("text_test") yoffset -20 xoffset 35
+                
+
 screen preferences():
 
     tag menu
     key "mousedown_3" action Return()   
     use game_menu(_("Configurations"), scroll="viewport")
-    
+    # show screen "text_test"
     # add "flickering_light"
-    text "CONFIGURATIONS" xalign 0.5 yalign 0.15 xoffset 350 size 40
+    hbox:
+        xsize 1000
+        xalign 0.5025
+        yalign 0.1525
+        spacing 0
+        text "CONFIGURATIONS" xoffset 975 yoffset 15 size 40
+        # imagebutton:
+    #             idle "gui/gui_buttons/GUI save_load_pages/nine.png"
+    #             hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton_hovered.png"
+    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
+    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
+    #             action FilePage(9)
+        
+        imagebutton:
+            xoffset 7.5
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("preferences")
+        # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
+        imagebutton:
+            xoffset -40
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("text_settings")
+        imagebutton:
+            xoffset -87.5
+            yoffset 20
+            idle "gui/system_idle.png"
+            selected_idle "gui/system_selected.png"
+            selected_hover "gui/system_selected.png"
+            action ShowMenu("sound_settings")
     frame:
         xpadding 150
         ypadding 150
-        style_prefix "bold_text"
-        background None
-        xalign 0.5
-        yalign 0.5
-        xoffset 350
+        background "gui/frame_bg_system.png"
+        xalign 0.8575
+        yalign 0.35
+        # xoffset 350
+        
         
         hbox:
-            
             vbox:
                 spacing 25
-                xoffset -60
-                yoffset -50
+                xoffset -110
+                yoffset -115
+                hbox:
+                    text "DISPLAY WINDOW" xalign 0.5 yoffset -5
+                hbox: 
+                    text "SKIP MODE" xalign 0.5 yoffset 20
+            vbox:
+                spacing 25
+                xoffset -80
+                yoffset 50
 
-                text "DISPLAY WINDOW" xalign 0.5
-
+                
                 hbox:
                     xalign 0.5
-                    yoffset -25
-                    xoffset -50
+                    yoffset -200
+                    xoffset 100
                     xsize 200
                     ysize 50
                     spacing 150
@@ -957,13 +1243,13 @@ screen preferences():
                                 selected_hover ("gui/gui_buttons/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_fullscreen.png")
                                 action Preference("display", "fullscreen")
              
-                text "SKIP MODE" xalign 0.5
+                
      
                 hbox: 
                     xalign 0.5
                     yalign 0.5
-                    yoffset -25
-                    xoffset -50
+                    yoffset -190
+                    xoffset 100
                     xsize 200
                     ysize 50
                     spacing 150
@@ -987,42 +1273,81 @@ screen preferences():
                                 selected_idle "gui/gui_buttons/selected_skipseen.png"
                                 selected_hover ("gui/gui_buttons/selected_skipseen_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_skipseen.png")
                                 action Preference("skip", "seen")
-            vbox:
-                spacing 25
-                xoffset 50
-                yoffset -50
-                vbox:
-                    text "TEXT SPEED" xalign 0.5
-                    spacing 25 + 8
-                    hbox:
-                        spacing 10
-                        bar:
-                            style "text_speed"
-                            value Preference("text speed")
-                vbox:
-                    text "AUTOPLAY SPEED" xalign 0.5
-                    spacing 25 + 8
-                    hbox:
-                        spacing 10
-                        bar:
-                            style "auto_speed"
-                            value Preference("auto-forward time")
-                vbox:
-                    text "MUSIC VOLUME" xalign 0.5
-                    spacing 25 + 8
-                    hbox:
-                        spacing 10
-                        bar:
-                            style "music_volume"
-                            value Preference("music volume")
-                vbox:
-                    text "SFX VOLUME" xalign 0.5
-                    spacing 25 + 8
-                    hbox:
-                        spacing 10
-                        bar:
-                            style "sfx_volume"
-                            value Preference("sound volume")
+                # hbox:
+                #     xalign 0.5
+                #     yalign 0.5
+                #     yoffset -25
+                #     xoffset -50
+                #     xsize 200
+                #     ysize 50
+                #     spacing 150
+                #     frame:
+                #         background None
+                #         add Transform(Frame("gui/preview_textbox.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444, xoffset= -20, yoffset= 75), alpha=persistent.window_opacity)
+                #         # background "gui/preview_textbox.png"
+                #         hbox:
+                #             xsize 440
+                #             ysize 222
+                #             if "text_test" == True:
+                #                 text "None"
+                #             if persistent.window_opacity > 0.5: 
+                #                 text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#000000" yoffset -7.5 xoffset 10
+                #             else:
+                #                 text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#ffffff" yoffset -7.5 xoffset 10
+
+                #         xsize 500
+                #         xoffset 87.5
+                #         yoffset 155
+
+                # textbutton "Preview Text Speed" action Show("text_test") yoffset -20 xoffset 35
+                
+                        
+            # vbox:
+            #     spacing 25
+            #     xoffset 50
+            #     yoffset -50
+                
+            #     vbox:
+            #         text "TEXTBOX OPACITY" xalign 0.5
+            #         spacing 25 + 8 
+            #         hbox:
+            #             spacing 10
+            #             bar value FieldValue(persistent, "window_opacity", range=1.0, style="text_speed")
+            #     vbox:
+            #         text "TEXT SPEED" xalign 0.5
+            #         spacing 25 + 8
+            #         hbox:
+            #             spacing 10
+            #             bar:
+            #                 style "text_speed"
+            #                 value Preference("text speed")
+            #     vbox:
+            #         text "AUTOPLAY SPEED" xalign 0.5
+            #         spacing 25 + 8
+            #         hbox:
+            #             spacing 10
+            #             bar:
+            #                 style "auto_speed"
+            #                 value Preference("auto-forward time")
+                # vbox:
+                #     text "MUSIC VOLUME" xalign 0.5
+                #     spacing 25 + 8
+                #     hbox:
+                #         spacing 10
+                #         bar:
+                #             style "music_volume"
+                #             value Preference("music volume")
+                # vbox:
+                #     text "SFX VOLUME" xalign 0.5
+                #     spacing 25 + 8
+                #     hbox:
+                #         spacing 10
+                #         bar:
+                #             style "sfx_volume"
+                #             value Preference("sound volume")
+                # hbox:
+                #     xalign 0.5
+                #     textbutton "Reset to Default" action ResetToDefaults
     frame:
         xsize 850
         ysize 100

@@ -85,28 +85,22 @@ screen file_picker():
         xsize 1500
         xalign 0.5
         yalign 0.425
-        xoffset 340
-        xspacing 100
+        xoffset 335
+        xspacing 150
         yspacing 60
         
         for slot in range(gui.file_slot_cols * gui.file_slot_rows):
-            # # Each file slot is a button.
+        # for slot in range(1, 7):
+            # Each file slot is a button.
             # $ file_name = FileSlotName(i, 30)
             # $ file_time = FileTime(i)
             # $ save_name = FileSaveName(i)
-            # $ slot_foot = str(i)
-            $ slot_foot = str(FileSlotName(slot + 1, 7))
-            if len(slot_foot) <= 9:
+            $ slot_foot = FileSlotName(slot + 1, 7)
+            if len(slot_foot) == 1:
                 $ slot_foot = '0' + slot_foot
-            if len(slot_foot) >= 10:
-                $ slot_foot = slot_foot
-            $ slot_foot = slot_foot
-
-            # $ file_name = FileSlotName(slot + 1, 7)
-            # if file_name <= 9:
-            #     $ file_name = '0' + file_name
-            # else:
-            #     $ file_name = file_name
+            # if len(slot_foot) < 3:
+            #     $ slot_foot = '0' + slot_foot
+            # $ slot_foot = "No " + slot_foot
 
 
             vbox:
@@ -128,7 +122,7 @@ screen file_picker():
                         text FileSaveName(slot) xalign 0.99999 size 25 yoffset -33 hover_color "#000000"
                         add "gui/number_slot_small.png" xalign 0.01 yoffset -240 xoffset -0
                         # add "gui/number_slot_small.png" xalign 0.99999 yoffset -120 xoffset -10
-                        text FileSlotName(slot + 1, 7) xalign 0.01 size 20 yoffset -267.5 xoffset 5 color "#000000"
+                        text slot_foot xalign 0.01 size 20 yoffset -267.5 xoffset 5 color "#000000"
                         # text slot_foot xalign 0.01 size 20 yoffset -267.5 xoffset 5 color "#000000"
                     xfill True
 
