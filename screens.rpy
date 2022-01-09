@@ -286,7 +286,7 @@ screen quick_menu():
                 textbutton _("Auto") action Preference("auto-forward", "toggle")
                 textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
                 textbutton _("Logs") action ShowMenu('history')
-                textbutton _("Config") action ShowMenu('preferences')
+                textbutton _("Settings") action ShowMenu('preferences')
                     
 
 
@@ -339,7 +339,7 @@ screen navigation():
 
         textbutton _("LOAD") action ShowMenu("load")
 
-        textbutton _("CONFIG") action ShowMenu("preferences")
+        textbutton _("SETTINGS") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -532,7 +532,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                 textbutton "SAVE" action ShowMenu('save')
                 textbutton "LOAD" action ShowMenu('load')
-                textbutton "CONFIG" action ShowMenu('preferences') 
+                textbutton "SETTINGS" action ShowMenu('preferences') 
                 textbutton "TITLE" action MainMenu()
                 textbutton "QUIT" action Quit(True)
                 textbutton "BACK" action Return()
@@ -656,184 +656,6 @@ init:
         
         repeat
 
-# screen save():
-
-#     tag menu
-#     key "mousedown_3" action Return() 
-#     use file_slots(_("Save"))
-    
-#     text "SAVE GAME" text_align 0.5 xalign 0.3375 yalign 0.15 xoffset 350 size 40
-
-#     vbox: 
-              
-#         xalign 0.8
-#         yalign 0.15
-#         xoffset 200
-
-#         spacing 5
-        
-
-# screen load():
-    
-#     tag menu
-#     key "mousedown_3" action Return() 
-#     use file_slots(_("Load"))
-
-#     text "LOAD GAME" text_align 0.5 xalign 0.3375 yalign 0.15 xoffset 350 size 40
-    
-#     vbox:
-#         xalign 0.8
-#         yalign 0.15
-#         xoffset 200
-#         spacing 5
-
-# screen file_slots(title):
-
-#     default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
-#     use game_menu(title)
-#     # add "flickering_light"
-#     tag menu
-#     grid gui.file_slot_cols gui.file_slot_rows:
-        
-#         xsize 1500
-#         xalign 0.5
-#         yalign 0.45
-#         xoffset 350
-#         xspacing 125
-#         yspacing 50
-
-#         for i in range(gui.file_slot_cols * gui.file_slot_rows):
-#             $slot = i + 1
-            
-#             button: 
-#                 xsize 325
-#                 ysize 160
-#                 action FileAction(slot)
-#                 add "images/bg border.png" xsize 340 ysize 170 xoffset -8.5 yoffset -6.75
-                
-#                 # hovered "gui/blackboard.jpg"
-
-                
-                # vbox:
-                #     add FileScreenshot(slot) xalign 0.5 size(325, 160)
-                #     text FileTime(slot, format=_("{#file_time}%B, %d, %Y"), empty=_("No Data")):
-                #         xalign 0.5 size 25 yoffset 6.5
-                # add "gui/savegame.png"
-#                 key "save_delete" action FileDelete(slot) 
-    # hbox:
-    #     xalign 0.850
-    #     yalign 0.15
-    #     spacing 15
-    #     xoffset 0
-    #     hbox:
-    #         # xoffset 500
-    #         # default mouse_clicked = False
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/one.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_onebutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_onebutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_onebutton.png"
-    #             action FilePage(1)
-    #     hbox:
-    #         # xoffset -500
-    #         # default mouse_clicked = True
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/two.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_twobutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_twobutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_twobutton.png"
-    #             action FilePage(2)
-    #     hbox:
-    #         # xoffset -500
-    #         # default mouse_clicked = True
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/three.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_threebutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_threebutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_threebutton.png"
-    #             action FilePage(3)
-    #     hbox:
-    #         # xoffset -500
-    #         # default mouse_clicked = True
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/four.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_fourbutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_fourbutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_fourbutton.png"
-    #             action FilePage(4)
-    #     hbox:
-    #         # xoffset -500
-    #         # default mouse_clicked = True
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/five.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_fivebutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_fivebutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_fivebutton.png"
-    #             action FilePage(5)
-    #     hbox:
-    #         # xoffset -500
-    #         # default mouse_clicked = True
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/six.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_sixbutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_sixbutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_sixbutton.png"
-    #             action FilePage(6)
-    #     hbox:
-    #         # xoffset -500
-    #         # default mouse_clicked = True
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/seven.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_sevenbutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_sevenbutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_sevenbutton.png"
-    #             action FilePage(7)
-    #     hbox:
-    #         # xoffset -500
-    #         # default mouse_clicked = True
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/eight.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_eightbutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_eightbutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_eightbutton.png"
-    #             action FilePage(8)
-    #     hbox:
-    #         # xoffset -500
-    #         # default mouse_clicked = True
-    #         # fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-    #         imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/nine.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
-    #             action FilePage(9)
-    # frame:
-    #     xsize 850
-    #     ysize 100
-    #     xalign 0.5
-    #     yalign 0.9
-    #     xoffset 350
-    #     background None
-    #     hbox:
-    #         spacing 50
-
-
-    #         textbutton "SAVE" action ShowMenu('save')
-    #         textbutton "LOAD" action ShowMenu('load')
-    #         textbutton "CONFIG" action ShowMenu('preferences') 
-    #         textbutton "TITLE" action MainMenu()
-    #         textbutton "QUIT" action Quit(True)
-    #         textbutton "BACK" action Return()
-
-
 style page_label is gui_label
 style page_label_text is gui_label_text
 style page_button is gui_button
@@ -881,27 +703,31 @@ style pref_bar:
 
 style text_speed:
     yalign 0.5
-    xysize(500, 27)
+    xysize(500, 38)
     left_bar "gui/bar/Text.png"
-    # thumb "gui/thumb_with_paint.png"
+    right_bar "gui/bar/Text_right.png"
+    thumb "gui/thumb.png"
 
 style auto_speed:
     yalign 0.5
-    xysize(500, 27)
+    xysize(500, 38)
     left_bar "gui/bar/Auto.png"
-    # thumb "gui/thumb_with_paint.png"
+    right_bar "gui/bar/Music_right.png"
+    thumb "gui/thumb.png"
 
 style music_volume:
     yalign 0.5
-    xysize(500, 27)
+    xysize(500, 38)
     left_bar "gui/bar/Music.png"
-    # thumb "gui/thumb_with_paint.png"
+    right_bar "gui/bar/Music_right.png"
+    thumb "gui/thumb.png"
 
 style sfx_volume:
     yalign 0.5
-    xysize(500, 27)
-    left_bar "gui/bar/Sfx.png"
-    # thumb "gui/thumb_with_paint.png"
+    xysize(500, 38)
+    left_bar "gui/bar/Text.png"
+    right_bar "gui/bar/Sfx_right.png"
+    thumb "gui/thumb.png"
 
 style bold_text:
     bold True
@@ -909,9 +735,6 @@ style bold_text:
 style hovered_text:
     background None
     hover_background "#c05d5d"
-
-
-
 
 
 init python:
@@ -924,24 +747,20 @@ init python:
         # persistent('window_opacity', 1.0)
         renpy.restart_interaction()
 
-
-# screen preview_text_test:
-#     # frame:
-#     #     add Transform(Frame("gui/textbox_preview.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444), alpha=persistent.window_opacity)
-
 screen text_test():
     zorder 100
-    # add "gui/preview_textbox.png" xsize 444 ysize 222 
     frame:
         
         xalign 0.4975 yalign 0.55
+        xoffset 28.5
+        yoffset 22.5
         background None
         text "This is a test." slow_cps True color "#000000" yoffset -7.5 xoffset 10
         
         hbox:
-            add Transform(Frame("gui/preview_textbox.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444, xoffset=867.5, yoffset=542.5), alpha=persistent.window_opacity)
-            text "This is a test." slow_cps True color "#ffffff" yoffset -7.5 xoffset 10
-        
+            xsize 758
+            # add Transform(Frame("gui/preview_textbox1.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444, xoffset=867.5, yoffset=542.5), alpha=persistent.window_opacity)
+            text "This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test." slow_cps True color "#ffffff" xoffset 900 yoffset 565 font "Poppins-Light.ttf"      
     timer 2.0 action Hide("text_test")
 
 screen sound_settings():
@@ -949,405 +768,94 @@ screen sound_settings():
     key "mousedown_3" action Return()   
     use game_menu(_("Configurations"), scroll="viewport")
     hbox:
+        style_prefix "mailbox_button"
+        text "SETTINGS" size 60 color "#ffff" font "Poppins-Light.ttf" xoffset 1510.5 yoffset 140
+    hbox:
         xsize 1000
-        xalign 0.5025
-        yalign 0.1525
+        xalign 0.5
+        yalign 0.1520
+        yoffset 0
+        xoffset 341
         spacing 0
-        text "CONFIGURATIONS" xoffset 975 yoffset 15 size 40
+        # text "CONFIGURATIONS" xoffset 975 yoffset 15 size 40
         # imagebutton:
     #             idle "gui/gui_buttons/GUI save_load_pages/nine.png"
     #             hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton_hovered.png"
     #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
     #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
     #             action FilePage(9)
-        
-        imagebutton:
-            xoffset 7.5
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("preferences")
-        # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
-        imagebutton:
-            xoffset -40
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("text_settings")
-        imagebutton:
-            xoffset -87.5
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("sound_settings")
+
+        default mouse_clicked = False
+        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
+            imagebutton:
+                xoffset 54
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/system_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/system_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/system_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/system_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/system_selected.png"
+                action ShowMenu("preferences")
+            # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
+            imagebutton:
+                xoffset 211
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/text_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/text_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/text_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/text_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/text_selected.png"
+                action ShowMenu("text_settings")
+            imagebutton:
+                xoffset 368.5
+                # xoffset 54 + 47.5
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/sound_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/sound_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/sound_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                action ShowMenu("sound_settings")
     frame:
         xpadding 150
         ypadding 150
-        background "gui/frame_bg1.png"
+        background "gui/frame_bg_sound.png"
         # xalign 0.86
         # yalign 0.35
         xoffset 855
-        yoffset 230
+        yoffset 229
+
+        style_prefix "mailbox_button"
         
         hbox:
             # xalign 0.5
             # yalign 0.5
-            yoffset 50
+            yoffset 57.5
             xoffset -75
             vbox:
-                spacing 50
+                spacing 60
                 xoffset -35
-                yoffset -175
+                yoffset -170
                 hbox:
-                    text "MUSIC VOLUME" xalign 0.5 size 33       
+                    text "MUSIC VOLUME" xalign 0.5 size 33 color "#ffffff"  
                 hbox:
-                    text "SFX VOLUME" xalign 0.5 size 33
+                    yoffset -10
+                    text "SFX VOLUME" xalign 0.5 size 33 color "#ffffff"
 
             vbox:
                 spacing 60
-                xoffset 65
-                yoffset -170
+                xoffset 63
+                yoffset -167.5
                 hbox:
+                    yoffset -2.5
                     spacing 10
                     bar:
                         style "music_volume"
                         value Preference("music volume")
                 hbox:
                     spacing 10
+                    yoffset 0
                     bar:
                         style "sfx_volume"
                         value Preference("sound volume")
-        hbox:
-            xalign 0.5
-            yalign 0.5
-            xoffset 310
-            yoffset 250
-            textbutton "Reset to Default" action ResetToDefaults
-
-screen text_settings():
-    tag menu
-    key "mousedown_3" action Return()   
-    use game_menu(_("Configurations"), scroll="viewport")
-    hbox:
-        xsize 1000
-        xalign 0.5025
-        yalign 0.1525
-        spacing 0
-        text "CONFIGURATIONS" xoffset 975 yoffset 15 size 40
-        # imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/nine.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
-    #             action FilePage(9)
         
-        imagebutton:
-            xoffset 7.5
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("preferences")
-        # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
-        imagebutton:
-            xoffset -40
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("text_settings")
-        imagebutton:
-            xoffset -87.5
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("sound_settings")
-    frame:
-        xpadding 150
-        ypadding 150
-        background "gui/frame_bg1.png"
-        # xalign 0.86
-        # yalign 0.35
-        xoffset 855
-        yoffset 230
-        # xoffset 350
-        
-        hbox:
-            yoffset 50
-            xoffset -75
-            vbox:
-                spacing 60
-                xoffset -35
-                yoffset -175
-                hbox:
-                    
-                    text "TEXTBOX OPACITY" xalign 0.5 size 30      
-                hbox:
-                    yoffset -12.5
-                    text "TEXT SPEED" xalign 0.5 size 30
-                hbox:
-                    yoffset -25
-                    text "AUTOPLAY SPEED" xalign 0.5 size 30
-            vbox:
-                spacing 70
-                xoffset 55
-                yoffset -170
-                hbox:
-                    spacing 10
-                    bar:
-                        style "text_speed" 
-                        value FieldValue(persistent, "window_opacity", range=1.0)
-                hbox:
-                    spacing 10
-                    yoffset -12.5
-                    bar:
-                        style "text_speed"
-                        value Preference("text speed")
-                hbox:
-                    spacing 10
-                    yoffset -25
-                    bar:
-                        style "auto_speed"
-                        value Preference("auto-forward time")
-        hbox:
-            xalign 0.5
-            yalign 0.5
-            xoffset 310
-            yoffset 250
-            textbutton "Reset to Default" action ResetToDefaults
-        # hbox:
-        #     xalign 0.5
-        #     yalign 0.5
-        #     yoffset -25
-        #     xoffset -50
-        #     xsize 200
-        #     ysize 50
-        #     spacing 150
-        #     frame:
-        #         background None
-        #         add Transform(Frame("gui/preview_textbox.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444, xoffset= -20, yoffset= 75), alpha=persistent.window_opacity)
-        #         # background "gui/preview_textbox.png"
-        #         hbox:
-        #             xsize 440
-        #             ysize 222
-        #             if "text_test" == True:
-        #                 text "None"
-        #             if persistent.window_opacity > 0.5: 
-        #                 text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#000000" yoffset -7.5 xoffset 10
-        #             else:
-        #                 text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#ffffff" yoffset -7.5 xoffset 10
-
-        #         xsize 500
-        #         xoffset 87.5
-        #         yoffset 155
-
-        # textbutton "Preview Text Speed" action Show("text_test") yoffset -20 xoffset 35
-                
-
-screen preferences():
-
-    tag menu
-    key "mousedown_3" action Return()   
-    use game_menu(_("Configurations"), scroll="viewport")
-    # show screen "text_test"
-    # add "flickering_light"
-    hbox:
-        xsize 1000
-        xalign 0.5025
-        yalign 0.1525
-        spacing 0
-        text "CONFIGURATIONS" xoffset 975 yoffset 15 size 40
-        # imagebutton:
-    #             idle "gui/gui_buttons/GUI save_load_pages/nine.png"
-    #             hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton_hovered.png"
-    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
-    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
-    #             action FilePage(9)
-        
-        imagebutton:
-            xoffset 7.5
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("preferences")
-        # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
-        imagebutton:
-            xoffset -40
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("text_settings")
-        imagebutton:
-            xoffset -87.5
-            yoffset 20
-            idle "gui/system_idle.png"
-            selected_idle "gui/system_selected.png"
-            selected_hover "gui/system_selected.png"
-            action ShowMenu("sound_settings")
-    frame:
-        xpadding 150
-        ypadding 150
-        background "gui/frame_bg_system.png"
-        xalign 0.8575
-        yalign 0.35
-        # xoffset 350
-        
-        
-        hbox:
-            vbox:
-                spacing 25
-                xoffset -110
-                yoffset -115
-                hbox:
-                    text "DISPLAY WINDOW" xalign 0.5 yoffset -5
-                hbox: 
-                    text "SKIP MODE" xalign 0.5 yoffset 20
-            vbox:
-                spacing 25
-                xoffset -80
-                yoffset 50
-
-                
-                hbox:
-                    xalign 0.5
-                    yoffset -200
-                    xoffset 100
-                    xsize 200
-                    ysize 50
-                    spacing 150
-                    hbox:
-                        default mouse_clicked = False
-                        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-                
-                            imagebutton:
-                                idle "gui/gui_buttons/text_windowed.png" xalign 0.5 yalign 0.5 yoffset 27.5
-                                hover ("gui/gui_buttons/selected_windowed_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_windowed_hovered.png")
-                                selected_idle "gui/gui_buttons/selected_windowed.png"
-                                selected_hover ("gui/gui_buttons/selected_windowed_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_windowed.png")
-                                action Preference("display", "window")
-
-                    hbox:
-                        default mouse_clicked = False
-                        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-                
-                            imagebutton:
-                                idle "gui/gui_buttons/text_fullscreen.png" xalign 0.5 yalign 0.5 yoffset 27.5
-                                hover ("gui/gui_buttons/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_fullscreen_hovered.png")
-                                selected_idle "gui/gui_buttons/selected_fullscreen.png"
-                                selected_hover ("gui/gui_buttons/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_fullscreen.png")
-                                action Preference("display", "fullscreen")
-             
-                
-     
-                hbox: 
-                    xalign 0.5
-                    yalign 0.5
-                    yoffset -190
-                    xoffset 100
-                    xsize 200
-                    ysize 50
-                    spacing 150
-                    hbox:
-                        default mouse_clicked = False
-                        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-                
-                            imagebutton:
-                                idle "gui/gui_buttons/text_skipall.png" xalign 0.5 yalign 0.5 yoffset 27.5
-                                hover ("gui/gui_buttons/selected_skipall_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_skipall_hovered.png")
-                                selected_idle "gui/gui_buttons/selected_skipall.png"
-                                selected_hover ("gui/gui_buttons/selected_skipall_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_skipall.png")
-                                action Preference("skip", "all")
-                    hbox:
-                        default mouse_clicked = False
-                        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
-                
-                            imagebutton:
-                                idle "gui/gui_buttons/text_skipseen.png" xalign 0.5 yalign 0.5 yoffset 27.5
-                                hover ("gui/gui_buttons/selected_skipseen_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_skipseen_hovered.png")
-                                selected_idle "gui/gui_buttons/selected_skipseen.png"
-                                selected_hover ("gui/gui_buttons/selected_skipseen_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_skipseen.png")
-                                action Preference("skip", "seen")
-                # hbox:
-                #     xalign 0.5
-                #     yalign 0.5
-                #     yoffset -25
-                #     xoffset -50
-                #     xsize 200
-                #     ysize 50
-                #     spacing 150
-                #     frame:
-                #         background None
-                #         add Transform(Frame("gui/preview_textbox.png", xalign=0.5, yalign=0.5, ysize=222, xsize=444, xoffset= -20, yoffset= 75), alpha=persistent.window_opacity)
-                #         # background "gui/preview_textbox.png"
-                #         hbox:
-                #             xsize 440
-                #             ysize 222
-                #             if "text_test" == True:
-                #                 text "None"
-                #             if persistent.window_opacity > 0.5: 
-                #                 text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#000000" yoffset -7.5 xoffset 10
-                #             else:
-                #                 text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#ffffff" yoffset -7.5 xoffset 10
-
-                #         xsize 500
-                #         xoffset 87.5
-                #         yoffset 155
-
-                # textbutton "Preview Text Speed" action Show("text_test") yoffset -20 xoffset 35
-                
-                        
-            # vbox:
-            #     spacing 25
-            #     xoffset 50
-            #     yoffset -50
-                
-            #     vbox:
-            #         text "TEXTBOX OPACITY" xalign 0.5
-            #         spacing 25 + 8 
-            #         hbox:
-            #             spacing 10
-            #             bar value FieldValue(persistent, "window_opacity", range=1.0, style="text_speed")
-            #     vbox:
-            #         text "TEXT SPEED" xalign 0.5
-            #         spacing 25 + 8
-            #         hbox:
-            #             spacing 10
-            #             bar:
-            #                 style "text_speed"
-            #                 value Preference("text speed")
-            #     vbox:
-            #         text "AUTOPLAY SPEED" xalign 0.5
-            #         spacing 25 + 8
-            #         hbox:
-            #             spacing 10
-            #             bar:
-            #                 style "auto_speed"
-            #                 value Preference("auto-forward time")
-                # vbox:
-                #     text "MUSIC VOLUME" xalign 0.5
-                #     spacing 25 + 8
-                #     hbox:
-                #         spacing 10
-                #         bar:
-                #             style "music_volume"
-                #             value Preference("music volume")
-                # vbox:
-                #     text "SFX VOLUME" xalign 0.5
-                #     spacing 25 + 8
-                #     hbox:
-                #         spacing 10
-                #         bar:
-                #             style "sfx_volume"
-                #             value Preference("sound volume")
-                # hbox:
-                #     xalign 0.5
-                #     textbutton "Reset to Default" action ResetToDefaults
     frame:
         xsize 850
         ysize 100
@@ -1361,7 +869,330 @@ screen preferences():
 
             textbutton "SAVE" action ShowMenu('save')
             textbutton "LOAD" action ShowMenu('load')
-            textbutton "CONFIG" action ShowMenu('preferences') 
+            textbutton "SETTINGS" action ShowMenu('preferences') 
+            textbutton "TITLE" action MainMenu()
+            textbutton "QUIT" action Quit(True)
+            textbutton "BACK" action Return()
+
+screen text_settings():
+    tag menu
+    key "mousedown_3" action Return()   
+    use game_menu(_("Configurations"), scroll="viewport")
+    hbox:
+        style_prefix "mailbox_button"
+        text "SETTINGS" size 80 color "#ffff" font "Poppins-Light.ttf" xoffset 1510.5 yoffset 140
+    hbox:
+        xsize 1000
+        # xoffset 341
+        # xalign 0.5
+        # yalign 0.1520
+        xalign 0.5
+        yalign 0.1520
+        yoffset 0
+        xoffset 341
+        spacing 0
+        # imagebutton:
+    #             idle "gui/gui_buttons/GUI save_load_pages/nine.png"
+    #             hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton_hovered.png"
+    #             selected_idle "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
+    #             selected_hover "gui/gui_buttons/GUI save_load_pages/selected_ninebutton.png"
+    #             action FilePage(9)
+
+        default mouse_clicked = False
+        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
+            imagebutton:
+                xoffset 54
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/system_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/system_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/system_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/system_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/system_selected.png"
+                action ShowMenu("preferences")
+            # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
+            imagebutton:
+                xoffset 211
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/text_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/text_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/text_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/text_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/text_selected.png"
+                action ShowMenu("text_settings")
+            imagebutton:
+                xoffset 368.5
+                # xoffset 54 + 47.5
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/sound_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/sound_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/sound_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                action ShowMenu("sound_settings")
+    frame:
+        xpadding 150
+        ypadding 150
+        background "gui/frame_bg_text.png"
+        # xalign 0.86
+        # yalign 0.
+        style_prefix "mailbox_button"
+        xoffset 855
+        yoffset 229
+        # xoffset 350
+        
+        hbox:
+            yoffset 57.5
+            xoffset -75
+            vbox:
+                spacing 60
+                xoffset -35
+                yoffset -170
+                hbox:
+                    
+                    text "TEXTBOX OPACITY" xalign 0.5 size 33 color "#ffffff"        
+                hbox:
+                    yoffset -12.5
+                    text "TEXT SPEED" xalign 0.5 size 33 color "#ffffff"
+                hbox:
+                    yoffset -25
+                    text "AUTOPLAY SPEED" xalign 0.5 size 33 color "#ffffff"
+            vbox:
+                spacing 70
+                xoffset 25
+                yoffset -167.5
+                hbox:
+                    spacing 10
+                    yoffset -2.5
+                    bar:
+                        style "sfx_volume" 
+                        value FieldValue(persistent, "window_opacity", range=1.0)
+                hbox:
+                    spacing 10
+                    yoffset -15
+                    bar:
+                        style "text_speed"
+                        value Preference("text speed")
+                hbox:
+                    spacing 10
+                    yoffset -25
+                    bar:
+                        style "auto_speed"
+                        value Preference("auto-forward time")
+
+            hbox:
+                # xalign 0.5
+                # yalign 0.5
+                # yoffset -25
+                # xoffset -50
+                xoffset -885
+                xsize 250
+                ysize 50
+                spacing 150
+                frame:
+                    background None
+                    add Transform(Frame("gui/preview_textbox1.png", xalign=0.5, yalign=0.5, ysize=217, xsize=841, xoffset= 150, yoffset= 75), alpha=persistent.window_opacity)
+                    # background "gui/preview_textbox.png"
+                    hbox:
+                        xsize 841
+                        ysize 217
+                        text "_________________________________" color "#ffffff" yoffset -82.5 xoffset 15
+                    hbox:
+                        xsize 841
+                        ysize 217
+                        text "_________________________________" color "#ffffff" yoffset -35.5 xoffset 15
+                    hbox:
+                        xsize 841
+                        ysize 217
+                        text "_________________________________" color "#ffffff" yoffset 12.5 xoffset 15
+                        # if "text_test" == True:
+                        #     text "None"
+                        # if persistent.window_opacity > 0.5: 
+                            
+                        # else:
+                        #     text "This is a textbox for textspeed, this is just a test dialogue for your mother and your whole ass family" color "#ffffff" yoffset -7.5 xoffset 15
+
+                    xsize 500
+                    xoffset 87.5
+                    yoffset 155
+            hbox:
+                xsize 500
+                textbutton "PREVIEW TEXT SPEED" action Show("text_test") yoffset 85 xoffset -1325 
+
+    frame:
+        xsize 850
+        ysize 100
+        xalign 0.5
+        yalign 0.9
+        xoffset 350
+        background None
+        hbox:
+            spacing 50
+
+
+            textbutton "SAVE" action ShowMenu('save')
+            textbutton "LOAD" action ShowMenu('load')
+            textbutton "SETTINGS" action ShowMenu('preferences') 
+            textbutton "TITLE" action MainMenu()
+            textbutton "QUIT" action Quit(True)
+            textbutton "BACK" action Return()
+                
+
+screen preferences():
+
+    tag menu
+    key "mousedown_3" action Return()   
+    use game_menu(_("Configurations"), scroll="viewport")
+    # show screen "text_test"
+    # add "flickering_light"
+    hbox:
+        style_prefix "mailbox_button"
+        text "SETTINGS" size 70 color "#ffff" font "Poppins-Light.ttf" xoffset 1470.5 yoffset 10
+    hbox:
+        xsize 1000
+        xoffset 341
+        xalign 0.5
+        yalign 0.1520
+        spacing 0
+        
+        
+        # imagebutton:
+        #     idle "gui/gui_buttons/text_fullscreen.png" xalign 0.5 yalign 0.5 yoffset 27.5
+        #     hover ("gui/gui_buttons/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_fullscreen_hovered.png")
+        #     selected_idle "gui/gui_buttons/selected_fullscreen.png"
+        #     selected_hover ("gui/gui_buttons/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/selected_fullscreen.png")
+        #     action Preference("display", "fullscreen")
+
+
+        default mouse_clicked = False
+        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
+            imagebutton:
+                xoffset 54
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/system_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/system_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/system_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/system_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/system_selected.png"
+                action ShowMenu("preferences")
+            # textbutton "SYSTEM" action ShowMenu("preferences") xoffset 150
+            imagebutton:
+                xoffset 211
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/text_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/text_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/text_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/text_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/text_selected.png"
+                action ShowMenu("text_settings")
+            imagebutton:
+                xoffset 368.5
+                # xoffset 54 + 47.5
+                yoffset 175
+                idle "gui/gui_buttons/GUI system_settings/sound_idle.png"
+                hover ("gui/gui_buttons/GUI system_settings/sound_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/sound_selected.png")
+                selected_idle "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                selected_hover "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                action ShowMenu("sound_settings")
+    frame:
+        xpadding 150
+        ypadding 150
+        background "gui/frame_bg_system.png"
+        xalign 0.8630
+        yalign 0.35
+        style_prefix "mailbox_button"
+        # xoffset 350
+        
+        
+        hbox:
+            vbox:
+                spacing 25
+                xoffset -110
+                yoffset -115
+                hbox:
+                    text "DISPLAY WINDOW" xalign 0.5 yoffset -5 color "#ffffff"
+                hbox: 
+                    text "SKIP MODE" xalign 0.5 yoffset 20 color "#ffffff"
+            vbox:
+                spacing 25
+                xoffset -80
+                yoffset 50
+
+                
+                hbox:
+                    xalign 0.5
+                    yoffset -197.5
+                    xoffset 100
+                    xsize 200
+                    ysize 50
+                    spacing 150
+                    hbox:
+                        default mouse_clicked = False
+                        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
+                
+                            imagebutton:
+                                idle "gui/gui_buttons/GUI system_settings/text_windowed.png" xalign 0.5 yalign 0.5 yoffset 27.5
+                                hover ("gui/gui_buttons/GUI system_settings/selected_windowed_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_windowed_hovered.png")
+                                selected_idle "gui/gui_buttons/GUI system_settings/selected_windowed.png"
+                                selected_hover ("gui/gui_buttons/GUI system_settings/selected_windowed_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_windowed.png")
+                                action Preference("display", "window")
+
+                    hbox:
+
+                        default mouse_clicked = False
+                        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
+                
+                            imagebutton:
+                                idle "gui/gui_buttons/GUI system_settings/text_fullscreen.png" xalign 0.5 yalign 0.5 yoffset 27.5
+                                hover ("gui/gui_buttons/GUI system_settings/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_fullscreen_hovered.png")
+                                selected_idle "gui/gui_buttons/GUI system_settings/selected_fullscreen.png"
+                                selected_hover ("gui/gui_buttons/GUI system_settings/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_fullscreen.png")
+                                action Preference("display", "fullscreen")
+
+                hbox: 
+                    xalign 0.5
+                    yalign 0.5
+                    yoffset -180
+                    xoffset 100
+                    xsize 200
+                    ysize 50
+                    spacing 150
+                    hbox:
+                        default mouse_clicked = False
+                        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
+                
+                            imagebutton:
+                                idle "gui/gui_buttons/GUI system_settings/text_skipall.png" xalign 0.5 yalign 0.5 yoffset 27.5
+                                hover ("gui/gui_buttons/GUI system_settings/selected_skipall_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_skipall_hovered.png")
+                                selected_idle "gui/gui_buttons/GUI system_settings/selected_skipall.png"
+                                selected_hover ("gui/gui_buttons/GUI system_settings/selected_skipall_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_skipall.png")
+                                action Preference("skip", "all")
+                    hbox:
+                        default mouse_clicked = False
+                        fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
+                
+                            imagebutton:
+                                idle "gui/gui_buttons/GUI system_settings/text_skipseen.png" xalign 0.5 yalign 0.5 yoffset 27.5
+                                hover ("gui/gui_buttons/GUI system_settings/selected_skipseen_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_skipseen_hovered.png")
+                                selected_idle "gui/gui_buttons/GUI system_settings/selected_skipseen.png"
+                                selected_hover ("gui/gui_buttons/GUI system_settings/selected_skipseen_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_skipseen.png")
+                                action Preference("skip", "seen")
+
+    hbox:
+        xalign 0.5
+        yalign 0.5
+        xoffset 665
+        yoffset 250
+        textbutton "Reset Settings" action ResetToDefaults              
+
+    frame:
+        xsize 850
+        ysize 100
+        xalign 0.5
+        yalign 0.9
+        xoffset 350
+        background None
+        hbox:
+            spacing 50
+
+
+            textbutton "SAVE" action ShowMenu('save')
+            textbutton "LOAD" action ShowMenu('load')
+            textbutton "SETTINGS" action ShowMenu('preferences') 
             textbutton "TITLE" action MainMenu()
             textbutton "QUIT" action Quit(True)
             textbutton "BACK" action Return()

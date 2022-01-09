@@ -61,7 +61,7 @@ define gui.text_font = "Swiss721LightBT.ttf"
 define gui.name_text_font = "Swiss721LightBT.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "Swiss721LightBT.ttf"
+define gui.interface_text_font = "Poppins-Light.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 33
@@ -235,8 +235,8 @@ define config.thumbnail_width = 384
 define config.thumbnail_height = 216
 
 ## The number of columns and rows in the grid of save slots.
-define gui.file_slot_cols = 2
-define gui.file_slot_rows = 3
+define gui.file_slot_cols = 3
+define gui.file_slot_rows = 2
 
 
 ## Positioning and Spacing #####################################################

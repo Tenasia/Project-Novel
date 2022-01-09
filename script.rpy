@@ -3,7 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define Fuuji = Character("Fuuji", color="03a9f4", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
+define Fuuji = Character("Fuuji", color="03a9f4", ctc="ctc", ctc_pause="ctc", ctc_position="nestled", who_outlines=[ (2, "#000000") ], what_outlines=[ (2, "#000000") ])
 define Kikuchiyo = Character("Kikuchiyo", color="f06292", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
 define Akane = Character("Akane", color="920717", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
 define Dad = Character("Dad", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
