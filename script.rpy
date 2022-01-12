@@ -3,20 +3,20 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define Fuuji = Character("Fuuji", color="03a9f4", ctc="ctc", ctc_pause="ctc", ctc_position="nestled", who_outlines=[ (2, "#000000") ], what_outlines=[ (2, "#000000") ])
-define Kikuchiyo = Character("Kikuchiyo", color="f06292", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Akane = Character("Akane", color="920717", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Dad = Character("Dad", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Mom = Character("Mom", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Man = Character("Man", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Student = Character("Student", color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Princess = Character(" ? ? ? ", color="f06292", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Girl = Character("Girl", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
+define Fuuji = Character("Fuuji", color="03a9f4", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", who_outlines=[ (2, "#000000") ], what_outlines=[ (2, "#000000") ])
+define Kikuchiyo = Character("Kikuchiyo", color="f06292", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Akane = Character("Akane", color="920717", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Dad = Character("Dad", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Mom = Character("Mom", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Man = Character("Man", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Student = Character("Student", color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Princess = Character(" ? ? ? ", color="f06292", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Girl = Character("Girl", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
 define narrator = nvl_narrator #(ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Thought = Character(" ", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Thought2 = Character(" ", ctc="ctc", ctc_pause="ctc", ctc_position="nestled", kind=nvl)
-define Applicant = Character("Applicant", color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled")
-define Shinazu = Character("Shinazu",color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="nestled" )
+define Thought = Character(" ", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Thought2 = Character(" ", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", kind=nvl)
+define Applicant = Character("Applicant", color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Shinazu = Character("Shinazu",color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed" )
 
 
 define config.rollback_enabled = False
@@ -29,10 +29,12 @@ init:
 
 image ctc:
     "gui/arrow.png"
-    xalign 0.1
-    yalign 0.1
-    xsize 35
-    ysize 35
+    xalign 0.80
+    yalign 0.9
+    xoffset 50
+    yoffset 25
+    xsize 75
+    ysize 75
     alpha 1
 
     block:
@@ -57,8 +59,8 @@ label start:
     $ save_name = "Prologue"
     stop music fadeout 1.0
     stop movie
-    
-    play music "audio/prologue.mp3" fadein 3.0 volume 1.0
+    play music audio.prologue
+    # play music "audio/prologue.mp3" fadein 3.0 volume 1.0
     scene bg war
     with glasswool
     Thought2 "Izanagis was looked upon as cold and relentless. He hailed from Germany but he is a Japanese in blood, after their lost war in 1945. They had been experimenting with genes and had countless times failed. They were trying to make a superhuman to get back at the western and eastern folks."   
@@ -89,10 +91,11 @@ label start:
 
 label prologue:
     $ save_name = "Prologue"
+    
+    play music audio.prologue
     scene bg living_room
     with fade
     Thought "..." 
-    play music "audio/true_home.mp3" fadein 3.0  volume 0.30
     show fuuji sigh 
     Fuuji "Sigh, Akane you need to stop doing this. You’re already almost an adult."
     show fuuji sigh_dark

@@ -22,43 +22,25 @@ init python:
 
     KeymapTransform = renpy.curry(Keymapper)
 
-screen quick_game_menu:
-    key "mousedown_3" action Return()
-    add "gui/nvl.png"
-    frame:
-        background None
-        xalign 0.5
-        yalign 0.5
-        xpadding 30
-        ypadding 30
 
-        hbox:
-            spacing 40
-            vbox:
-                spacing 10
-                text "Knowledge" size 40
-                text "Charm" size 40
-                text "Guts" size 40
-                text "Kindness" size 40
-                text "Proficiency" size 40
-        
-            # vbox:
-            #     spacing 10
-            #     text "[knowledge]" size 40
-            #     text "[charm]" size 40
-            #     text "[guts]" size 40
-            #     text "[kindness]" size 40
-            #     text "[proficiency]" size 40
+    # key "mousedown_3" action Return()
+    # add "gui/nvl.png"
+    # frame:
+    #     background None
+    #     xalign 0.5
+    #     yalign 0.5
 
-            vbox:
-                spacing 10
-                textbutton _("History") action ShowMenu('history') text_size 50
-                textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            vbox:
-                spacing 10
-                textbutton _("Auto") action Preference("auto-forward", "toggle")
-                textbutton _("Save") action ShowMenu('save')
-                textbutton _("Return") action Return()
+    #     hbox:
+    #         spacing 40
+    #         vbox:
+    #             spacing 10
+    #             textbutton _("History") action ShowMenu('history') text_size 50
+    #             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+    #         vbox:
+    #             spacing 10
+    #             textbutton _("Auto") action Preference("auto-forward", "toggle")
+    #             textbutton _("Save") action ShowMenu('save')
+    #             textbutton _("Return") action Return()
     # imagebutton:
     #     xalign 1.0
     #     yalign 0.0
@@ -278,7 +260,7 @@ screen file_picker():
         ysize 100
         xalign 0.5
         yalign 0.9
-        xoffset 350
+        xoffset 322.5
         background None
         hbox:
             spacing 50
@@ -294,12 +276,14 @@ screen file_picker():
 
 screen save():
     add "flickering_light" 
+    key "mousedown_3" action Return() 
     text "SAVE" text_align 0.5 xalign 0.75 yalign 0.125 xoffset 355 size 80 font "Poppins-Light.ttf"
     tag menu
     use file_picker
 
 screen load():
     add "flickering_light" 
+    key "mousedown_3" action Return() 
     text "LOAD" text_align 0.5 xalign 0.75 yalign 0.125 xoffset 355 size 80 font "Poppins-Light.ttf"
 
     tag menu

@@ -55,10 +55,10 @@ define gui.interface_text_color = u'#ffffff'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "Swiss721LightBT.ttf"
+define gui.text_font = "Poppins-Light.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "Swiss721LightBT.ttf"
+define gui.name_text_font = "Poppins-Light.ttf"
 
 ## The font used for out-of-game text.
 define gui.interface_text_font = "Poppins-Light.ttf"
@@ -339,7 +339,7 @@ define config.history_length = 250
 
 ## The height of a history screen entry, or None to make the height variable at
 ## the cost of performance.
-define gui.history_height = 210
+define gui.history_height = 100
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
