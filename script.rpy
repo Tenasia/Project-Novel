@@ -22,6 +22,38 @@ init -3:
 return
 
 init -2 python:
+
+    def set_info_scene(scene_id):
+        global save_name
+        
+        if scene_id in scenes:
+            save_name = scenes[scene_id]
+        else:
+            raise ValueError("The scene id '{0}' is unknown.".format(scene_id))
+
+    # def set_info_time(time_id):
+    #     global gameinfo_time
+        
+    #     if time_id in times:
+    #         gameinfo_time = time_id
+    #     else:
+    #         raise ValueError("The time id '{0}' is unknown.".format(time_id))
+
+    def set_info_date(month, day, weekday):
+        global gameinfo_date
+        
+        if (weekday != "mon" and 
+            weekday != "tue" and 
+            weekday != "wed" and 
+            weekday != "thu" and 
+            weekday != "fri" and
+            weekday != "sat" and
+            weekday != "sun" and
+            weekday != "???"):
+            raise ValueError("No such a weekday: {0}.".format(weekday))
+        
+        gameinfo_date = "{0}/{1} ({2})".format(str(month).zfill(2), str(day).zfill(2), weekday.upper())
+
     def get_current_bgm_title():
             
             now_playing = renpy.music.get_playing()
@@ -32,6 +64,15 @@ init -2 python:
                     return bgm_titles[now_playing]
             
             return 
+
+    def set_info_location(location_id):
+        global gameinfo_location
+        
+        if location_id in locations:
+            gameinfo_location = location_id
+        else:
+            raise ValueError("The location id '{0}' is unknown.".format(location_id))
+
 
 init python:
     def run_action(action):

@@ -1,8 +1,28 @@
 label start:
     
-    $ save_name = "Prologue"
+    
+    
     stop music fadeout 1.0
     stop movie
+
+
+    python:
+        set_info_scene("00")
+        set_info_location("01")
+
+    # play music audio.maintheme
+    # scene black
+    # pause 3
+    # scene ecg pattern nor a large:
+    #     zoom 1.3
+    #     yalign 0.5
+    #     xalign 0.0
+    #     subpixel True
+    #     linear 150 xalign 1.0
+    # show smoke at smoke_rl(100, 0.6)
+    # with Dissolve(5)
+    # pause 1
+
     play music audio.prologue
 
     scene bg war
@@ -35,8 +55,9 @@ label start:
     Thought "A decade had passed. While the financial situation was not a problem somehow. There has been no communication between him and his family."
 
 label prologue:
-    $ save_name = "Prologue"
-    
+    python:
+        set_info_scene("01")
+        set_info_location("02")
     play music audio.thin_purple
     scene bg living_room
     with fade
