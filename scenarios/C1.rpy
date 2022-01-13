@@ -9,6 +9,7 @@ label start:
     python:
         set_info_scene("00")
         set_info_location("01")
+        
 
     # play music audio.maintheme
     # scene black
@@ -58,6 +59,10 @@ label prologue:
     python:
         set_info_scene("01")
         set_info_location("02")
+        set_info_date(5, 2, "wed")
+        set_info_time("day")
+
+
     play music audio.thin_purple
     scene bg living_room
     with fade
@@ -128,11 +133,17 @@ label prologue:
     stop music fadeout 1.0
     
 label school:
+    python:
+        set_info_scene("02")
+        set_info_location("03")
+        set_info_date(5, 2, "wed")
+        set_info_time("day")
 
+    play music audio.day
     scene bg road_school
     with fade
     Thought "..."
-    play music "audio/day.mp3" fadein 3.0 volume 0.5
+    # play music "audio/day.mp3" fadein 3.0 volume 0.5
     Thought "We were done with our breakfast and since we go to the same school. We always go together whenever I came back home to visit mom, and well of course, Akane."
     Thought "I'm in my last year in high school and Akane was in her second year in junior high, we had to part ways inside as the buildings were of opposite ends."
     scene bg school_room 

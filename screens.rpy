@@ -548,7 +548,7 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
     style_prefix "info_panel"
 
     frame at trans:
-        background Frame("gui/nvl.png", 38, 0, 12, 0, ysize = 24, yoffset=28)
+        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0)
         align alignment
 
         has vbox:
@@ -559,7 +559,7 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
             xalign 0.09
 
 
-            add icon_d
+            add icon_d xsize 50 ysize 50 yoffset -25
 
 
             label label_text
@@ -576,7 +576,7 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
             yminimum 50
             ymaximum 150
 
-            text message_text
+            text message_text size 25
 
         transclude
 
@@ -589,14 +589,14 @@ init -2:
         kerning 0
         layout "nobreak"
 
-        outlines [(1, "#00000099", 0, 0)]
+        # outlines [(1, "#00000099", 0, 0)]
 
     style info_panel_text is text:
         font "Poppins-Light.ttf"
         size 13
         spacing 0
         kerning 0
-        outlines [(1, "#00000088", 0, 0)]
+        # outlines [(1, "#00000088", 0, 0)]
 
 screen game_menu2():
     key "mousedown_3" action Return()
@@ -610,12 +610,73 @@ screen game_menu2():
 
     add "gui/nvl.png"
 
+    frame at game_menu_buttons_appear:
+        background "gui/notebook_frame.png"
+        align (0.10, 0.3)
+        xysize (567, 564)
 
-    use info_panel(_("BGM"), get_current_bgm_title(), "gui/thumb.png", (0.05, 0.35), game_menu_info_appear)
 
-    # use info_panel(_("Location"), get_location_name(), "gui/right_click_content_location.png", (0.1, 0.50), game_menu_info_appear(0.1))
+    #     window:
+    #         background None
+    #         align (0.5, 0.5)
+    #         xmaximum 250
+    #         ymaximum 300
+    #         padding (0, 0, 0 , 0)
 
-    # use info_panel(_("Tip"), get_location_tip(), "gui/right_click_content_tips.png", (0.2, 0.65), game_menu_info_appear(0.2))
+    #         showif tp.value != "":
+    #             text tp.value at game_menu_tooltip_appear:
+    #                 style_suffix "tooltip_text"
+
+    vbox at game_menu_chapter_info_appear style_suffix "chaptername_vbox":
+
+        text save_name style_suffix "chaptername_text"
+
+        hbox:
+            spacing 15
+            xalign 0.5
+
+            add get_time_icon() xsize 60 ysize 60 xoffset -5 yoffset 0
+
+            text "[gameinfo_date]" style_suffix "date_text"
+
+    on "show" action [Preference("auto-forward", "disable"), SetField(config, "skipping", None)]
+
+    use info_panel(_("BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.90, 0.35), game_menu_info_appear)
+
+    use info_panel(_("Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.90, 0.50), game_menu_info_appear(0.1))
+
+    use info_panel(_("Tip"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.90, 0.65), game_menu_info_appear(0.2))
+
+init -2:
+
+    style game_menu_chaptername_vbox:
+        spacing 15
+        align (0.85, 0.15)
+
+    style game_menu_chaptername_text:
+        font "Poppins-Light.ttf"
+        size 48
+        xalign 0.5
+        xoffset 0
+
+    style game_menu_date_text:
+        font "Poppins-Light.ttf"
+        size 30
+        line_spacing 0
+        line_leading 0
+        yoffset 7.5
+
+    style game_menu_tooltip_text:
+        font "Poppins-Light.ttf"
+        align (0.5, 0.5)
+        size 18
+        color "#fff"
+        outlines [(1, "#00000099", 0, 0)]
+        kerning 0
+        line_spacing 0
+        line_leading 0
+        layout "subtitle"
+        text_align 0.5
 
 style game_menu_outer_frame is empty
 style game_menu_navigation_frame is empty
@@ -1144,14 +1205,14 @@ screen sound_settings():
                 xoffset 223
                 yoffset 56
                 hbox:
-                    yoffset 0
+                    yoffset -4
                     spacing 10
                     bar:
                         style "music_volume"
                         value Preference("music volume")
                 hbox:
                     spacing 10
-                    yoffset 50
+                    yoffset 55
                     bar:
                         style "sfx_volume"
                         value Preference("sound volume")

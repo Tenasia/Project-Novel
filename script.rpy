@@ -31,13 +31,13 @@ init -2 python:
         else:
             raise ValueError("The scene id '{0}' is unknown.".format(scene_id))
 
-    # def set_info_time(time_id):
-    #     global gameinfo_time
+    def set_info_time(time_id):
+        global gameinfo_time
         
-    #     if time_id in times:
-    #         gameinfo_time = time_id
-    #     else:
-    #         raise ValueError("The time id '{0}' is unknown.".format(time_id))
+        if time_id in times:
+            gameinfo_time = time_id
+        else:
+            raise ValueError("The time id '{0}' is unknown.".format(time_id))
 
     def set_info_date(month, day, weekday):
         global gameinfo_date
@@ -72,7 +72,28 @@ init -2 python:
             gameinfo_location = location_id
         else:
             raise ValueError("The location id '{0}' is unknown.".format(location_id))
+    
+    def get_time_icon():
+        if gameinfo_time in times:
+            return times[gameinfo_time]["icon"]
+        else:
+            return None
 
+    def get_location_name():       
+        if gameinfo_location in locations:  
+            return locations[gameinfo_location]["name"]
+        else:
+            return ""
+
+    def get_location_tip():       
+        if gameinfo_location in locations:  
+            return locations[gameinfo_location]["tip"]
+        else:
+            return ""
+
+define gameinfo_time = ""
+define gameinfo_date = ""
+define gameinfo_location = ""
 
 init python:
     def run_action(action):
