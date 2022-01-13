@@ -1,4 +1,5 @@
 label start:
+    
     $ save_name = "Prologue"
     stop music fadeout 1.0
     stop movie
@@ -6,6 +7,7 @@ label start:
 
     scene bg war
     with glasswool
+    Thought2 "..."
     Thought2 "Izanagis was looked upon as cold and relentless. He hailed from Germany but he is a Japanese in blood, after their lost war in 1945. They had been experimenting with genes and had countless times failed. They were trying to make a superhuman to get back at the western and eastern folks."   
     Thought2 "His ancestors, the Izanagis. Was part of the “Dunkelblau Runder Tisch” {size=-10}(Obsidian Round Table){/size} which was formed as a hub for high-profile members of the Waffen Schutzstaffel {size=-10}(ß){/size} organization formed before the outbreak of the second world war. He was by then a part of it."
     Thought2 "Seemingly before the war had been lost for the Nazis, they have decided to push everything on the Obsidian Round Table to form a saving grace for their country. To make a superhuman that can contest every piece of weaponry, that only hydrogen bomb can only disperse the said subject."
