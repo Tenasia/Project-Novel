@@ -4,20 +4,503 @@
 
 
 image ctc:
-    "gui/arrow.png"
-    xalign 0.80
+    "gui/ctc_icon/ctc1.png"
+    xalign 0.90
     yalign 0.9
     xoffset 50
-    yoffset 25
-    xsize 75
-    ysize 75
+    yoffset 0
+    xsize 50
+    ysize 65
     alpha 1
 
     block:
-        linear 1 alpha 1
-        "gui/arrow.png"
-        linear 1 alpha 0
+        linear 0
+        "gui/ctc_icon/ctc1.png"
+        linear 0.01
+        "gui/ctc_icon/ctc2.png"
+        linear 0.01
+        "gui/ctc_icon/ctc3.png"
+        linear 0.01
+        "gui/ctc_icon/ctc4.png"
+        linear 0.01
+        "gui/ctc_icon/ctc5.png"
+        linear 0.01
+        "gui/ctc_icon/ctc6.png"
+        linear 0.01
+        "gui/ctc_icon/ctc7.png"
+        linear 0.01
+        "gui/ctc_icon/ctc8.png"
+        linear 0.01
+        "gui/ctc_icon/ctc9.png"
+        linear 0.01
+        "gui/ctc_icon/ctc10.png"
+        linear 0.01
+        "gui/ctc_icon/ctc11.png"
+        linear 0.01
+        "gui/ctc_icon/ctc12.png"
+        linear 0.01
+        "gui/ctc_icon/ctc13.png"
+        linear 0.01
+        "gui/ctc_icon/ctc14.png"
+        linear 0.01
+        "gui/ctc_icon/ctc15.png"
+        linear 0.01
+        "gui/ctc_icon/ctc16.png"
+        linear 0.01
+        "gui/ctc_icon/ctc17.png"
+        linear 0.01
+        "gui/ctc_icon/ctc18.png"
+        linear 0.01
+        "gui/ctc_icon/ctc19.png"
+        linear 0.01
+        "gui/ctc_icon/ctc20.png"
+        linear 0.01
+        "gui/ctc_icon/ctc21.png"
+        linear 0.01
+        "gui/ctc_icon/ctc22.png"
+        linear 0.01
+        "gui/ctc_icon/ctc23.png"
+        linear 0.01
+        "gui/ctc_icon/ctc24.png"
+        linear 0.01
+        "gui/ctc_icon/ctc25.png"
+        linear 0.01
+        "gui/ctc_icon/ctc26.png"
+        linear 0.01
+        "gui/ctc_icon/ctc27.png"
+        linear 0.01
+        "gui/ctc_icon/ctc28.png"
+        linear 0.01
+        "gui/ctc_icon/ctc29.png"
+        linear 0.01
+        "gui/ctc_icon/ctc30.png"
+        linear 0.01
+        "gui/ctc_icon/ctc31.png"
+        linear 0.01
+        "gui/ctc_icon/ctc32.png"
+        linear 0.01
+        "gui/ctc_icon/ctc33.png"
+        linear 0.01
+        "gui/ctc_icon/ctc34.png"
+        linear 0.01
+        "gui/ctc_icon/ctc35.png"
+        linear 0.01
+        "gui/ctc_icon/ctc36.png"
+        linear 0.01
+        "gui/ctc_icon/ctc37.png"
+        linear 0.01
+        "gui/ctc_icon/ctc38.png"
+        linear 0.01
+        "gui/ctc_icon/ctc39.png"
+        linear 0.01
+        "gui/ctc_icon/ctc40.png"
+        linear 0.01
+        "gui/ctc_icon/ctc41.png"
+        linear 0.01
+        "gui/ctc_icon/ctc42.png"
+        linear 0.01
+        "gui/ctc_icon/ctc43.png"
+        linear 0.01
+        "gui/ctc_icon/ctc44.png"
+        linear 0.01
+        "gui/ctc_icon/ctc45.png"
+        linear 0.01
+        "gui/ctc_icon/ctc46.png"
+        linear 0.01
+        "gui/ctc_icon/ctc47.png"
+        linear 0.01
+        "gui/ctc_icon/ctc48.png"
+        linear 0.01
+        "gui/ctc_icon/ctc49.png"
+        linear 0.01
+        "gui/ctc_icon/ctc50.png"
+        linear 0.01
+        "gui/ctc_icon/ctc51.png"
+        linear 0.01
+        "gui/ctc_icon/ctc52.png"
+        linear 0.01
+        "gui/ctc_icon/ctc53.png"
+        linear 0.01
+        "gui/ctc_icon/ctc54.png"
+        linear 0.01
+        "gui/ctc_icon/ctc55.png"
+        linear 0.01
+        "gui/ctc_icon/ctc56.png"
+        linear 0.01
+        "gui/ctc_icon/ctc57.png"
+        linear 0.01
+        "gui/ctc_icon/ctc58.png"
+        linear 0.01
+        "gui/ctc_icon/ctc59.png"
+        linear 0.01
+        "gui/ctc_icon/ctc60.png"
+        linear 0.01
+        "gui/ctc_icon/ctc61.png"
+        linear 0.01
+        "gui/ctc_icon/ctc62.png"
+        linear 0.01
+        "gui/ctc_icon/ctc63.png"
+        linear 0.01
+        "gui/ctc_icon/ctc64.png"
+        linear 0.01
+        "gui/ctc_icon/ctc65.png"
+        linear 0.01
+        "gui/ctc_icon/ctc66.png"
+        linear 0.01
+        "gui/ctc_icon/ctc67.png"
+        linear 0.01
+        "gui/ctc_icon/ctc68.png"
+        linear 0.01
+        "gui/ctc_icon/ctc69.png"
+        linear 0.01
+        "gui/ctc_icon/ctc70.png"
+        linear 0.01
+        "gui/ctc_icon/ctc71.png"
+        linear 0.01
+        "gui/ctc_icon/ctc72.png"
+        linear 0.01
+        "gui/ctc_icon/ctc73.png"
+        linear 0.01
+        "gui/ctc_icon/ctc74.png"
+        linear 0.01
+        "gui/ctc_icon/ctc75.png"
+        linear 0.01
+        "gui/ctc_icon/ctc76.png"
+        linear 0.01
+        "gui/ctc_icon/ctc77.png"
+        linear 0.01
+        "gui/ctc_icon/ctc78.png"
+        linear 0.01
+        "gui/ctc_icon/ctc79.png"
+        linear 0.01
+        "gui/ctc_icon/ctc80.png"
+        linear 0.01
+        "gui/ctc_icon/ctc81.png"
+        linear 0.01
+        "gui/ctc_icon/ctc82.png"
+        linear 0.01
+        "gui/ctc_icon/ctc83.png"
+        linear 0.01
+        "gui/ctc_icon/ctc84.png"
+        linear 0.01
+        "gui/ctc_icon/ctc85.png"
+        linear 0.01
+        "gui/ctc_icon/ctc86.png"
+        linear 0.01
+        "gui/ctc_icon/ctc87.png"
+        linear 0.01
+        "gui/ctc_icon/ctc88.png"
+        linear 0.01
+        "gui/ctc_icon/ctc89.png"
+        linear 0.01
+        "gui/ctc_icon/ctc90.png"
+        linear 0.01
+        "gui/ctc_icon/ctc91.png"
+        linear 0.01
+        "gui/ctc_icon/ctc92.png"
+        linear 0.01
+        "gui/ctc_icon/ctc93.png"
+        linear 0.01
+        "gui/ctc_icon/ctc94.png"
+        linear 0.01
+        "gui/ctc_icon/ctc95.png"
+        linear 0.01
+        "gui/ctc_icon/ctc96.png"
+        linear 0.01
+        "gui/ctc_icon/ctc97.png"
+        linear 0.01
+        "gui/ctc_icon/ctc98.png"
+        linear 0.01
+        "gui/ctc_icon/ctc99.png"
+        linear 0.01
+        "gui/ctc_icon/ctc100.png"
+        linear 0.01
+        "gui/ctc_icon/ctc99.png"
+        linear 0.01
+        "gui/ctc_icon/ctc98.png"
+        linear 0.01
+        "gui/ctc_icon/ctc97.png"
+        linear 0.01
+        "gui/ctc_icon/ctc96.png"
+        linear 0.01
+        "gui/ctc_icon/ctc95.png"
+        linear 0.01
+        "gui/ctc_icon/ctc94.png"
+        linear 0.01
+        "gui/ctc_icon/ctc93.png"
+        linear 0.01
+        "gui/ctc_icon/ctc92.png"
+        linear 0.01
+        "gui/ctc_icon/ctc91.png"
+        linear 0.01
+        "gui/ctc_icon/ctc90.png"
+        linear 0.01
+        "gui/ctc_icon/ctc89.png"
+        linear 0.01
+        "gui/ctc_icon/ctc88.png"
+        linear 0.01
+        "gui/ctc_icon/ctc87.png"
+        linear 0.01
+        "gui/ctc_icon/ctc86.png"
+        linear 0.01
+        "gui/ctc_icon/ctc85.png"
+        linear 0.01
+        "gui/ctc_icon/ctc84.png"
+        linear 0.01
+        "gui/ctc_icon/ctc83.png"
+        linear 0.01
+        "gui/ctc_icon/ctc82.png"
+        linear 0.01
+        "gui/ctc_icon/ctc81.png"
+        linear 0.01
+        "gui/ctc_icon/ctc80.png"
+        linear 0.01
+        "gui/ctc_icon/ctc79.png"
+        linear 0.01
+        "gui/ctc_icon/ctc78.png"
+        linear 0.01
+        "gui/ctc_icon/ctc77.png"
+        linear 0.01
+        "gui/ctc_icon/ctc76.png"
+        linear 0.01
+        "gui/ctc_icon/ctc75.png"
+        linear 0.01
+        "gui/ctc_icon/ctc74.png"
+        linear 0.01
+        "gui/ctc_icon/ctc73.png"
+        linear 0.01
+        "gui/ctc_icon/ctc72.png"
+        linear 0.01
+        "gui/ctc_icon/ctc71.png"
+        linear 0.01
+        "gui/ctc_icon/ctc70.png"
+        linear 0.01
+        "gui/ctc_icon/ctc69.png"
+        linear 0.01
+        "gui/ctc_icon/ctc68.png"
+        linear 0.01
+        "gui/ctc_icon/ctc67.png"
+        linear 0.01
+        "gui/ctc_icon/ctc66.png"
+        linear 0.01
+        "gui/ctc_icon/ctc65.png"
+        linear 0.01
+        "gui/ctc_icon/ctc64.png"
+        linear 0.01
+        "gui/ctc_icon/ctc63.png"
+        linear 0.01
+        "gui/ctc_icon/ctc62.png"
+        linear 0.01
+        "gui/ctc_icon/ctc61.png"
+        linear 0.01
+        "gui/ctc_icon/ctc60.png"
+        linear 0.01
+        "gui/ctc_icon/ctc59.png"
+        linear 0.01
+        "gui/ctc_icon/ctc58.png"
+        linear 0.01
+        "gui/ctc_icon/ctc57.png"
+        linear 0.01
+        "gui/ctc_icon/ctc56.png"
+        linear 0.01
+        "gui/ctc_icon/ctc55.png"
+        linear 0.01
+        "gui/ctc_icon/ctc54.png"
+        linear 0.01
+        "gui/ctc_icon/ctc53.png"
+        linear 0.01
+        "gui/ctc_icon/ctc53.png"
+        linear 0.01
+        "gui/ctc_icon/ctc52.png"
+        linear 0.01
+        "gui/ctc_icon/ctc51.png"
+        linear 0.01
+        "gui/ctc_icon/ctc50.png"
+        linear 0.01
+        "gui/ctc_icon/ctc49.png"
+        linear 0.01
+        "gui/ctc_icon/ctc48.png"
+        linear 0.01
+        "gui/ctc_icon/ctc47.png"
+        linear 0.01
+        "gui/ctc_icon/ctc46.png"
+        linear 0.01
+        "gui/ctc_icon/ctc45.png"
+        linear 0.01
+        "gui/ctc_icon/ctc44.png"
+        linear 0.01
+        "gui/ctc_icon/ctc43.png"
+        linear 0.01
+        "gui/ctc_icon/ctc42.png"
+        linear 0.01
+        "gui/ctc_icon/ctc41.png"
+        linear 0.01
+        "gui/ctc_icon/ctc40.png"
+        linear 0.01
+        "gui/ctc_icon/ctc39.png"
+        linear 0.01
+        "gui/ctc_icon/ctc38.png"
+        linear 0.01
+        "gui/ctc_icon/ctc37.png"
+        linear 0.01
+        "gui/ctc_icon/ctc36.png"
+        linear 0.01
+        "gui/ctc_icon/ctc35.png"
+        linear 0.01
+        "gui/ctc_icon/ctc34.png"
+        linear 0.01
+        "gui/ctc_icon/ctc33.png"
+        linear 0.01
+        "gui/ctc_icon/ctc32.png"
+        linear 0.01
+        "gui/ctc_icon/ctc31.png"
+        linear 0.01
+        "gui/ctc_icon/ctc30.png"
+        linear 0.01
+        "gui/ctc_icon/ctc29.png"
+        linear 0.01
+        "gui/ctc_icon/ctc28.png"
+        linear 0.01
+        "gui/ctc_icon/ctc27.png"
+        linear 0.01
+        "gui/ctc_icon/ctc26.png"
+        linear 0.01
+        "gui/ctc_icon/ctc25.png"
+        linear 0.01
+        "gui/ctc_icon/ctc24.png"
+        linear 0.01
+        "gui/ctc_icon/ctc23.png"
+        linear 0.01
+        "gui/ctc_icon/ctc22.png"
+        linear 0.01
+        "gui/ctc_icon/ctc21.png"
+        linear 0.01
+        "gui/ctc_icon/ctc20.png"
+        linear 0.01
+        "gui/ctc_icon/ctc19.png"
+        linear 0.01
+        "gui/ctc_icon/ctc18.png"
+        linear 0.01
+        "gui/ctc_icon/ctc17.png"
+        linear 0.01
+        "gui/ctc_icon/ctc16.png"
+        linear 0.01
+        "gui/ctc_icon/ctc15.png"
+        linear 0.01
+        "gui/ctc_icon/ctc14.png"
+        linear 0.01
+        "gui/ctc_icon/ctc13.png"
+        linear 0.01
+        "gui/ctc_icon/ctc12.png"
+        linear 0.01
+        "gui/ctc_icon/ctc11.png"
+        linear 0.01
+        "gui/ctc_icon/ctc10.png"
+        linear 0.01
+        "gui/ctc_icon/ctc9.png"
+        linear 0.01
+        "gui/ctc_icon/ctc8.png"
+        linear 0.01
+        "gui/ctc_icon/ctc7.png"
+        linear 0.01
+        "gui/ctc_icon/ctc6.png"
+        linear 0.01
+        "gui/ctc_icon/ctc5.png"
+        linear 0.01
+        "gui/ctc_icon/ctc4.png"
+        linear 0.01
+        "gui/ctc_icon/ctc3.png"
+        linear 0.01
+        "gui/ctc_icon/ctc2.png"
+        linear 0.01
+        "gui/ctc_icon/ctc1.png"
+        
         repeat
+
+image title_particle1 = SnowBlossom(
+    At("gui/title_particle.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(5),
+    yspeed=(4500),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image title_particle2 = SnowBlossom(
+    At("gui/title_particle3.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(10),
+    yspeed=(2500),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image title_particle3 = SnowBlossom(
+    At("gui/title_particle2.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(15),
+    yspeed=(5000),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image title_particle4 = SnowBlossom(
+    At("gui/title_particle2.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(20),
+    yspeed=(2000),
+    start=0,
+    fast=False,
+    horizontal=False)
+image title_art = Fixed(
+    "title_particle1",
+    "title_particle2",
+    "title_particle3",
+    "title_particle4"
+
+    )
+# define CTC_ICON_ANIME_PAUSE = 0.8
+
+# transform ctc_anime:
+#         yoffset 0
+#         block:
+
+#             easein CTC_ICON_ANIME_PAUSE * 0.5 yoffset 10
+#             linear CTC_ICON_ANIME_PAUSE * 0.5 yoffset 0
+#             repeat
+
+
+# screen ctc():
+
+#     zorder 100
+
+#     if renpy.get_screen("say") and not renpy.in_rollback():
+#         add "ctc_icon" at ctc_anime:
+#             align config.ctc_align
+# image ctc_icon:
+#     "gui/main_ctc_01.png"
+#     pause CTC_ICON_ANIME_PAUSE
+
+#     "gui/main_ctc_02.png"
+#     pause CTC_ICON_ANIME_PAUSE
+
+#     "gui/main_ctc_03.png"
+#     pause CTC_ICON_ANIME_PAUSE
+
+#     "gui/main_ctc_04.png"
+#     pause CTC_ICON_ANIME_PAUSE
+
+#     "gui/main_ctc_05.png"
+#     pause CTC_ICON_ANIME_PAUSE
+
+#     "gui/main_ctc_06.png"
+#     pause CTC_ICON_ANIME_PAUSE
+
+#     repeat
 
 label splashscreen:
 
@@ -33,6 +516,8 @@ label splashscreen:
     return 
 
 init:
+
+
     image flickering_light:
         "images/background_GUI/Lit.png"
         pause 1.5

@@ -118,3 +118,28 @@ init python:
             return [ self.child ]
 
     KeymapTransform = renpy.curry(Keymapper)
+
+    def ResetToDefaults():
+        _preferences.text_cps = config.default_text_cps
+        _preferences.afm_time = config.default_afm_time
+        _preferences.afm_enable = config.default_afm_enable
+        _preferences.set_volume('sfx', 1.0)
+        _preferences.set_volume('music', 1.0)
+        # _preferences.window_opacity(persistent, 1.0)
+        # persistent('window_opacity', 1.0)
+        renpy.restart_interaction()
+
+    class NoRollbackObj(NoRollback):
+        def __init__(self):
+            self.rollback_color_set = False
+            self.just_loaded = False
+            self.voice_count_done = True
+            self.last_loaded_slot = None
+
+    no_rollback = NoRollbackObj()
+
+
+
+
+
+    

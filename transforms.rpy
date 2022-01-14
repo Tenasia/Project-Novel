@@ -21,3 +21,13 @@ transform game_menu_buttons_appear:
 
 
         ease_back .5 alpha 1.0 xoffset 0
+
+transform rain_layer_appear:
+        alpha 0.0
+        yoffset 200
+
+
+        ease_back .5 alpha 1.0 xoffset 0
+
+transform zoom(n):
+        zoom n
