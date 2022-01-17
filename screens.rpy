@@ -486,6 +486,12 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
 
         key "game_menu" action ShowMenu("main_menu")
 
+
+
+#info panel
+
+
+
 screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
 
     style_prefix "info_panel"
@@ -541,6 +547,11 @@ init -2:
         kerning 0
         # outlines [(1, "#00000088", 0, 0)]
 
+
+
+# Game menu
+
+
 screen game_menu():
     key "mousedown_3" action Return()
 
@@ -550,14 +561,24 @@ screen game_menu():
     default tp = Tooltip("")
     $ bgm_title = get_current_bgm_title()
 
+    
+    
+        
+        
 
     add "gui/nvl.png"
 
-    frame at game_menu_buttons_appear:
+    frame:
         background "gui/game_frames/notebook_frame.png"
         align (0.10, 0.3)
         xysize (567, 564)
 
+        textbutton "Glossary" action ShowMenu("tips_page") xoffset 100 yoffset 100
+
+        default current_chapter = None
+
+
+    # use menu_navigation(config.menu_navigation_align)
 
     #     window:
     #         background None
@@ -570,7 +591,7 @@ screen game_menu():
     #             text tp.value at game_menu_tooltip_appear:
     #                 style_suffix "tooltip_text"
 
-    vbox at game_menu_chapter_info_appear style_suffix "chaptername_vbox":
+    vbox style_suffix "chaptername_vbox":
 
         text save_name style_suffix "chaptername_text"
 
@@ -584,12 +605,13 @@ screen game_menu():
 
     on "show" action [Preference("auto-forward", "disable"), SetField(config, "skipping", None)]
 
-    use info_panel(_("BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.90, 0.35), game_menu_info_appear)
+    use info_panel(_("BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.90, 0.35))
 
-    use info_panel(_("Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.90, 0.50), game_menu_info_appear(0.1))
+    use info_panel(_("Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.90, 0.525))
 
-    use info_panel(_("Tip"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.90, 0.65), game_menu_info_appear(0.2))
+    use info_panel(_("Tip"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.90, 0.730))
 
+    # use story_info()
 init -2:
 
     style game_menu_chaptername_vbox:
@@ -677,6 +699,404 @@ style about_text is gui_text
 style about_label_text:
     size gui.label_text_size
 
+screen hud():
+
+    zorder 100
+    style_prefix "hud"
+
+    frame at hud_appear:
+        background Frame("gui/nvl.png", 40)
+        align (1.0, 0.05)
+        left_padding 40
+        right_padding 30
+
+        has hbox:
+            spacing 10
+
+        add get_time_icon() yalign 0.5 xysize(50, 50)
+        text "[gameinfo_date]" size 30 yoffset 5
+
+    timer 5 action Hide('hud')
+
+init -2:
+
+    style hud_text is notify_text
+
+# menu page title
+
+
+default seen_chapters = None
+
+
+
+screen menu_page_title(title, alignment):
+
+    style_prefix "menu_page_title"
+
+    frame:
+        align alignment
+        background None
+        # background "gui/nvl.png"
+        xysize (312, 122)
+        right_padding 20
+
+        
+
+init -2:
+
+    style menu_page_title_label_text is text:
+        font "fonts/Poppins-Light.ttf"
+        size 34
+
+
+init -2:
+
+    style chapter_name_label_text is cardbook_character_name_label_text
+
+    style chapter_buttons_frame:
+        # background Frame("gui/nvl.png", 4, 4)
+        background None
+        xoffset 10
+        yoffset -50
+        xsize 450
+        ysize 535
+
+        right_padding 1
+        left_padding 1
+        ypadding 1
+
+    style chapter_buttons_button is cardbook_button
+
+    style chapter_buttons_text is cardbook_button_text:
+        text_align 0.5
+
+    style chapter_contents_frame:
+        background None
+        yoffset -50
+        xsize 500
+        ysize 535
+
+    style chapter_contents_window:
+        background None
+        margin (0, 0)
+        padding (20, 0)
+        yoffset -250
+
+    style chapter_contents_text:
+        font "fonts/Poppins-Light.ttf"
+        color "#000000"
+        size 25
+        spacing 24
+        outlines []
+
+screen menu_navigation(alignment):
+
+    # style_prefix "menu_navigation"
+
+    frame:
+        align alignment
+        background None
+
+        if not main_menu:
+            hbox:
+                spacing 10
+
+
+                textbutton _("close") action Return()
+        else:
+            textbutton _("back") action Return()
+
+
+    key "game_menu" action Return()
+
+init -2:
+
+    style menu_navigation_button is menu_button:
+        xsize 130
+        ysize 30
+        selected_background Frame("gui/button01_idle.png", 4, 4)
+
+    style menu_navigation_button_text is menu_button_text:
+        size 16
+
+
+# screen cardbook
+
+
+# screen cardbook():
+#     tag menu
+
+
+#     default current_character = None
+#     default current_card = None
+
+#     $ cards_count = get_character_cards_count(current_character)
+
+
+#     add "gui/cardbook_bg.png"
+
+
+#     use menu_page_title(_("カードブック"), (1.0, 0.03))
+
+
+#     if current_character:
+#         label "Numeral " + character_info[current_character]["numeral"] style "cardbook_character_name_label":
+#             align (0.05, 0.06)
+
+
+#     grid 2 6:
+#         style_prefix "cardbook_characters"
+#         xalign 0.04
+#         yalign 0.55
+#         spacing 10
+
+
+#         button:
+#             idle_background "gui/thumb_rnk_idle.png"
+#             selected_background "gui/thumb_rnk_selected.png"
+#             hover_background "gui/thumb_rnk_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "rnk"),
+#                     SelectedIf(current_character == "rnk"),
+#                     SensitiveIf(current_character != "rnk" and gameinfo_cardbook_rnk_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_cnh_idle.png"
+#             selected_background "gui/thumb_cnh_selected.png"
+#             hover_background "gui/thumb_cnh_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "cnh"),
+#                     SelectedIf(current_character == "cnh"),
+#                     SensitiveIf(current_character != "cnh" and gameinfo_cardbook_cnh_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_mhr_idle.png"
+#             selected_background "gui/thumb_mhr_selected.png"
+#             hover_background "gui/thumb_mhr_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "mhr"),
+#                     SelectedIf(current_character == "mhr"),
+#                     SensitiveIf(current_character != "mhr" and gameinfo_cardbook_mhr_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_kik_idle.png"
+#             selected_background "gui/thumb_kik_selected.png"
+#             hover_background "gui/thumb_kik_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "kik"),
+#                     SelectedIf(current_character == "kik"),
+#                     SensitiveIf(current_character != "kik" and gameinfo_cardbook_kik_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_fed_idle.png"
+#             selected_background "gui/thumb_fed_selected.png"
+#             hover_background "gui/thumb_fed_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "fed"),
+#                     SelectedIf(current_character == "fed"),
+#                     SensitiveIf(current_character != "fed" and gameinfo_cardbook_fed_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_sca_idle.png"
+#             selected_background "gui/thumb_sca_selected.png"
+#             hover_background "gui/thumb_sca_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "sca"),
+#                     SelectedIf(current_character == "sca"),
+#                     SensitiveIf(current_character != "sca" and gameinfo_cardbook_sca_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_yuu_idle.png"
+#             selected_background "gui/thumb_yuu_selected.png"
+#             hover_background "gui/thumb_yuu_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "yuu"),
+#                     SelectedIf(current_character == "yuu"),
+#                     SensitiveIf(current_character != "yuu" and gameinfo_cardbook_yuu_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_son_idle.png"
+#             selected_background "gui/thumb_son_selected.png"
+#             hover_background "gui/thumb_son_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "son"),
+#                     SelectedIf(current_character == "son"),
+#                     SensitiveIf(current_character != "son" and gameinfo_cardbook_son_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_sig_idle.png"
+#             selected_background "gui/thumb_sig_selected.png"
+#             hover_background "gui/thumb_sig_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "sig"),
+#                     SelectedIf(current_character == "sig"),
+#                     SensitiveIf(current_character != "sig" and gameinfo_cardbook_sig_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_ode_idle.png"
+#             selected_background "gui/thumb_ode_selected.png"
+#             hover_background "gui/thumb_ode_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "ode"),
+#                     SelectedIf(current_character == "ode"),
+#                     SensitiveIf(current_character != "ode" and gameinfo_cardbook_ode_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_cha_idle.png"
+#             selected_background "gui/thumb_cha_selected.png"
+#             hover_background "gui/thumb_cha_hover.png"
+
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "cha"),
+#                     SelectedIf(current_character == "cha"),
+#                     SensitiveIf(current_character != "cha" and gameinfo_cardbook_cha_unlocked)]
+
+
+#         button:
+#             idle_background "gui/thumb_aln_idle.png"
+#             selected_background "gui/thumb_aln_selected.png"
+#             hover_background "gui/thumb_aln_hover.png"
+
+#             action [SetScreenVariable("current_card", None),
+#                     SetScreenVariable("current_character", "aln"),
+#                     SelectedIf(current_character == "aln"),
+#                     SensitiveIf(current_character != "aln" and gameinfo_cardbook_aln_unlocked)]
+
+#     frame:
+#         background Frame("gui/frame.png", 4, 4)
+#         xsize 180
+#         ysize 506
+
+#         xalign 0.23
+#         yalign 0.55
+
+#         right_padding 1
+#         left_padding 1
+#         ypadding 1
+
+#         has vpgrid:
+#             cols 1
+#             xfill True
+#             spacing 0
+
+#         if current_character:
+
+#             if cards_count > 0:
+
+
+#                 if cards_count > 12:
+#                     scrollbars "vertical"
+#                     mousewheel True
+#                     draggable False
+
+#                 for obj in sorted(get_character_cards(current_character), key = lambda x: cards[x]["order"]):
+#                     button:
+#                         style "cardbook_button"
+#                         hbox:
+#                             spacing 0
+#                             align (0.0, 0.5)
+#                             text cards[obj]["title"]["chara"] style "cardbook_button_text"
+#                             text " - " style "cardbook_button_text"
+#                             text cards[obj]["title"]["type"] style "cardbook_button_text"
+
+#                         action [SetScreenVariable("current_card", cards[obj]), SensitiveIf(current_card != cards[obj])]
+
+
+
+
+
+
+#     if current_character:
+
+#         window:
+#             style_prefix "cardbook_card"
+#             background current_card and "gui/card_front.png" or "gui/card_back.png"
+#             xysize (213, 400)
+#             align (0.7, 0.55)
+#             margin (0, 0)
+#             padding (10, 10)
+
+#             if current_card:
+
+#                 label current_card["title"]["chara"]:
+#                     align (0.5, 0.01)
+
+#                 text current_card["desc"]:
+#                     align (0.5, 0.5)
+
+#                 label current_card["title"]["type"]:
+#                     align (0.5, 0.99)
+
+
+#     use menu_navigation(config.menu_navigation_align)
+
+#     on "replace" action Function(grant_achievement, "open_cardbook")
+
+# init -2:
+
+
+#     style cardbook_character_name_label_text:
+#         font "gui/fonts/NotoSerifCJKjp-Medium.otf"
+
+#         text_align 0.0
+#         size 46
+
+#     style cardbook_characters_button:
+#         xysize (76, 76)
+#         insensitive_background "gui/thumb_unk.png"
+
+#     style cardbook_button:
+#         ysize 40
+#         xfill True
+#         background None
+#         hover_background "#74040488"
+#         selected_background "#4b4b4b88"
+
+#     style cardbook_button_text:
+#         font "gui/fonts/NotoSerifCJKjp-Light.otf"
+#         size 16
+#         selected_color "#fff"
+
+
+
+
+
+#     style cardbook_card_text:
+#         font "gui/fonts/NotoSerifCJKjp-Light.otf"
+#         color "#000"
+#         size 18
+#         text_align 0.5
+
+#     style cardbook_card_label_text is cardbook_text:
+#         font "gui/fonts/NotoSerifCJKjp-SemiBold.otf"
+#         color "#000"
+#         size 22
+#         text_align 0.5
+
+
+# default seen_chapters = None
+
 ## Load and Save screens #######################################################
 
 style text_hover:
@@ -750,7 +1170,7 @@ screen file_picker():
                         yoffset 3
                         xysize (374, 307)
                         background None
-                        hover_background "images/bg border_374_307_12.png"
+                        hover_background "gui/game_frames/bg_slot.png"
                         action FileAction(slot)
                         # hovered tt.Action((FileScreenshot(slot), slot_foot, file_time, save_name))
                         vbox:

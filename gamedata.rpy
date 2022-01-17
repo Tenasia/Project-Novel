@@ -25,6 +25,113 @@ define locations = {
     "03" : {"name" : _("Tokyo University"), "tip" : "The school was said to be only accepting Elites, but you'll see for yourself if that's true."}    
 }
 
+define plot_titles = {
+    "1" : _("First Chapter"),
+    "2" : _("Second Chapter"),
+    "3" : _("Third Chapter"),
+    "4" : _("Fourth Chapter"),
+    "5" : _("Fifth Chapter"),
+    "6" : _("Sixth Chapter"),
+    "7" : _("Seventh Chapter"),
+    "7_2" : _("７週目②- あらゆる理不尽への挑戦 -"),
+    "7_3" : _("７週目③- 引き換えにしたもの –"),
+    "8" : _("Eight Chapter"),
+    "9" : _("Ninth Chapter"),
+    "9_2" : _("９週目②- 正義であれ -"),
+    "9_3" : _("９週目③- 少女の闇 -"),
+    "9_4" : _("９週目④- 失敗-"),
+    "10" : _("Tenth Chapter"),
+    "11_1" : _("11週目①- 区切りまで -"),
+    "11_2" : _("11週目②- 明らかになる真実たち -"),
+    "11_3" : _("11週目③- 近づいた距離 -"),
+    "11_4" : _("11週目④- 交わらなかった心 -"),
+    "12_1" : _("12週目①- 当たり前の願い -"),
+    "12_2" : _("12週目②- 海晴 -"),
+    "12_3" : _("12週目③- 業 -"),
+    "13" : _("13週目、そして……- 未来 -")
+    }
+
+define plot_labels = {
+    "1" : _("First Button Text"),
+    "2" : _("Second"),
+    "3" : _("Third"),
+    "4" : _("Fourth"),
+    "5" : _("Fifth"),
+    "6" : _("Sixth"),
+    "7" : _("7th"),
+    "7_2" : _("７週目②"),
+    "7_3" : _("７週目③"),
+    "8" : _("Eight"),
+    "9" : _("Ninth"),
+    "9_2" : _("９週目②"),
+    "9_3" : _("９週目③"),
+    "9_4" : _("９週目④"),
+    "10" : _("10週目"),
+    "11_1" : _("11週目①"),
+    "11_2" : _("11週目②"),
+    "11_3" : _("11週目③"),
+    "11_4" : _("11週目④"),
+    "12_1" : _("12週目①"),
+    "12_2" : _("12週目②"),
+    "12_3" : _("12週目③"),
+    "13" : _("13週目")
+    }
+
+define plots = {
+    "1-1" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
+    """),
+
+    "1-2" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
+    """),
+
+    "2-1" : _("""Your
+    """),
+
+    "2-2" : _("""Your Mother 
+    """),
+
+    "3-1" : _("""Your Mother 
+    """),
+
+    "4-1" : _("""Your Mother 
+    """),
+
+    "5-1" : _("""Your Mother 
+    """),
+
+    "6-1" : _("""Your Mother 
+    """),
+
+    "7_-1-1" : _("""Your Mother 
+    """),
+
+    "8-1" : _("""Your Mother 
+    """),
+
+    "9-1" : _("""Your Mother 
+    """),
+
+    "10-1" : _("""Your Mother 
+    """),
+
+    
+}
+
+
 init -5:
 
     define times = {
@@ -34,3 +141,4 @@ init -5:
         "evening" : { "label" : _("夕方"), "icon" : "gui/game_menu_icons/sunset.png" },
         "night" : { "label" : _("夜"), "icon" : "gui/game_menu_icons/midnight.png" },
     }
+

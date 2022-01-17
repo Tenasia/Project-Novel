@@ -154,7 +154,8 @@ init python:
     build.documentation('*.html')
     build.documentation('*.txt')
 
-
-
 init -2 python:
-    renpy.music.register_channel("music", mixer="music", loop = True, file_prefix="audio/", file_suffix=".mp3")
+    renpy.music.register_channel("music", mixer="music", loop = True, file_prefix="audio/bgm/", file_suffix=".mp3")
+    
+
+    

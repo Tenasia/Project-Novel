@@ -91,9 +91,81 @@ init -2 python:
         else:
             return ""
 
+    def get_seen_chapters():
+        global gameinfo_seen_chapters
+        
+        chapters_dic = {}
+        chapters = gameinfo_seen_chapters.split(",")[:-1]
+        
+        for chapter in chapters:
+            split_chapter = chapter.split("-")
+            
+            if split_chapter[0] not in chapters_dic:
+                chapters_dic[split_chapter[0]] = []
+            
+            chapters_dic[split_chapter[0]].append(split_chapter[1])
+        
+        return chapters_dic       
+
+
+    def add_seen_chapter(chapter_name):
+        global gameinfo_seen_chapters
+        
+        if chapter_name not in plots:
+            raise Exception("'" + chapter_name + "' is not a valid chapter.")
+        
+        if chapter_name not in gameinfo_seen_chapters.split(","):
+            gameinfo_seen_chapters += chapter_name + ","
+        
+        
+        
+        chapter_name_split = chapter_name.split("-")
+        key = chapter_name_split[0]
+        value = chapter_name_split[1]
+        
+        if key not in persistent.seen_chapters:
+            persistent.seen_chapters[key] = []
+        
+        if value not in persistent.seen_chapters[key]:
+            persistent.seen_chapters[key].append(value)
+            
+    def sort_story_buttons(key):
+        
+        split_key = key.split("_")
+        
+        split_key_len = len(split_key) 
+        
+        if split_key_len > 2 or split_key_len == 0:
+            raise Exception("'" + key + "' is not a valid format for the chapter key.")
+        
+        elif split_key_len == 2:
+            return int(split_key[0]) * 10 + int(split_key[1])
+        
+        else:
+            return int(split_key[0]) * 10
+    
+    def show_hud():
+        global gameinfo_date
+        
+        if config.skipping:
+            if renpy.get_screen("hud"):
+                renpy.hide_screen("hud")
+            else:
+                return
+        
+        if not renpy.get_screen("hud") and not renpy.in_rollback():
+            renpy.show_screen("hud")
+
 define gameinfo_time = ""
 define gameinfo_date = ""
 define gameinfo_location = ""
+define gameinfo_seen_chapters = ""
+
+
+init -2 python:
+    if persistent.seen_chapters is None:
+        persistent.seen_chapters = {}
+
 
 init python:
     def run_action(action):

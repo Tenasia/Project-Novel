@@ -56,35 +56,49 @@ label start:
     Thought "A decade had passed. While the financial situation was not a problem somehow. There has been no communication between him and his family."
 
 label prologue:
+    $ add_seen_chapter("1-1")
     python:
         set_info_scene("01")
         set_info_location("02")
         set_info_date(5, 2, "wed")
         set_info_time("day")
 
+    
 
     play music audio.thin_purple
     scene bg living_room
     with fade
     Thought "..." 
     show fuuji sigh 
+    $ show_hud()
     Fuuji "Sigh, Akane you need to stop doing this. You’re already almost an adult."
+    $ add_seen_chapter("1-2")
     show fuuji sigh_dark
     Thought "We’re having our usual breakfast, when a strong taste was mixed in my hot drink."
     hide fuuji 
     show fuuji sigh at left 
     show akane smirk at right 
+    $ add_seen_chapter("2-1")
     Akane "What, you mean adding dried chilies in your coffee is immature? Hah."
     show fuuji sigh_dark 
     show akane smirk_dark
+    $ add_seen_chapter("2-2")
+
     Thought "My little sister, Akane. She has always been mischievous since childhood, and does things that will annoy anyone. Although she only does it to me, it gets tiring at times."
     hide fuuji
     hide akane 
+    $ show_hud()
     with fade
+    $ add_seen_chapter("3-1")
+
     Mom "Now, now. I’ll just replace your coffee and Akane, you really need to stop with that behavior."
+    $ add_seen_chapter("4-1")
+
     Thought "And my mother, she had been taking care of us this whole time without our father figure, to which she explained subtlety but we already got an inkling feeling on what was happening."
     Thought "But we don’t want to pry any further, we love mother as much as she loves us and we best not to fret it over."
     show akane sad 
+    $ add_seen_chapter("5-1")
+
     Akane "Pssh, alright alright."
     show akane sarcastic 
     Akane "I'll just do something else next time." 
@@ -99,6 +113,7 @@ label prologue:
     hide fuuji
     show akane sad 
     Akane "..."
+    $ show_hud()
     show akane sad_dark
     Mom "My, it’s that time already… are you really fine by yourself?"
     Mom "Just come home whenever you’re running low on ingredients or pocket money."
@@ -111,12 +126,15 @@ label prologue:
     show akane sad 
     Akane "..."
     show akane sad_dark 
+    # $ add_seen_chapter("3-1")
     Mom "Son, there’s no need to thank me, it’s my responsibility after all, if I can see you two being happy then I’m also happy."
     Thought "I smiled at mom. She clearly supports us as best as she can."
     Thought "Akane has been silent this whole time."
+    # $ add_seen_chapter ("4-1")
     show akane sad 
     Akane "..."
     show akane sad_dark
+    $ show_hud()
     Thought "She proceeds to eat without looking at the food."
     hide akane 
     show fuuji happy 
@@ -133,6 +151,8 @@ label prologue:
     stop music fadeout 1.0
     
 label school:
+
+    
     python:
         set_info_scene("02")
         set_info_location("03")
@@ -154,6 +174,15 @@ label school:
     Student "Ah, he's here... let's get back later yeah?"
     hide fuuji 
     Thought "My classmates are avoiding me again, it was always like this since my early childhood having no father to grow with, there was a lot of rumors that I was the cause and whatnot, I ignore them."
+    
+    
+    # $ add_seen_chapter("4-1")
+    # $ add_seen_chapter("5-1")
+    # $ add_seen_chapter("6-1")
+    # $ add_seen_chapter("7-1")
+    # $ add_seen_chapter("8-1")
+    # $ add_seen_chapter("9-1")
+    # $ add_seen_chapter("10-1")
     Thought "I know that I look unapproachable but I just can’t change it, I also don’t have any reason to make friends proactively."
     Thought "Of course, there were still some people who would talk to me, despite the rumors. But they didn’t take long to change their mind and believe it. The usual. Ah and well the bad ones let’s not forget them."
     show fuuji neutral_dark 
@@ -168,6 +197,11 @@ label school:
     play music "audio/tense.mp3" fadein 3.0 
     scene bg school_corner
     show fuuji disgust with vpunch
+    python:
+        set_info_scene("02")
+        set_info_location("03")
+        set_info_date(5, 2, "wed")
+        set_info_time("day")
     play sound "audio/sfx/punch1.mp3"
     Fuuji "...!"
     show fuuji disgust_dark
@@ -176,7 +210,7 @@ label school:
     show fuuji sigh_dark 
     Thought "He held my head as if I was a doll."
     show fuuji worry with hpunch
-    play sound "audio/sfx/punch2.mp3"
+    play music audio.day
     Fuuji "Ghh-"
     show fuuji worry_dark
     Student "Look, I’m gonna ask you one more time."
@@ -233,6 +267,7 @@ label school:
     hide fuuji 
 
 label flashback:
+    
     scene bg flashback
     with fade
     Thought2 "When I was a child, I still remember Dad being a little bit too strong for his size, he carries things bigger and heavier than him. Compared to his appearance, it just looked odd."

@@ -463,44 +463,6 @@ image title_art = Fixed(
     "title_particle4"
 
     )
-# define CTC_ICON_ANIME_PAUSE = 0.8
-
-# transform ctc_anime:
-#         yoffset 0
-#         block:
-
-#             easein CTC_ICON_ANIME_PAUSE * 0.5 yoffset 10
-#             linear CTC_ICON_ANIME_PAUSE * 0.5 yoffset 0
-#             repeat
-
-
-# screen ctc():
-
-#     zorder 100
-
-#     if renpy.get_screen("say") and not renpy.in_rollback():
-#         add "ctc_icon" at ctc_anime:
-#             align config.ctc_align
-# image ctc_icon:
-#     "gui/main_ctc_01.png"
-#     pause CTC_ICON_ANIME_PAUSE
-
-#     "gui/main_ctc_02.png"
-#     pause CTC_ICON_ANIME_PAUSE
-
-#     "gui/main_ctc_03.png"
-#     pause CTC_ICON_ANIME_PAUSE
-
-#     "gui/main_ctc_04.png"
-#     pause CTC_ICON_ANIME_PAUSE
-
-#     "gui/main_ctc_05.png"
-#     pause CTC_ICON_ANIME_PAUSE
-
-#     "gui/main_ctc_06.png"
-#     pause CTC_ICON_ANIME_PAUSE
-
-#     repeat
 
 label splashscreen:
 
@@ -512,11 +474,9 @@ label splashscreen:
 
     hide text with dissolve
     with Pause(1)
-    # $ renpy.movie_cutscene("images/Osu.mp4") 
     return 
 
 init:
-
 
     image flickering_light:
         "images/background_GUI/Lit.png"
@@ -537,23 +497,6 @@ init:
         pause 1.5
         
         repeat
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #Oswald Sprites
@@ -655,6 +598,8 @@ image fuuji worry_dark :
 
 
 #Lacie Sprites
+
+
 image akane angry :
     "images/Lacie/lc_angry.png" with renpy.transition(Dissolve(0.25), layer="master")
 
@@ -747,6 +692,8 @@ image akane worry_dark :
 
 
 #Kikuchiyo Sprites
+
+
 image kikuchiyo neutral :
     "images/Kikuchiyo/kk_neutral.png" with renpy.transition(Dissolve(0.25), layer="master")
 
