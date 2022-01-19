@@ -63,14 +63,18 @@ label prologue:
         set_info_date(5, 2, "wed")
         set_info_time("day")
 
-    
+    show img1 
+    show img2 
+    hide img1 
+    hide img2
 
     play music audio.thin_purple
     scene bg living_room
     with fade
     Thought "..." 
+    # scene bg unknown_place    
     show fuuji sigh 
-    $ show_hud()
+    $ show_date()
     Fuuji "Sigh, Akane you need to stop doing this. You’re already almost an adult."
     $ add_seen_chapter("1-2")
     show fuuji sigh_dark
@@ -82,17 +86,24 @@ label prologue:
     Akane "What, you mean adding dried chilies in your coffee is immature? Hah."
     show fuuji sigh_dark 
     show akane smirk_dark
-    $ add_seen_chapter("2-2")
 
+    show img3
+    hide img3
+
+    $ add_seen_chapter("2-2")
+    $ show_people()
     Thought "My little sister, Akane. She has always been mischievous since childhood, and does things that will annoy anyone. Although she only does it to me, it gets tiring at times."
     hide fuuji
     hide akane 
-    $ show_hud()
+    $ show_date()
+    $ show_people()
     with fade
     $ add_seen_chapter("3-1")
+    $ add_seen_chapter("3-2")
 
     Mom "Now, now. I’ll just replace your coffee and Akane, you really need to stop with that behavior."
     $ add_seen_chapter("4-1")
+    $ show_people()
 
     Thought "And my mother, she had been taking care of us this whole time without our father figure, to which she explained subtlety but we already got an inkling feeling on what was happening."
     Thought "But we don’t want to pry any further, we love mother as much as she loves us and we best not to fret it over."
@@ -100,41 +111,62 @@ label prologue:
     $ add_seen_chapter("5-1")
 
     Akane "Pssh, alright alright."
+
+
+    show img4
+    hide img4
+
+
+    $ add_seen_chapter("6-1")
+    $ add_seen_chapter("6-2")
     show akane sarcastic 
     Akane "I'll just do something else next time." 
+    $ add_seen_chapter("7-1")
+    $ show_cases()
     Thought "She says while having a grin in her face."
     hide akane 
     show fuuji sad 
     Fuuji "You never get tired, do you?"
+    $ add_seen_chapter("8-1")
     show fuuji neutral2  
+    $ show_tips()
     Fuuji "Anyway, graduation is nearing, I will have to find a Juku (cram) school to get into Tokyo University. So, I won’t be coming back here much often."
+    $ add_seen_chapter("9-1")
     show fuuji neutral2_dark 
     Thought "Since College was just in a few months away, I asked my uncle if I could use a spare house he had so that I can get to the university easily."
+    $ add_seen_chapter("10-1")
+    $ add_seen_chapter("10-2")
     hide fuuji
     show akane sad 
     Akane "..."
-    $ show_hud()
+    $ show_date()
     show akane sad_dark
     Mom "My, it’s that time already… are you really fine by yourself?"
+    $ add_seen_chapter("11-1")
     Mom "Just come home whenever you’re running low on ingredients or pocket money."
     hide akane 
     show fuuji smile 
     Fuuji "I do.{w} And thanks mom for keeping up with my selfishness."
+    $ add_seen_chapter("12-1")
+    $ add_seen_chapter("12-2")
     show fuuji smile_dark 
     Thought "We weren’t exactly rich, but we live comfortably because we’ve been receiving financial assistance from a certain organization my dad has an affiliation with, and mom provides us with everything else we need."
     hide fuuji 
+    $ add_seen_chapter("13-1")
     show akane sad 
     Akane "..."
     show akane sad_dark 
     # $ add_seen_chapter("3-1")
+    $ add_seen_chapter("14-1")
     Mom "Son, there’s no need to thank me, it’s my responsibility after all, if I can see you two being happy then I’m also happy."
     Thought "I smiled at mom. She clearly supports us as best as she can."
     Thought "Akane has been silent this whole time."
+    $ add_seen_chapter("15-1")
     # $ add_seen_chapter ("4-1")
     show akane sad 
     Akane "..."
     show akane sad_dark
-    $ show_hud()
+    $ show_date()
     Thought "She proceeds to eat without looking at the food."
     hide akane 
     show fuuji happy 
@@ -183,6 +215,7 @@ label school:
     # $ add_seen_chapter("8-1")
     # $ add_seen_chapter("9-1")
     # $ add_seen_chapter("10-1")
+
     Thought "I know that I look unapproachable but I just can’t change it, I also don’t have any reason to make friends proactively."
     Thought "Of course, there were still some people who would talk to me, despite the rumors. But they didn’t take long to change their mind and believe it. The usual. Ah and well the bad ones let’s not forget them."
     show fuuji neutral_dark 

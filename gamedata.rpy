@@ -25,6 +25,9 @@ define locations = {
     "03" : {"name" : _("Tokyo University"), "tip" : "The school was said to be only accepting Elites, but you'll see for yourself if that's true."}    
 }
 
+
+#Title of the button you chose
+
 define plot_titles = {
     "1" : _("First Chapter"),
     "2" : _("Second Chapter"),
@@ -41,15 +44,19 @@ define plot_titles = {
     "9_3" : _("９週目③- 少女の闇 -"),
     "9_4" : _("９週目④- 失敗-"),
     "10" : _("Tenth Chapter"),
-    "11_1" : _("11週目①- 区切りまで -"),
+    "11" : _("Eleventh"),
     "11_2" : _("11週目②- 明らかになる真実たち -"),
     "11_3" : _("11週目③- 近づいた距離 -"),
     "11_4" : _("11週目④- 交わらなかった心 -"),
-    "12_1" : _("12週目①- 当たり前の願い -"),
+    "12" : _("Twelfth"),
     "12_2" : _("12週目②- 海晴 -"),
     "12_3" : _("12週目③- 業 -"),
-    "13" : _("13週目、そして……- 未来 -")
+    "13" : _("Thirteenth Chapter"),
+    "14" : _("Fourteenth Chapter"),
+    "15" : _("Fiftheenth Chapter"),
     }
+
+#Title of the button itself
 
 define plot_labels = {
     "1" : _("First Button Text"),
@@ -66,21 +73,22 @@ define plot_labels = {
     "9_2" : _("９週目②"),
     "9_3" : _("９週目③"),
     "9_4" : _("９週目④"),
-    "10" : _("10週目"),
-    "11_1" : _("11週目①"),
+    "10" : _("Tenth"),
+    "11" : _("11th"),
     "11_2" : _("11週目②"),
     "11_3" : _("11週目③"),
     "11_4" : _("11週目④"),
-    "12_1" : _("12週目①"),
+    "12" : _("Twelveth"),
     "12_2" : _("12週目②"),
     "12_3" : _("12週目③"),
-    "13" : _("13週目")
+    "13" : _("Thirteenth"),
+    "14" : _("Your Mom 14"),
+    "15" : _("My sister 15"),
     }
 
 define plots = {
-    "1-1" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWST
+    "1-1" : _(""" - May 2, 2012 - 
+    Your mom was great, make sure to come back next time. image:: example.png
     """),
 
     "1-2" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
@@ -107,6 +115,22 @@ define plots = {
     "3-1" : _("""Your Mother 
     """),
 
+    "3-2" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
+    """),
+    
+
     "4-1" : _("""Your Mother 
     """),
 
@@ -116,7 +140,22 @@ define plots = {
     "6-1" : _("""Your Mother 
     """),
 
-    "7_-1-1" : _("""Your Mother 
+    "6-2" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
+    """),
+
+    "7-1" : _("""Your Mother 
     """),
 
     "8-1" : _("""Your Mother 
@@ -126,6 +165,87 @@ define plots = {
     """),
 
     "10-1" : _("""Your Mother 
+    """),
+
+    "10-2" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
+    """),
+
+    "11-1" : _("""Your Mother 
+    """),
+
+    "12-1" : _("""Your Mother 
+    """),
+
+    "12-2" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
+    """),
+
+    "13-1" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
+    """),
+
+    "14-1" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
+    """),
+
+    "15-1" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
+    First Description in AGES TEST TEST TEWST
     """),
 
     

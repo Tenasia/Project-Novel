@@ -442,10 +442,11 @@ image title_particle3 = SnowBlossom(
     count=500,
     border=50,
     xspeed=(15),
-    yspeed=(5000),
+    yspeed=(4000),
     start=0,
     fast=False,
     horizontal=False)
+
 
 image title_particle4 = SnowBlossom(
     At("gui/title_particle2.png", zoom(0.4)),
@@ -456,11 +457,57 @@ image title_particle4 = SnowBlossom(
     start=0,
     fast=False,
     horizontal=False)
+
+image title_particle5 = SnowBlossom(
+    At("gui/title_particle.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(25),
+    yspeed=(4500),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image title_particle6 = SnowBlossom(
+    At("gui/title_particle3.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(30),
+    yspeed=(3500),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image title_particle7 = SnowBlossom(
+    At("gui/title_particle2.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(35),
+    yspeed=(4000),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+
+image title_particle8 = SnowBlossom(
+    At("gui/title_particle2.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(40),
+    yspeed=(2000),
+    start=0,
+    fast=False,
+    horizontal=False)
+
 image title_art = Fixed(
     "title_particle1",
     "title_particle2",
     "title_particle3",
-    "title_particle4"
+    "title_particle4",
+    "title_particle5",
+    "title_particle6",
+    "title_particle7",
+    "title_particle8"
 
     )
 
@@ -723,3 +770,29 @@ image kikuchiyo upset :
 
 image kikuchiyo upset_dark :
     "images/Kikuchiyo/kk_upset_dark.png" with renpy.transition(Dissolve(0.25), layer="master")
+
+
+image img1 = "images/bg apartment.png"
+image img2 = "images/bg cram_hallway.jpg"
+image img3 = "gui/unknown.png"
+image img4 = "gui/unknown.png"
+
+
+image black= "#000"
+
+
+image lockedthumb = "images/bg lit.png"
+
+
+image thumb1 :
+    xysize (350, 250)
+    "images/bg cram_school.png"
+image thumb2 :
+    xysize (350, 250) 
+    "images/bg flashback.png"
+image thumb3 : 
+    "images/bg cram_school.png"
+    xysize (350, 250)
+image thumb4 : 
+    "images/bg flashback.png"
+    xysize (350, 250)

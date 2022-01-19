@@ -144,22 +144,63 @@ init -2 python:
         else:
             return int(split_key[0]) * 10
     
-    def show_hud():
+    def show_date():
         global gameinfo_date
-        
+
         if config.skipping:
             if renpy.get_screen("hud"):
                 renpy.hide_screen("hud")
+                hud = True
             else:
                 return
+                hud = False
         
         if not renpy.get_screen("hud") and not renpy.in_rollback():
             renpy.show_screen("hud")
+    
+    def show_people():
+
+        hud1 = False
+        if config.skipping:
+            if renpy.get_screen("hud1"):
+                renpy.hide_screen("hud1")
+            else:
+                return
+        if not renpy.get_screen("hud1") and not renpy.in_rollback():
+            renpy.show_screen("hud1")
+    
+    def show_cases():   
+
+        if config.skipping:
+            if renpy.get_screen("hud2"):
+                renpy.hide_screen("hud2")
+            else:
+                return
+        if not renpy.get_screen("hud2") and not renpy.in_rollback():
+            renpy.show_screen("hud2")
+
+    def show_tips():
+
+        hud1 = False
+        if config.skipping:
+            if renpy.get_screen("hud3"):
+                renpy.hide_screen("hud3")
+            else:
+                return
+        if not renpy.get_screen("hud3") and not renpy.in_rollback():
+            renpy.show_screen("hud3")
+        
+
 
 define gameinfo_time = ""
 define gameinfo_date = ""
 define gameinfo_location = ""
 define gameinfo_seen_chapters = ""
+
+# init python:
+#     g = Gallery()
+
+#     g.button()
 
 
 init -2 python:
@@ -210,6 +251,70 @@ init python:
 
     no_rollback = NoRollbackObj()
 
+
+init python:
+    # def MaxScale(img, minwidth=config.screen_width, minheight=config.screen_height):
+    #     currwidth, currheight = renpy.image_size(img)
+    #     xscale = float(minwidth) / currwidth 
+    #     yscale = float(minheight) / currheight
+
+    #     if xscale > yscale:
+    #         maxscale = xscale
+    #     else:
+    #         maxscale = yscale 
+        
+    #     return im.FactorScale(img, maxscale, maxscale)
+
+    # def MinScale(img, maxwidth=config.screen_width, maxheight=config.screen_height):
+    #     currwidth, currheight = renpy.image_size(img)
+    #     xscale = float(maxwidth) / currwidth
+    #     yscale = float(maxheight) / currheight 
+    #     if xscale < yscale:
+    #         minscale = xscale 
+    #     else: 
+    #         minscale = yscale
+        
+    #     return im.FactorScale(img, minscale, minscale)
+    
+    maxnumx = 2
+    maxnumy = 2
+    maxthumbx = config.screen_width / (maxnumx + 1)
+    maxthumby = config.screen_height / (maxnumy + 1)
+    maxperpage = maxnumx * maxnumy
+    gallery_page = 0
+    closeup_page = 0
+    
+    class GalleryItem:
+        def __init__(self, name, images, thumb, locked="lockedthumb"):
+            self.name = name 
+            self.images = images
+            self.thumb = thumb
+            self.locked = locked 
+            self.refresh_lock()
+        def num_images(self):
+            return len(self.images)
+
+        def refresh_lock(self):
+            self.num_unlocked = 0
+            lockme = False
+
+            for img in self.images:
+                if not renpy.seen_image(img):
+                    lockme = True
+                else:
+                    self.num_unlocked += 1
+                
+            self.is_locked  = lockme
+            
+    gallery_items = []
+    gallery_items.append(GalleryItem("1st Crime Scene", ["img1"], "thumb1"))
+    gallery_items.append(GalleryItem("2nd Crime Scene", ["img2"], "thumb2"))
+    gallery_items.append(GalleryItem("3rd Crime Scene", ["img3"], "thumb3"))
+    gallery_items.append(GalleryItem("4th Crime Scene", ["img4"], "thumb4"))
+    gallery_items.append(GalleryItem("5th Crime Scene", ["img1"], "thumb1"))
+    gallery_items.append(GalleryItem("6th Crime Scene", ["img2"], "thumb2"))
+    gallery_items.append(GalleryItem("7th Crime Scene", ["img3"], "thumb3"))
+    gallery_items.append(GalleryItem("8th Crime Scene", ["img4"], "thumb4"))
 
 
 
