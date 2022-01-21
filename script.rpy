@@ -22,6 +22,8 @@ init -3:
 return
 
 init -2 python:
+    
+    import datetime
 
     def set_info_scene(scene_id):
         global save_name
@@ -189,7 +191,17 @@ init -2 python:
                 return
         if not renpy.get_screen("hud3") and not renpy.in_rollback():
             renpy.show_screen("hud3")
-        
+            
+    def convertSeconds(scs):
+        ##convertimos los segundos a entero
+        scs = round(scs)
+
+        ##ahora este valor pasará a ser un hh:mm:ss
+        scs = str(datetime.timedelta(seconds=scs))
+        ##se convierte ahora en un array
+        scs = scs.split(":")
+
+        return scs
 
 
 define gameinfo_time = ""
@@ -252,29 +264,8 @@ init python:
     no_rollback = NoRollbackObj()
 
 
+
 init python:
-    # def MaxScale(img, minwidth=config.screen_width, minheight=config.screen_height):
-    #     currwidth, currheight = renpy.image_size(img)
-    #     xscale = float(minwidth) / currwidth 
-    #     yscale = float(minheight) / currheight
-
-    #     if xscale > yscale:
-    #         maxscale = xscale
-    #     else:
-    #         maxscale = yscale 
-        
-    #     return im.FactorScale(img, maxscale, maxscale)
-
-    # def MinScale(img, maxwidth=config.screen_width, maxheight=config.screen_height):
-    #     currwidth, currheight = renpy.image_size(img)
-    #     xscale = float(maxwidth) / currwidth
-    #     yscale = float(maxheight) / currheight 
-    #     if xscale < yscale:
-    #         minscale = xscale 
-    #     else: 
-    #         minscale = yscale
-        
-    #     return im.FactorScale(img, minscale, minscale)
     
     maxnumx = 2
     maxnumy = 2
@@ -307,16 +298,28 @@ init python:
             self.is_locked  = lockme
             
     gallery_items = []
-    gallery_items.append(GalleryItem("1st Crime Scene", ["img1"], "thumb1"))
-    gallery_items.append(GalleryItem("2nd Crime Scene", ["img2"], "thumb2"))
-    gallery_items.append(GalleryItem("3rd Crime Scene", ["img3"], "thumb3"))
-    gallery_items.append(GalleryItem("4th Crime Scene", ["img4"], "thumb4"))
-    gallery_items.append(GalleryItem("5th Crime Scene", ["img1"], "thumb1"))
-    gallery_items.append(GalleryItem("6th Crime Scene", ["img2"], "thumb2"))
-    gallery_items.append(GalleryItem("7th Crime Scene", ["img3"], "thumb3"))
-    gallery_items.append(GalleryItem("8th Crime Scene", ["img4"], "thumb4"))
+    #page 1
+    gallery_items.append(GalleryItem("", ["img1"], "thumb1"))
+    gallery_items.append(GalleryItem("", ["img2"], "thumb2"))
+    gallery_items.append(GalleryItem("", ["img3"], "thumb3"))
+    gallery_items.append(GalleryItem("", ["img4"], "thumb4"))
+    #page 2
+    gallery_items.append(GalleryItem("", ["img1"], "thumb1"))
+    gallery_items.append(GalleryItem("", ["img2"], "thumb2"))
+    gallery_items.append(GalleryItem("", ["img3"], "thumb3"))
+    gallery_items.append(GalleryItem("", ["img4"], "thumb4"))
+    #page 3
+    gallery_items.append(GalleryItem("", ["img5"], "thumb4"))
+    gallery_items.append(GalleryItem("", ["img5"], "thumb4"))
+    gallery_items.append(GalleryItem("", ["img5"], "thumb4"))
+    gallery_items.append(GalleryItem("", ["img5"], "thumb4"))
+    #page 4
+    gallery_items.append(GalleryItem("", ["img5"], "thumb4"))
+    gallery_items.append(GalleryItem("", ["img5"], "thumb4"))
+    gallery_items.append(GalleryItem("", ["img5"], "thumb4"))
+    gallery_items.append(GalleryItem("", ["img5"], "thumb4"))
 
 
-
+define persistent.unlocked_text = [] # empty word list WITH define
 
     

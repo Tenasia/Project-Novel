@@ -307,7 +307,7 @@ define gui.frame_tile = False
 ## The height of horizontal bars, scrollbars, and sliders. The width of vertical
 ## bars, scrollbars, and sliders.
 define gui.bar_size = 38
-define gui.scrollbar_size = 18
+define gui.scrollbar_size = 24
 define gui.slider_size = 38
 
 ## True if bar images should be tiled. False if they should be linearly scaled.

@@ -1,6 +1,6 @@
 label start:
     
-    
+    $ persistent.unlocked_text = [] 
     
     stop music fadeout 1.0
     stop movie
@@ -72,7 +72,39 @@ label prologue:
     scene bg living_room
     with fade
     Thought "..." 
+    Thought "..."
+    
+    Thought "¿?"
+    Thought "¿Nothing?"
+    Thought "Don't work?"
+    Thought "Maybe..."
+    Thought "Let's see..."
+    $ persistent.unlocked_text.append('Cook')
+    Thought "There it is!"
+    Thought "'Cook' adding! Yay!!!! ♥"
+    Thought "If I add 'Cut'..."
+    $ persistent.unlocked_text.append('Cut')
+    Thought "..."
+    Thought "¡¡¡¡¡AAAAHHHHHH!!!!! It's working!!!!!  :D"
+    Thought "FIN."
     # scene bg unknown_place    
+    $ persistent.unlocked_text.append('Your Mom')
+
+    $ persistent.unlocked_text.append('TEST')
+    $ persistent.unlocked_text.append('TEST2')
+    $ persistent.unlocked_text.append('TEST3')
+    $ persistent.unlocked_text.append('TEST4')
+    $ persistent.unlocked_text.append('TEST5')
+    $ persistent.unlocked_text.append('TEST 1Mom')
+    $ persistent.unlocked_text.append('TEST7')
+    $ persistent.unlocked_text.append('TEST8')
+    $ persistent.unlocked_text.append('TEST 2Mom')
+    $ persistent.unlocked_text.append('TEST9')
+    $ persistent.unlocked_text.append('TEST10')
+    $ persistent.unlocked_text.append('TEST 3Mom')
+    $ persistent.unlocked_text.append('TEST11')
+    $ persistent.unlocked_text.append('TEST12')
+    $ persistent.unlocked_text.append('TEST 4Mom')
     show fuuji sigh 
     $ show_date()
     Fuuji "Sigh, Akane you need to stop doing this. You’re already almost an adult."
@@ -81,6 +113,7 @@ label prologue:
     Thought "We’re having our usual breakfast, when a strong taste was mixed in my hot drink."
     hide fuuji 
     show fuuji sigh at left 
+    $ add_seen_chapter("1-3")
     show akane smirk at right 
     $ add_seen_chapter("2-1")
     Akane "What, you mean adding dried chilies in your coffee is immature? Hah."

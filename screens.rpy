@@ -471,18 +471,47 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
             ysize 100
             xalign 0.5
             yalign 0.9
-            xoffset 322.5
+            xoffset 165
             background None
             hbox:
-                spacing 50
+                # spacing 50
 
-
-                textbutton "SAVE" action ShowMenu('save')
-                textbutton "LOAD" action ShowMenu('load')
-                textbutton "SETTINGS" action ShowMenu('preferences') 
-                textbutton "TITLE" action MainMenu()
-                textbutton "QUIT" action Quit(True)
-                textbutton "BACK" action Return()
+                imagebutton:
+                    idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                    selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                    insensitive None
+                    action ShowMenu('save')
+                imagebutton:
+                    idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                    selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                    insensitive None
+                    action ShowMenu('load')
+                imagebutton:
+                    idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                    selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                    insensitive None
+                    action ShowMenu('preferences') 
+                imagebutton:
+                    idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                    selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                    insensitive None
+                    action MainMenu()
+                imagebutton:
+                    idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                    selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                    insensitive None
+                    action Quit(True)
+                imagebutton:
+                    idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                    selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                    insensitive None
+                    action Return()
 
         key "game_menu" action ShowMenu("main_menu")
 
@@ -497,8 +526,9 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
     style_prefix "info_panel"
 
     frame at trans:
-        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0)
+        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
         align alignment
+        yoffset 0
 
         has vbox:
             spacing 5
@@ -522,8 +552,8 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
             left_padding 40
             right_padding 0
             xsize 500
-            yminimum 50
-            ymaximum 150
+            yminimum 200
+            ymaximum 200
 
             text message_text size 25
 
@@ -557,9 +587,10 @@ screen game_menu():
     
 
     style_prefix "game_menu" tag menu
-
+    $ hours_played = convertSeconds( renpy.get_game_runtime() )[0]
+    $ minutes_played = convertSeconds( renpy.get_game_runtime() )[1]
     $ bgm_title = get_current_bgm_title()
-
+    $ seen_chapters = get_seen_chapters()
     add "gui/nvl.png"
     frame:
 
@@ -590,7 +621,7 @@ screen game_menu():
             # align (0.15, 0.5)
             xoffset 70
             yoffset 50
-            add "gui/game_frames/notebook_paper.png" xoffset 5.5 yoffset 72.5
+            add "gui/game_frames/notebook_paper.png" xoffset 60 yoffset 100.5
             hbox:
                 imagebutton:
                     xoffset 127.5
@@ -602,10 +633,88 @@ screen game_menu():
 
         default current_chapter = None
 
+    
+
+    use menu_page_title(_("あらすじ"), (1.0, 0.03))
+
+    if current_chapter:
+        label plot_titles[current_chapter] style "chapter_name_label" align (0.51, 0.21) text_color "#000"
+        # text "________________________" xalign 0.51 yalign 0.24 color "#000" font "fonts/Kalam-Regular.ttf"
+
+    hbox:
+        spacing 50
+        xalign 0.225
+        yalign 0.60
+
+        frame:
+            style_prefix "chapter_buttons"
+            yoffset -10
+            ysize 600
+            has vpgrid:
+                cols 1
+                xfill True
+                spacing 0
+            
+            if seen_chapters:
+                # ysize 1000
+
+                if len(seen_chapters.keys()) >= 12:
+                    # ysize 1000
+                    scrollbars "vertical"
+                    mousewheel True
+                    draggable False
+
+
+                for k in sorted(seen_chapters.keys(), key=sort_story_buttons):
+                    button:
+                        text plot_labels[k] font "fonts/Kalam-Regular.ttf"
+                        sensitive "#000"
+                        action [SetScreenVariable("current_chapter", k), SensitiveIf(current_chapter != k)] 
+                        
+                        
+
+        frame:
+            
+            style_prefix "chapter_contents"
+            yoffset 60
+            ysize 625
+            window:
+                has viewport:
+                    id "chapter_contents_window_vp"
+                    mousewheel True
+                    ysize 575
+                    yoffset -100
+
+                if current_chapter:
+
+                    $ separator_height = 20
+
+                    vbox:
+                        # yoffset 100
+                        # height 1000
+                        #ysize
+                        null height separator_height
+
+                        for obj in seen_chapters[current_chapter]:
+                            text plots[current_chapter + "-" + obj] font "fonts/Kalam-Regular.ttf"
+                            null height separator_height
+
+            vbar:
+                value YScrollValue("chapter_contents_window_vp")
+                bar_invert True
+                unscrollable "hide"
+                xsize 25
+                ysize 575
+                yoffset -20
+                xalign 1.0
+                # ysize 250
+            
     vbox style_suffix "chaptername_vbox":
-
+        
+        xoffset -10 
+        yoffset -50
         text save_name style_suffix "chaptername_text"
-
+        
         hbox:
             spacing 15
             xalign 0.5
@@ -621,6 +730,18 @@ screen game_menu():
     use info_panel(_("Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.90, 0.525))
 
     use info_panel(_("Pointers"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.90, 0.730))
+
+    frame:
+        # ysize 48
+        xoffset 1277.5
+        yoffset 790
+        text "Playtime" size 30 xoffset 91 yoffset -9
+        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
+        add "gui/clock.png" xsize 50 ysize 50 xoffset 32.5 yoffset -25
+        hbox:
+            yoffset 60
+            xoffset 47.5
+            text "[hours_played] Hours, [minutes_played] Minutes." color "#fff" font "fonts/Poppins-Light.ttf" size 25 
 
     # use story_info()
 init -2:
@@ -1084,18 +1205,47 @@ screen file_picker():
         ysize 100
         xalign 0.5
         yalign 0.9
-        xoffset 322.5
+        xoffset 165
         background None
         hbox:
-            spacing 50
+            # spacing 50
 
-
-            textbutton "SAVE" action ShowMenu('save')
-            textbutton "LOAD" action ShowMenu('load')
-            textbutton "SETTINGS" action ShowMenu('preferences') 
-            textbutton "TITLE" action MainMenu()
-            textbutton "QUIT" action Quit(True)
-            textbutton "BACK" action Return()
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                insensitive None
+                action ShowMenu('save')
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                insensitive None
+                action ShowMenu('load')
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                insensitive None
+                action ShowMenu('preferences') 
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                insensitive None
+                action MainMenu()
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                insensitive None
+                action Quit(True)
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                insensitive None
+                action Return()
                 
 
 
@@ -1278,18 +1428,47 @@ screen sound_settings():
         ysize 100
         xalign 0.5
         yalign 0.9
-        xoffset 322.5
+        xoffset 165
         background None
         hbox:
-            spacing 50
+            # spacing 50
 
-
-            textbutton "SAVE" action ShowMenu('save')
-            textbutton "LOAD" action ShowMenu('load')
-            textbutton "SETTINGS" action ShowMenu('preferences') 
-            textbutton "TITLE" action MainMenu()
-            textbutton "QUIT" action Quit(True)
-            textbutton "BACK" action Return()
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                insensitive None
+                action ShowMenu('save')
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                insensitive None
+                action ShowMenu('load')
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                insensitive None
+                action ShowMenu('preferences') 
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                insensitive None
+                action MainMenu()
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                insensitive None
+                action Quit(True)
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                insensitive None
+                action Return()
 
 screen text_settings():
     tag menu
@@ -1418,18 +1597,47 @@ screen text_settings():
         ysize 100
         xalign 0.5
         yalign 0.9
-        xoffset 322.5
+        xoffset 165
         background None
         hbox:
-            spacing 50
+            # spacing 50
 
-
-            textbutton "SAVE" action ShowMenu('save')
-            textbutton "LOAD" action ShowMenu('load')
-            textbutton "SETTINGS" action ShowMenu('preferences') 
-            textbutton "TITLE" action MainMenu()
-            textbutton "QUIT" action Quit(True)
-            textbutton "BACK" action Return()
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                insensitive None
+                action ShowMenu('save')
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                insensitive None
+                action ShowMenu('load')
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                insensitive None
+                action ShowMenu('preferences') 
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                insensitive None
+                action MainMenu()
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                insensitive None
+                action Quit(True)
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                insensitive None
+                action Return()
                 
 
 screen preferences():
@@ -1581,18 +1789,47 @@ screen preferences():
         ysize 100
         xalign 0.5
         yalign 0.9
-        xoffset 322.5
+        xoffset 165
         background None
         hbox:
-            spacing 50
+            # spacing 50
 
-
-            textbutton "SAVE" action ShowMenu('save')
-            textbutton "LOAD" action ShowMenu('load')
-            textbutton "SETTINGS" action ShowMenu('preferences') 
-            textbutton "TITLE" action MainMenu()
-            textbutton "QUIT" action Quit(True)
-            textbutton "BACK" action Return()
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
+                insensitive None
+                action ShowMenu('save')
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                insensitive None
+                action ShowMenu('load')
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                insensitive None
+                action ShowMenu('preferences') 
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
+                insensitive None
+                action MainMenu()
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                insensitive None
+                action Quit(True)
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                insensitive None
+                action Return()
                         
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -1713,7 +1950,14 @@ screen history():
                     ## This lays things out properly if history_height is None.
                     has fixed:
                         yfit True
-                    
+
+                    if h.rollback_identifier is not Null:
+                        textbutton "JUMP":
+                            
+                            xalign 0.25
+                            yalign 0.1
+                            action RollbackToIdentifier(h.rollback_identifier)
+
                     if h.who:
                         
                         label h.who:

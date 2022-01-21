@@ -771,17 +771,17 @@ image kikuchiyo upset :
 image kikuchiyo upset_dark :
     "images/Kikuchiyo/kk_upset_dark.png" with renpy.transition(Dissolve(0.25), layer="master")
 
-
 image img1 = "images/bg apartment.png"
 image img2 = "images/bg cram_hallway.jpg"
 image img3 = "gui/unknown.png"
 image img4 = "gui/unknown.png"
+image img5 = "gui/unknown.png"
 
 
 image black= "#000"
 
 
-image lockedthumb = "images/bg lit.png"
+image lockedthumb = "images/blank_image.png"
 
 
 image thumb1 :

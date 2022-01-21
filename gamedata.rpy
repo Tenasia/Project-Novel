@@ -88,22 +88,15 @@ define plot_labels = {
 
 define plots = {
     "1-1" : _(""" - May 2, 2012 - 
-    Your mom was great, make sure to come back next time. image:: example.png
+    Your mom was great, make sure to come back next time.
     """),
 
-    "1-2" : _("""First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST First Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWSTFirst Description in AGES TEST TEST TEWST
-    First Description in AGES TEST TEST TEWST
+    "1-2" : _(""" - May 5, 2012 - 
+    Your mom was great, make sure to come back next time.
+    """),
+
+    "1-3" : _(""" - May 5, 2012 - 
+    Your mom was great, make sure to come back next time.
     """),
 
     "2-1" : _("""Your
@@ -257,8 +250,40 @@ init -5:
     define times = {
         None : { "label" : "", "icon" : None},
         "morning" : { "label" : _("朝"), "icon" : "gui/game_menu_icons/sunrise.png" },
-        "day" : { "label" : _("昼"), "icon" : "gui/game_menu_icons/day.png" },
+        "day" : { "label" : _("昼"), "icon" : "gui/game_menu_icons/midday.png" },
         "evening" : { "label" : _("夕方"), "icon" : "gui/game_menu_icons/sunset.png" },
         "night" : { "label" : _("夜"), "icon" : "gui/game_menu_icons/midnight.png" },
+    }
+
+
+init -1 python:
+
+    display_desc = ""
+    
+    #add words to the dictionary
+    glossary_dict = \
+        {'Cook': """                {size=50}CUT{/size} 
+        
+- Cut your foreskin
+        """,
+        'Cut': """ Cut the damned food son """,
+        'Your Mom': """ We gotta get back to the bed mom hehehehehehe""",
+        'TEST': """ Cook the damned food son """,
+        'TEST2': """ Cut the damned food son """,
+        'TEST3': """ We gotta get back to the bed mom hehehehehehe""",
+        'TEST4': """ Cook the damned food son """,
+        'TEST5': """ Cut the damned food son """,
+        'TEST 1Mom': """ We gotta get back to the bed mom hehehehehehe""",
+        'TEST7': """ Cook the damned food son """,
+        'TEST8': """ Cut the damned food son """,
+        'TEST 2Mom': """ We gotta get back to the bed mom hehehehehehe""",
+        'TEST9': """ Cook the damned food son """,
+        'TEST10': """ Cut the damned food son """,
+        'TEST 3Mom': """ We gotta get back to the bed mom hehehehehehe""",
+        'TEST11': """ Cook the damned food son """,
+        'TEST12': """ Cut the damned food son """,
+        'TEST 4Mom': """ We gotta get back to the bed mom hehehehehehe""",
+
+
     }
 
