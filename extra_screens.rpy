@@ -66,6 +66,7 @@ screen tips_page():
                                 style "chapter_name_label"
                                 text_size 33
                                 action SetVariable("display_desc", word)
+                                # action Jump("flashback")
                 vbox ypos 150 xsize 500 ysize 500:
                     xoffset 15
                     text glossary_dict.get(display_desc, ""):

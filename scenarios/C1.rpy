@@ -215,6 +215,7 @@ label prologue:
     hide akane 
     stop music fadeout 1.0
     
+    $ persistent.firstchapter_clear = True
 label school:
 
     

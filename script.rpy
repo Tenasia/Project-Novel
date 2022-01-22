@@ -21,6 +21,11 @@ init -3:
 
 return
 
+
+init -2 python:
+
+    if persistent.firstchapter_clear is None:
+        persistent.firstchapter_clear = False
 init -2 python:
     
     import datetime

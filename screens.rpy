@@ -339,9 +339,12 @@ screen navigation():
         textbutton _("SETTINGS") action ShowMenu("preferences"):
             xalign 0.5
 
-        textbutton _("EXTRA") action ShowMenu("extra"):
-            xalign 0.5
+        textbutton _("CHAPTERS") action ShowMenu("chapters")
 
+        # textbutton _("EXTRA") action [ShowMenu("extra"),
+        #                                 SensitiveIf(not config.is_trial and
+        #                                     not config.lock_extra and
+        #                                     persistent.TRUE_clear or persistent.UNHAPPY_clear or persistent.MIHARU_clear)]
         if _in_replay:
 
             textbutton _("End Replay") action EndReplay(confirm=True)
@@ -368,6 +371,12 @@ style navigation_button_text:
     xalign 0.5
     font "Swiss721LightBT.ttf"
     
+
+screen chapters():
+    frame:
+        add "flickering_light"
+        vbox:
+            textbutton "Prologue" action Jump("prologue")
 
 ## Main Menu screen ############################################################
 
