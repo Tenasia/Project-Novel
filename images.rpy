@@ -417,6 +417,20 @@ image ctc:
         
         repeat
 
+image underline:
+    "gui/underline_animation/underline1.png"
+
+    block:
+        linear 0.25
+        "gui/underline_animation/underline2.png"
+        linear 0.25
+        "gui/underline_animation/underline3.png"
+        linear 0.25
+        "gui/underline_animation/underline4.png"
+        linear 0.25
+        "gui/underline_animation/underline5.png"
+    
+
 image title_particle1 = SnowBlossom(
     At("gui/title_particle.png", zoom(0.4)),
     count=500,
@@ -781,7 +795,7 @@ image img5 = "gui/unknown.png"
 image black= "#000"
 
 
-image lockedthumb = "images/blank_image.png"
+image lockedthumb = "gui/photocard.png"
 
 
 image thumb1 :

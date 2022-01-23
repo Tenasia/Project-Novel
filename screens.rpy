@@ -92,10 +92,12 @@ screen say(who, what):
         hbox:
             text what id "what"
 
-    
+    use quick_menu
 
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 0.5
+
+    
 
 
 init python:
@@ -314,17 +316,23 @@ screen navigation():
         
         
         if main_menu:
-           
-            textbutton _("START") action Start():
+
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/start_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/start_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/start_selected.png"
+                action Show("chapters")
                 xalign 0.5
-            
-            textbutton _("CONTINUE"):
+
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/continue_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/continue_selected.png"
+                selected "gui/gui_buttons/GUI main_buttons/continue_selected"
+                action [SetField(no_rollback, "last_loaded_slot", newest_slot),
+                        FileLoad(newest_slot[1], confirm=False, page=newest_slot[0], newest=False, )]
                 xalign 0.5
-                if newest_slot:
-                    action [SetField(no_rollback, "last_loaded_slot", newest_slot),
-                            FileLoad(newest_slot[1], confirm=False, page=newest_slot[0], newest=False)]
-                else:
-                    action SensitiveIf(False)
+
+         
                 
 
         else:
@@ -333,18 +341,18 @@ screen navigation():
 
             textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("LOAD") action ShowMenu("load"):
+        imagebutton:
+            idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
+            hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
+            action [ShowMenu("load"),Hide("chapters")]
             xalign 0.5
 
-        textbutton _("SETTINGS") action ShowMenu("preferences"):
+        imagebutton:
+            idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
+            hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+            action [ShowMenu("preferences"),Hide("chapters")]
             xalign 0.5
 
-        textbutton _("CHAPTERS") action ShowMenu("chapters")
-
-        # textbutton _("EXTRA") action [ShowMenu("extra"),
-        #                                 SensitiveIf(not config.is_trial and
-        #                                     not config.lock_extra and
-        #                                     persistent.TRUE_clear or persistent.UNHAPPY_clear or persistent.MIHARU_clear)]
         if _in_replay:
 
             textbutton _("End Replay") action EndReplay(confirm=True)
@@ -355,7 +363,13 @@ screen navigation():
 
         if renpy.variant("pc"):
 
-            textbutton _("QUIT") action Quit(confirm=not main_menu):
+            # textbutton _("QUIT") action Quit(confirm=not main_menu):
+            #     xalign 0.5
+            
+            imagebutton:
+                idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                action Quit(confirm=not main_menu)
                 xalign 0.5
 
 
@@ -370,13 +384,91 @@ style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
     xalign 0.5
     font "Swiss721LightBT.ttf"
-    
+
+screen arc_buttons1(arc_name, alignment, trans=None):
+
+
+    frame at trans:
+        background None
+        align alignment
+        yoffset 0 
+
+        has vbox:
+            spacing 5
+        
+        hbox:
+            spacing 10
+            xalign 0.09
+            
+        textbutton arc_name: 
+            text_size 30 
+            action Jump("chapter1")
+        
+    transclude
+
+
+
 
 screen chapters():
-    frame:
-        add "flickering_light"
+    # use main_menu
+    # hide "navigation"
+    hbox at chapter_line_disappear(delay=0.1):
+        # add "underline" xoffset 1200 yoffset 570 xsize 425
+        add "gui/arc_lines.png" xoffset 1200 yoffset 570 xsize 425
+    frame at chapters_appear:
+        
+        background None
+        yalign 0.765
+        xoffset 1250
+
+        
         vbox:
-            textbutton "Prologue" action Jump("prologue")
+            spacing 10
+            yalign 0.855
+            xalign 0.05
+            xoffset -45
+            
+            hbox at chapters_disappear(delay = 0):
+                add "gui/arc_lines.png"
+                # textbutton "ARC 1": 
+                #     text_size 30 
+                #     action Jump("start1")
+                
+                imagebutton:
+                    xoffset -150
+                    idle "gui/gui_buttons/GUI main_buttons/arc1_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/arc1_selected.png"
+                    action Jump("start1")
+
+            hbox at chapters_disappear(delay = 0.25):
+                add "gui/arc_lines.png"
+                imagebutton:
+                    xoffset -150
+                    idle "gui/gui_buttons/GUI main_buttons/arc2_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/arc2_selected.png"
+                    action Jump("start1")
+            hbox at chapters_disappear(delay = 0.5):
+                add "gui/arc_lines.png"
+                imagebutton:
+                    xoffset -150
+                    idle "gui/gui_buttons/GUI main_buttons/arc3_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/arc3_selected.png"
+                    action Jump("start1")
+            hbox at chapters_disappear(delay = 0.75):
+                # textbutton "Return": 
+                #     text_size 30 
+                    
+                #     action Hide("chapters")
+                add "gui/arc_lines.png"
+                imagebutton:
+                    xoffset -150
+                    idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                    action Hide("chapters")
+
+    
+    # timer game_menu_info_dissappear(delay = 1)
+        
 
 ## Main Menu screen ############################################################
 
@@ -2212,6 +2304,7 @@ screen nvl(dialogue, items=None):
             textbutton i.caption:
                 action i.action
                 style "nvl_button"
+    use quick_menu
 
     add SideImage() xalign 0.0 yalign 1.0
 

@@ -22,6 +22,35 @@ init -3:
 return
 
 
+
+
+label start1:
+
+    stop music fadeout 2.0
+    scene black
+    hide screen navigation
+    hide screen chapters
+    hide screen main_menu
+    $ renpy.transition(Dissolve(2))
+    $ renpy.pause(5, hard = True)
+
+
+    $ renpy.run(Start())
+
+label chapter1:
+
+    stop music fadeout 2.0
+    scene black 
+    hide screen navigation
+    hide screen chapters
+    hide screen main_menu 
+    $ renpy.transition(Dissolve(2))
+    $ renpy.pause(5, hard = True)
+    $ renpy.run(Start("prologue"))
+    # jump prologue
+
+
+
 init -2 python:
 
     if persistent.firstchapter_clear is None:
@@ -267,6 +296,35 @@ init python:
             self.last_loaded_slot = None
 
     no_rollback = NoRollbackObj()
+
+
+
+init -3 python:
+
+
+
+
+    def linear(t):
+        return t    
+
+    def ease(t):
+        import math
+        return 0.5 - math.cos(math.pi * t) / 2.0
+
+    def easein(t):
+        import math
+        return math.cos((1.0 - t) * math.pi / 2.0)
+
+    def easeout(t):
+        import math
+        return 1.0 - math.cos(t * math.pi / 2.0)
+
+    def easeinback(t):
+        return t * t *((BACK_S + 1) * t - BACK_S)
+
+    def easeoutback(t):
+        t -= 1
+        return t * t * ((BACK_S + 1) * t + BACK_S) + 1
 
 
 

@@ -1,5 +1,6 @@
 label start:
-    
+    # if persistent.firstchapter_clear:
+    #     jump prologue
     $ persistent.unlocked_text = [] 
     
     stop music fadeout 1.0
@@ -214,8 +215,11 @@ label prologue:
     Thought "I have known Akane for so long so I know what’s the cause for her discomfort, she’d always been quite the annoying but loving sibling you’ll have in a family, but I don’t hate it."
     hide akane 
     stop music fadeout 1.0
-    
+
+
     $ persistent.firstchapter_clear = True
+
+    
 label school:
 
     

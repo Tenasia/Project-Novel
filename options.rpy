@@ -132,7 +132,8 @@ default preferences.text_cps = 50
 default preferences.afm_time = 15
 
 
-define config.save_directory = "BellumPerpetuumv3-1640259307"
+# define config.save_directory = "BellumPerpetuumv3-1640259307"
+define config.save_directory = None
 
 
 ## Icon ########################################################################
