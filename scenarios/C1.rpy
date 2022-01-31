@@ -1,7 +1,9 @@
 label start:
     # if persistent.firstchapter_clear:
     #     jump prologue
-    $ persistent.unlocked_text = [] 
+    # $ persistent.unlocked_text = [] 
+
+    
     
     stop music fadeout 1.0
     stop movie
@@ -24,11 +26,11 @@ label start:
     # show smoke at smoke_rl(100, 0.6)
     # with Dissolve(5)
     # pause 1
-
+    # call discord_status ("Chapter 1", "2")
     play music audio.prologue
 
     scene bg war
-    with glasswool
+    with fade
     Thought2 "..."
     Thought2 "Izanagis was looked upon as cold and relentless. He hailed from Germany but he is a Japanese in blood, after their lost war in 1945. They had been experimenting with genes and had countless times failed. They were trying to make a superhuman to get back at the western and eastern folks."   
     Thought2 "His ancestors, the Izanagis. Was part of the “Dunkelblau Runder Tisch” {size=-10}(Obsidian Round Table){/size} which was formed as a hub for high-profile members of the Waffen Schutzstaffel {size=-10}(ß){/size} organization formed before the outbreak of the second world war. He was by then a part of it."
@@ -36,7 +38,7 @@ label start:
     nvl clear
     
     scene bg shady_lab
-    with wet 
+    with fade 
     nvl show 
     Thought2 "After some time had passed since the end of the second world war, the experiment had begun hidden away from any civilization. They hid it for long that not one would thought of a war brewing after what they just had gone through."
     Thought2 "He was the second test subject for their experiment. As they had ‘superior’ blood, they were the only fitting subjects for this goal. At first, since the war has ended, He thought that there was no need for more conflicts and the ‘revival’ experiment would either make him a monster, or a corpse. He had already contemplated with this, as sort of punishment of the world."
@@ -44,7 +46,7 @@ label start:
     nvl clear
 
     scene bg japan
-    with bites
+    with fade
     nvl show 
     Thought2 "Years passed without conflict and he was allowed to go back to his country, Japan. There he settled with a girl that came from a family of heritage. As he made a family, his first child was a boy named Fuuji. Followed by a daughter after 4 years, Akane."
     Thought2 "Before even making his children be fond of him. Obsidian Round Table called for every subject of the 'revival' had succeeded with. Fuuji was only 9 years old, Akane being 5. They had to part with their father at such a young age with no clear explanation on even when will their father come back."
@@ -53,59 +55,32 @@ label start:
 
     stop music fadeout 1.0
     scene bg black
-    with bowtie
+    # with fade
     Thought "A decade had passed. While the financial situation was not a problem somehow. There has been no communication between him and his family."
 
 label prologue:
+    scene bg living_room
     $ add_seen_chapter("1-1")
+
+   
     python:
         set_info_scene("01")
         set_info_location("02")
-        set_info_date(5, 2, "wed")
+        set_info_date(2, "May", "wed")
         set_info_time("day")
 
     show img1 
     show img2 
     hide img1 
     hide img2
-
-    play music audio.thin_purple
-    scene bg living_room
-    with fade
-    Thought "..." 
-    Thought "..."
     
-    Thought "¿?"
-    Thought "¿Nothing?"
-    Thought "Don't work?"
-    Thought "Maybe..."
-    Thought "Let's see..."
-    $ persistent.unlocked_text.append('Cook')
-    Thought "There it is!"
-    Thought "'Cook' adding! Yay!!!! ♥"
-    Thought "If I add 'Cut'..."
-    $ persistent.unlocked_text.append('Cut')
-    Thought "..."
-    Thought "¡¡¡¡¡AAAAHHHHHH!!!!! It's working!!!!!  :D"
-    Thought "FIN."
+    play music audio.thin_purple
+    
+    $ add_seen_words("1-1")
+    $ add_seen_words("1-2")
+    $ add_seen_words("1-3")
     # scene bg unknown_place    
-    $ persistent.unlocked_text.append('Your Mom')
-
-    $ persistent.unlocked_text.append('TEST')
-    $ persistent.unlocked_text.append('TEST2')
-    $ persistent.unlocked_text.append('TEST3')
-    $ persistent.unlocked_text.append('TEST4')
-    $ persistent.unlocked_text.append('TEST5')
-    $ persistent.unlocked_text.append('TEST 1Mom')
-    $ persistent.unlocked_text.append('TEST7')
-    $ persistent.unlocked_text.append('TEST8')
-    $ persistent.unlocked_text.append('TEST 2Mom')
-    $ persistent.unlocked_text.append('TEST9')
-    $ persistent.unlocked_text.append('TEST10')
-    $ persistent.unlocked_text.append('TEST 3Mom')
-    $ persistent.unlocked_text.append('TEST11')
-    $ persistent.unlocked_text.append('TEST12')
-    $ persistent.unlocked_text.append('TEST 4Mom')
+    # scene bg japan
     show fuuji sigh 
     $ show_date()
     Fuuji "Sigh, Akane you need to stop doing this. You’re already almost an adult."
@@ -132,6 +107,7 @@ label prologue:
     $ show_date()
     $ show_people()
     with fade
+
     $ add_seen_chapter("3-1")
     $ add_seen_chapter("3-2")
 
@@ -148,8 +124,7 @@ label prologue:
 
 
     show img4
-    hide img4
-
+    hide img4   
 
     $ add_seen_chapter("6-1")
     $ add_seen_chapter("6-2")
@@ -167,6 +142,7 @@ label prologue:
     Fuuji "Anyway, graduation is nearing, I will have to find a Juku (cram) school to get into Tokyo University. So, I won’t be coming back here much often."
     $ add_seen_chapter("9-1")
     show fuuji neutral2_dark 
+    hide title_art
     Thought "Since College was just in a few months away, I asked my uncle if I could use a spare house he had so that I can get to the university easily."
     $ add_seen_chapter("10-1")
     $ add_seen_chapter("10-2")

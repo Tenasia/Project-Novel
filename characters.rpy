@@ -6,16 +6,16 @@ define Thought = Character(" ", ctc="ctc", ctc_pause="ctc", ctc_position="fixed"
 define Thought2 = Character(" ", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", kind=nvl)
 
 
-define Fuuji = Character("Fuuji", color="03a9f4", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Kikuchiyo = Character("Kikuchiyo", color="f06292", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Akane = Character("Akane", color="920717", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+define Fuuji = Character("Nakamura", color="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Kikuchiyo = Character("Kikuchiyo", color="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Akane = Character("Akane", color="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
 
 
-define Student = Character("Student", color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Princess = Character(" ? ? ? ", color="f06292", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Dad = Character("Dad", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Mom = Character("Mom", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Man = Character("Man", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Girl = Character("Girl", color="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Applicant = Character("Applicant", color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-define Shinazu = Character("Shinazu",color ="90EE90", ctc="ctc", ctc_pause="ctc", ctc_position="fixed" )
+define Student = Character("Student", color ="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Princess = Character(" ? ? ? ", color="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Dad = Character("Dad", color="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Mom = Character("Mom", color="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Man = Character("Man", color="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Girl = Character("Girl", color="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Applicant = Character("Applicant", color ="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)
+define Shinazu = Character("Shinazu",color ="fff", ctc="ctc", ctc_pause="ctc", ctc_position="fixed", show_two_window = True)

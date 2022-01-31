@@ -1,8 +1,8 @@
 
 transform game_menu_info_appear(delay=0):
-        yanchor 0.0
+        # yanchor 0.0
         alpha 0.0
-        xoffset -200
+        xoffset 200
 
 
         pause delay
@@ -19,7 +19,7 @@ transform chapters_appear(delay=0):
         on hide:
             pause delay
         #     add "underline"
-            easein .5 alpha 0.0 xoffset 0
+            easein .5 alpha 0.0 xoffset 200
         # pause delay
 
 transform chapters_disappear(delay=0):
@@ -38,14 +38,16 @@ transform chapter_line_disappear(delay=0):
         alpha 0.0
         # xoffset -200
 
-        on show:
-            pause delay
-            easein .5 alpha 1.0 xoffset 0
-        on hide:
-            pause delay
-            easein .5 alpha 0.0 xoffset 0
+        pause delay
+        easein .5 alpha 1.0 xoffset 0
+        # on hide:
+        #     pause delay
+        #     easein .5 alpha 0.0 xoffset 0
             
-        
+transform trans_say_label:
+        alpha 0.0
+        easein 0.3 alpha 1.0 xoffset 0
+
 
 transform game_menu_chapter_info_appear:
         alpha 0.0
@@ -72,3 +74,12 @@ transform hud_appear:
             easein .3 alpha 1.0 xoffset 0
         on hide:
             easein .3 alpha 0.0 xoffset 200
+
+transform hud_appear_date:
+        alpha 0
+        xoffset -200
+
+        on show:
+            easein .3 alpha 1.0 xoffset 0
+        on hide:
+            easein .3 alpha 0.0 xoffset -200

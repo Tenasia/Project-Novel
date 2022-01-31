@@ -5,8 +5,8 @@
 
 image ctc:
     "gui/ctc_icon/ctc1.png"
-    xalign 0.90
-    yalign 0.9
+    xalign 0.825
+    yalign 0.925
     xoffset 50
     yoffset 0
     xsize 50
@@ -417,18 +417,18 @@ image ctc:
         
         repeat
 
-image underline:
-    "gui/underline_animation/underline1.png"
+# image underline:
+#     "gui/underline_animation/underline1.png"
 
-    block:
-        linear 0.25
-        "gui/underline_animation/underline2.png"
-        linear 0.25
-        "gui/underline_animation/underline3.png"
-        linear 0.25
-        "gui/underline_animation/underline4.png"
-        linear 0.25
-        "gui/underline_animation/underline5.png"
+#     block:
+#         linear 0.25
+#         "gui/underline_animation/underline2.png"
+#         linear 0.25
+#         "gui/underline_animation/underline3.png"
+#         linear 0.25
+#         "gui/underline_animation/underline4.png"
+#         linear 0.25
+#         "gui/underline_animation/underline5.png"
     
 
 image title_particle1 = SnowBlossom(
@@ -513,6 +513,88 @@ image title_particle8 = SnowBlossom(
     fast=False,
     horizontal=False)
 
+image rain1 = SnowBlossom(
+    At("gui/title_particle.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(5),
+    yspeed=(4500),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image rain2 = SnowBlossom(
+    At("gui/title_particle3.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(10),
+    yspeed=(2500),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image rain3 = SnowBlossom(
+    At("gui/title_particle2.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(15),
+    yspeed=(4000),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+
+image rain4 = SnowBlossom(
+    At("gui/title_particle2.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(20),
+    yspeed=(2000),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image rain5 = SnowBlossom(
+    At("gui/title_particle.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(25),
+    yspeed=(4500),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image rain6 = SnowBlossom(
+    At("gui/title_particle3.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(30),
+    yspeed=(3500),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+image rain7 = SnowBlossom(
+    At("gui/title_particle2.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(35),
+    yspeed=(4000),
+    start=0,
+    fast=False,
+    horizontal=False)
+
+
+image rain8 = SnowBlossom(
+    At("gui/title_particle2.png", zoom(0.4)),
+    count=500,
+    border=50,
+    xspeed=(40),
+    yspeed=(2000),
+    start=0,
+    fast=False,
+    horizontal=False)
+
 image title_art = Fixed(
     "title_particle1",
     "title_particle2",
@@ -523,6 +605,17 @@ image title_art = Fixed(
     "title_particle7",
     "title_particle8"
 
+    )
+
+image rain_particle = Fixed(
+    "rain1",
+    "rain2",
+    "rain3",
+    "rain4",
+    "title_particle5",
+    "title_particle6",
+    "title_particle7",
+    "title_particle8"
     )
 
 label splashscreen:

@@ -72,19 +72,39 @@ define config.has_voice = True
 ## transition should be used.
 
 ## Entering or exiting the game menu.
+init -2 python:
+    config.enter_transition = Dissolve(.3)
+    config.exit_transition = Dissolve(.3)
+    config.intra_transition = Dissolve(.2)
 
-define config.enter_transition = dissolve
-define config.exit_transition = dissolve
+    config.default_music_volume = 0.50
+
+    config.default_sfx_volume = 0.50
+# define config.enter_transition = dissolve
+# define config.exit_transition = dissolve
+
+init -1 python hide:
+    config.window_show_transition = Dissolve(.2)
 
 
+    config.window_hide_transition = config.window_show_transition
+
+    config.label_overrides = {"_hide_windows" : "_hide_windows_override"}
 ## Between screens of the game menu.
 
-define config.intra_transition = None
+# define config.intra_transition = None
 
 
 ## A transition that is used after a game has been loaded.
 
-define config.after_load_transition = None
+# define config.after_load_transition = None
+
+
+    # config.window_show_transition = Dissolve(.2)
+    # config.window_hide_transition = config.window_show_transition
+    
+    # config.message_alpha_default = 1.0
+# # define config.window_hide_transition = True
 
 
 ## Used when entering the main menu after the game has ended.
@@ -114,9 +134,12 @@ define config.window = "auto"
 
 ## Transitions used to show and hide the dialogue window
 
-define config.window_show_transition = Dissolve(.2)
-define config.window_hide_transition = Dissolve(.2)
 
+# define config.window_show_transition = Dissolve(0.2)
+# define config.window_hide_transition = Dissolve(0.2)
+
+# init -1 python hide:
+    
 
 ## Preference defaults #########################################################
 
@@ -158,5 +181,5 @@ init python:
 init -2 python:
     renpy.music.register_channel("music", mixer="music", loop = True, file_prefix="audio/bgm/", file_suffix=".mp3")
     
-
-    
+init -1500 python:
+    config.window_opacity_default = 1.0

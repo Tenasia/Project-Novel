@@ -72,36 +72,186 @@ style frame:
 
 
 
-screen say(who, what):
-    style_prefix "say"
+# screen say(who, what, side_image=None, two_window=False):
+#     # style_prefix "say"
+#     key "mousedown_4" action ShowMenu("history")
+#     key "mouseup_3" action ShowMenu("game_menu")
+
+#     if not two_window:
+
+#         window:
+#             background Transform(Frame("gui/textbox.png"), alpha=persistent.window_opacity)
+#             style_prefix "say"
+#             id "window"
+
+#             has vbox
+
+#             fixed:
+#                 ysize 34
+
+#                 if who:
+
+#                     text who:
+#                         id "who"
+#                         xoffset 860 yoffset -20
+
+#             text what id "what" yoffset 35
+#     else:
+
+#         window:
+            
+#             style_prefix "say"
+#             id "window"
+
+#             has vbox
+
+#             fixed:
+#                 ysize 34
+
+#                 if who:
+#                     window:
+#                         # style "say_who_window"
+#                         background Transform(Frame("gui/textbox.png"), alpha=persistent.window_opacity)
+#                         xalign 0.5
+#                         text who:
+#                             id "who"
+#                             yoffset -20 xalign 0.5
+
+#             text what id "what" yoffset 35
+
+
+#     if side_image:
+#         add side_image
+#     else:
+#         add SideImage() xalign 0.0 yalign 1.0
+
+
+#     use quick_menu
+
+#     if renpy.in_rollback():
+
+#         key "mousedown_5" action RollForward()
+
+
+
+# init python:
+#     config.character_id_prefixes.append('namebox')
+
+
+# screen say(who, what, side_image=None, two_window=False):
+    
+#     key "mousedown_4" action ShowMenu("history")
+#     key "mouseup_3" action ShowMenu("game_menu")
+
+    # if not two_window:
+
+
+    #     window:
+    #         id "window"
+
+    #         has vbox:
+    #             style "say_vbox"
+
+    #         if who:
+    #             text who id "who"
+
+    #         text what id "what"
+
+    # else:
+
+    #     window:
+    #         style_prefix "say"
+    #         id "window"
+
+    #         has vbox
+
+    #         fixed:
+    #             ysize 34
+
+    #             if who:
+    #                 window:
+    #                     style "say_who_window"
+
+    #                     text who:
+    #                         id "who"
+
+    #         text what id "what"
+
+
+#     if side_image:
+#         add side_image
+#     else:
+#         add SideImage() xalign 0.0 yalign 1.0
+
+
+#     use quick_menu
+
+#     if renpy.in_rollback():
+
+#         key "mousedown_5" action RollForward()
+        
+screen say(who, what, side_image=None, two_window=False):
+
     key "mousedown_4" action ShowMenu("history")
     key "mouseup_3" action ShowMenu("game_menu")
     
-    window:
-        background Transform(Frame("gui/textbox.png", xalign=50, yoffset=-100, ysize=500), alpha=persistent.window_opacity)
-        id "window"
-        yalign 0.956
-        ysize 175
+    if not two_window:
+        window:
+            style_prefix "say"
+            background Transform(Frame("gui/textbox.png"), alpha=persistent.window_opacity)
+            id "window"
+            yalign 1.0
+            ysize 320
 
-        if who is not None:
+            if who is not None:
+                hbox:
+                    xalign 0.5
+                    yalign 0.5
+                    yoffset -125
+                    text who id "who"
             hbox:
-                xalign 0.5
-                yalign 0.5
-                yoffset -150
-                text who id "who"
-        hbox:
-            text what id "what"
+                text what id "what" yoffset 65 xoffset -155
+       
+    else:
+        
+        window:
+            style_prefix "say"
+            id "window"
+
+            has vbox
+
+            fixed:
+                ysize 34
+
+                if who:
+                    window:
+                        style "say_who_window"
+                        yoffset -27.5
+                        # if (len(_history_list) == 0) or (len(_history_list) > 0 and _history_list[-1].who != who):
+                        #     at trans_say_label
+                            
+                        text who:
+                            yoffset -75
+                            id "who" xalign 0.5 xoffset -770
+                            if (len(_history_list) == 0) or (len(_history_list) > 0 and _history_list[-1].who != who):
+                                at trans_say_label
+                                
+
+            text what id "what" yoffset -10 xoffset -155
+            
+    if side_image:
+        add side_image
+    else:
+        add SideImage() xalign 0.0 yalign 1.0
+
 
     use quick_menu
 
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 0.5
+    if renpy.in_rollback():
 
+        key "mousedown_5" action RollForward()
     
 
-
-init python:
-    config.character_id_prefixes.append('namebox')
 
 style window is default
 style say_label is default
@@ -135,7 +285,7 @@ style say_label:
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
-
+    justify False
     xpos gui.dialogue_xpos
     xsize gui.dialogue_width
     ypos gui.dialogue_ypos
@@ -206,62 +356,69 @@ style choice_button_text is default:
 
 ## Quick Menu screen ###########################################################
 
-screen quick_menu(): 
+screen quick_menu(trans = None): 
     
     zorder 100
     
     if quick_menu:
-        frame:
+        frame at trans:
             background None
-            xfill 0.5 
+            xalign 0.99
             yalign 0.9999
             yoffset 10
+            # yoffset 10
             
             
             hbox:
-                xalign 0.975
-                yalign 0.5
+                # xalign 0.975
+                # yalign 0.9
                 spacing 0
                 frame:
                     # background "gui/navbar.png"
                     background None
-                    yoffset -10
-                    xoffset -550
-                    hbox:
-                        yoffset 7.5
-                        xoffset 550
+                    # yoffset -10
+                    # xoffset -460
+                    vbox:
+                        spacing 15
+                        # yoffset 7.5
+                        # xoffset 110
+                        # xoffset 550
                         imagebutton:
-                            xoffset 90
-                            idle "gui/gui_buttons/GUI quick_buttons/save_idle.png"
-                            hover "gui/gui_buttons/GUI quick_buttons/save_hover.png"
+                            # xoffset 90
+                            idle "gui/gui_buttons/GUI quick_buttons - Copy/save_idle.png"
+                            hover "gui/gui_buttons/GUI quick_buttons - Copy/save_hover.png"
                             action ShowMenu('save')
                         imagebutton:
-                            xoffset 80
-                            idle "gui/gui_buttons/GUI quick_buttons/load_idle.png"
-                            hover "gui/gui_buttons/GUI quick_buttons/load_hover.png"
+                            # xoffset 80
+                            idle "gui/gui_buttons/GUI quick_buttons - Copy/load_idle.png"
+                            hover "gui/gui_buttons/GUI quick_buttons - Copy/load_hover.png"
                             action ShowMenu('load')
                         imagebutton:
-                            xoffset 60
-                            idle "gui/gui_buttons/GUI quick_buttons/auto_idle.png"
-                            hover "gui/gui_buttons/GUI quick_buttons/auto_hover.png"
-                            selected_idle "gui/gui_buttons/GUI quick_buttons/auto_hover.png"
+                            # xoffset 60
+                            idle "gui/gui_buttons/GUI quick_buttons - Copy/auto_idle.png"
+                            hover "gui/gui_buttons/GUI quick_buttons - Copy/auto_hover.png"
+                            selected_idle "gui/gui_buttons/GUI quick_buttons - Copy/auto_hover.png"
                             action Preference("auto-forward", "toggle")
+                        # textbutton: _("SKIP") action S
                         imagebutton:
-                            xoffset 30
-                            idle "gui/gui_buttons/GUI quick_buttons/skip_idle.png"
-                            hover "gui/gui_buttons/GUI quick_buttons/skip_hover.png"
-                            action Skip() alternate Skip(fast=True, confirm=True)
+                            # xoffset 30
+                            idle "gui/gui_buttons/GUI quick_buttons - Copy/skip_idle.png"
+                            hover "gui/gui_buttons/GUI quick_buttons - Copy/skip_hover.png"
+                            selected_idle "gui/gui_buttons/GUI quick_buttons - Copy/skip_hover.png"
+                            selected_background "gui/gui_buttons/GUI quick_buttons - Copy/skip_hover.png"
+                            action Skip()
                         imagebutton:
-                            idle "gui/gui_buttons/GUI quick_buttons/logs_idle.png"
-                            hover "gui/gui_buttons/GUI quick_buttons/logs_hover.png"
+                            idle "gui/gui_buttons/GUI quick_buttons - Copy/logs_idle.png"
+                            hover "gui/gui_buttons/GUI quick_buttons - Copy/logs_hover.png"
                             action ShowMenu('history')
                         imagebutton:
-                            idle "gui/gui_buttons/GUI quick_buttons/settings_idle.png"
-                            hover "gui/gui_buttons/GUI quick_buttons/settings_hover.png"
+                            # xoffset -20
+                            idle "gui/gui_buttons/GUI quick_buttons - Copy/settings_idle.png"
+                            hover "gui/gui_buttons/GUI quick_buttons - Copy/settings_hover.png"
                             action ShowMenu('preferences')
         hbox:
-            xalign 0.97
-            yalign 0.775
+            xalign 0.89
+            yalign 0.760
             xoffset 18
 
             imagebutton:
@@ -269,19 +426,18 @@ screen quick_menu():
                 hover "gui/game_menu_icons/hide_ui_selected.png"
                 selected "gui/game_menu_icons/hide_ui_selected.png"
                 action HideInterface()
-        hbox:
-            xalign 0.97
-            yalign 0.875
-            xoffset 35
-            yoffset 25
-            imagebutton:
-                idle "gui/game_menu_icons/notebook_idle.png"
-                hover "gui/game_menu_icons/notebook_selected.png"
-                selected "gui/game_menu_icons/notebook_selected.png"
-                action ShowMenu("game_menu")
+# init -2:
 
-init python:
-    config.overlay_screens.append("quick_menu")
+#     style quick_button is menu_button:
+#         xysize (138, 24)
+#         background None
+#         hover_background "gui/quick_button_bg_hover.png"
+#         selected_background "gui/quick_button_bg_hover.png"
+
+#     style quick_button_text is menu_button_text:
+#         font "gui/fonts/NotoSansCJKjp-Thin.otf"
+#         size 13
+#         outlines [(absolute(1), Color("#bbbbbb88"), absolute(0), absolute(0))]
 
 default quick_menu = True
 
@@ -321,15 +477,17 @@ screen navigation():
                 idle "gui/gui_buttons/GUI main_buttons/start_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/start_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/start_selected.png"
-                action Show("chapters")
+                action [SetVariable("current_mode", "chapters"), Show("chapters", dissolve)]
                 xalign 0.5
 
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/continue_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/continue_selected.png"
                 selected "gui/gui_buttons/GUI main_buttons/continue_selected"
+                insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
                 action [SetField(no_rollback, "last_loaded_slot", newest_slot),
-                        FileLoad(newest_slot[1], confirm=False, page=newest_slot[0], newest=False, )]
+                        FileLoad(newest_slot[1], confirm=False, page=newest_slot[0], newest=False),
+                        SensitiveIf(current_mode != "chapters")]
                 xalign 0.5
 
          
@@ -344,13 +502,15 @@ screen navigation():
         imagebutton:
             idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
             hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
-            action [ShowMenu("load"),Hide("chapters")]
+            insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
+            action [ShowMenu("load"),Hide("chapters"), SensitiveIf(current_mode != "chapters")]
             xalign 0.5
 
         imagebutton:
             idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
             hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
-            action [ShowMenu("preferences"),Hide("chapters")]
+            insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
+            action [ShowMenu("preferences"),Hide("chapters"), SensitiveIf(current_mode != "chapters")]
             xalign 0.5
 
         if _in_replay:
@@ -362,14 +522,12 @@ screen navigation():
             textbutton _("Main Menu") action MainMenu()
 
         if renpy.variant("pc"):
-
-            # textbutton _("QUIT") action Quit(confirm=not main_menu):
-            #     xalign 0.5
             
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
-                action Quit(confirm=not main_menu)
+                insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
+                action [Quit(confirm=not main_menu), SensitiveIf(current_mode != "chapters")]
                 xalign 0.5
 
 
@@ -410,11 +568,16 @@ screen arc_buttons1(arc_name, alignment, trans=None):
 
 
 screen chapters():
-    # use main_menu
-    # hide "navigation"
+    
+    # $ current_screen = str(FileCurrentPage())
+    default current_mode = "chapters"
+    # add "flickering_light"
     hbox at chapter_line_disappear(delay=0.1):
         # add "underline" xoffset 1200 yoffset 570 xsize 425
-        add "gui/arc_lines.png" xoffset 1200 yoffset 570 xsize 425
+        # add "gui/cover_buttons.png" xoffset 1195 yoffset 640 
+        add "gui/arc_lines1.png" xoffset 1225 yoffset 570 xsize 195
+
+       
     frame at chapters_appear:
         
         background None
@@ -426,48 +589,40 @@ screen chapters():
             spacing 10
             yalign 0.855
             xalign 0.05
-            xoffset -45
+            xoffset -47.5 - 225
             
             hbox at chapters_disappear(delay = 0):
-                add "gui/arc_lines.png"
-                # textbutton "ARC 1": 
-                #     text_size 30 
-                #     action Jump("start1")
+                add "gui/arc_lines1.png" xoffset 85
                 
                 imagebutton:
-                    xoffset -150
+                    xoffset -75
                     idle "gui/gui_buttons/GUI main_buttons/arc1_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/arc1_selected.png"
-                    action Jump("start1")
+                    action [Jump("start1"), SensitiveIf(persistent.firstchapter_clear)]
 
             hbox at chapters_disappear(delay = 0.25):
-                add "gui/arc_lines.png"
+                add "gui/arc_lines1.png" xoffset 135
                 imagebutton:
-                    xoffset -150
+                    xoffset -25
                     idle "gui/gui_buttons/GUI main_buttons/arc2_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/arc2_selected.png"
-                    action Jump("start1")
+                    insensitive "gui/gui_buttons/GUI main_buttons/arc2_insensitive.png"
+                    action [Jump("start1"), SensitiveIf(persistent.secondchapter_clear)]
             hbox at chapters_disappear(delay = 0.5):
-                add "gui/arc_lines.png"
+                add "gui/arc_lines1.png" xoffset 185
                 imagebutton:
-                    xoffset -150
+                    xoffset 25
                     idle "gui/gui_buttons/GUI main_buttons/arc3_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/arc3_selected.png"
-                    action Jump("start1")
-            hbox at chapters_disappear(delay = 0.75):
-                # textbutton "Return": 
-                #     text_size 30 
-                    
-                #     action Hide("chapters")
-                add "gui/arc_lines.png"
+                    insensitive "gui/gui_buttons/GUI main_buttons/arc3_insensitive.png"
+                    action [Jump("start1"), SensitiveIf(persistent.thirdchapter_clear)]
+            hbox at chapters_disappear(delay = 0.65):
+                add "gui/arc_lines1.png" xoffset 235
                 imagebutton:
-                    xoffset -150
+                    xoffset 75
                     idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
-                    action Hide("chapters")
-
-    
-    # timer game_menu_info_dissappear(delay = 1)
+                    action [Hide("chapters", dissolve), SetVariable("current_mode", "main")]
         
 
 ## Main Menu screen ############################################################
@@ -479,7 +634,6 @@ screen main_menu():
 
     add "flickering_light"
     add "title_art"
-    # add "rain_layer"
     frame:
         style "main_menu_frame"
 
@@ -575,13 +729,12 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
             xoffset 165
             background None
             hbox:
-                # spacing 50
 
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                     selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
-                    insensitive None
+                    insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
                     action ShowMenu('save')
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
@@ -599,7 +752,7 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
                     idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                     selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
-                    insensitive None
+                    insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
                     action MainMenu()
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
@@ -608,9 +761,9 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
                     insensitive None
                     action Quit(True)
                 imagebutton:
-                    idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
-                    hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
-                    selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                    idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+                    hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                    selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                     insensitive None
                     action Return()
 
@@ -618,7 +771,7 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
 
 
 
-#info panel
+## Info Panel Screen ############################################################
 
 
 
@@ -627,9 +780,9 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
     style_prefix "info_panel"
 
     frame at trans:
-        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
+        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 53, yoffset=10, xsize= 535, xoffset= 15)
         align alignment
-        yoffset 0
+        yoffset 100
 
         has vbox:
             spacing 5
@@ -639,10 +792,10 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
             xalign 0.09
 
 
-            add icon_d xsize 50 ysize 50 yoffset -25
+            add icon_d xsize 45 ysize 45 yoffset -5 xoffset 15
 
 
-            label label_text text_size 30 yoffset -8
+            label label_text text_size 30 yoffset 0 xoffset 10 
 
 
         window:
@@ -652,23 +805,21 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
             bottom_padding 0
             left_padding 40
             right_padding 0
-            xsize 500
-            yminimum 200
-            ymaximum 200
+            
+            xsize 510
 
-            text message_text size 25
+
+            text message_text size 24 yoffset 10
 
         transclude
 
 init -2:
-
     style info_panel_label_text is text:
-        font "fonts/Poppins-Light.ttf"
+        font "fonts/Poppins-Regular.ttf"
         size 20
         spacing 0
         kerning 0
         layout "nobreak"
-
         # outlines [(1, "#00000099", 0, 0)]
 
     style info_panel_text is text:
@@ -680,27 +831,24 @@ init -2:
 
 
 
-# Game menu
+## Game Menu screen ############################################################
 
 
 screen game_menu():
     key "mousedown_3" action Return()
     
-
     style_prefix "game_menu" tag menu
     $ hours_played = convertSeconds( renpy.get_game_runtime() )[0]
     $ minutes_played = convertSeconds( renpy.get_game_runtime() )[1]
+    $ seconds_played = convertSeconds( renpy.get_game_runtime() )[2]
     $ bgm_title = get_current_bgm_title()
     $ seen_chapters = get_seen_chapters()
-    add "gui/nvl.png"
+    add "gui/right_click_bg.png"
     frame:
-
-        #notebook cover
         background None
-        add "gui/black_image.png" xoffset 75 yoffset 140
+        add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
 
         hbox:
-            #notebook stubs
             imagebutton:
                 xoffset 530
                 yoffset 102.5
@@ -717,9 +865,7 @@ screen game_menu():
                 action ShowMenu("gallery")
 
         frame:
-            #notebook paper
             background None
-            # align (0.15, 0.5)
             xoffset 70
             yoffset 50
             add "gui/game_frames/notebook_paper.png" xoffset 60 yoffset 100.5
@@ -740,8 +886,7 @@ screen game_menu():
 
     if current_chapter:
         label plot_titles[current_chapter] style "chapter_name_label" align (0.51, 0.21) text_color "#000"
-        # text "________________________" xalign 0.51 yalign 0.24 color "#000" font "fonts/Kalam-Regular.ttf"
-
+    
     hbox:
         spacing 50
         xalign 0.225
@@ -757,10 +902,8 @@ screen game_menu():
                 spacing 0
             
             if seen_chapters:
-                # ysize 1000
 
                 if len(seen_chapters.keys()) >= 12:
-                    # ysize 1000
                     scrollbars "vertical"
                     mousewheel True
                     draggable False
@@ -791,9 +934,7 @@ screen game_menu():
                     $ separator_height = 20
 
                     vbox:
-                        # yoffset 100
-                        # height 1000
-                        #ysize
+  
                         null height separator_height
 
                         for obj in seen_chapters[current_chapter]:
@@ -804,16 +945,15 @@ screen game_menu():
                 value YScrollValue("chapter_contents_window_vp")
                 bar_invert True
                 unscrollable "hide"
-                xsize 25
+                xsize 19
                 ysize 575
                 yoffset -20
                 xalign 1.0
-                # ysize 250
             
     vbox style_suffix "chaptername_vbox":
         
-        xoffset -10 
-        yoffset -50
+        xalign 0.875
+        yalign 0.175
         text save_name style_suffix "chaptername_text"
         
         hbox:
@@ -826,25 +966,31 @@ screen game_menu():
 
     on "show" action [Preference("auto-forward", "disable"), SetField(config, "skipping", None)]
 
-    use info_panel(_("BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.90, 0.35))
+    use info_panel(_(" BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.925, 0.325))
 
-    use info_panel(_("Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.90, 0.525))
+    use info_panel(_(" Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.925, 0.550))
 
-    use info_panel(_("Pointers"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.90, 0.730))
+    use info_panel(_(" Info"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.925, 0.775))
 
     frame:
-        # ysize 48
-        xoffset 1277.5
-        yoffset 790
-        text "Playtime" size 30 xoffset 91 yoffset -9
-        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
-        add "gui/clock.png" xsize 50 ysize 50 xoffset 32.5 yoffset -25
+        xoffset 135
+        yoffset 895
+        text "Playtime:" size 35 xoffset 51 yoffset 0 color "#000" font "fonts/Kalam-Regular.ttf"
+        background None
         hbox:
-            yoffset 60
-            xoffset 47.5
-            text "[hours_played] Hours, [minutes_played] Minutes." color "#fff" font "fonts/Poppins-Light.ttf" size 25 
+            yoffset 0
+            xoffset 200
+            text "[hours_played]:[minutes_played]:[seconds_played]" color "#000" font "fonts/Kalam-Regular.ttf" size 35 
+    
+    imagebutton:
+        xalign 0.95
+        yalign 0.925
+        idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+        hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+        selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+        insensitive None
+        action Return()
 
-    # use story_info()
 init -2:
 
     style game_menu_chaptername_vbox:
@@ -937,9 +1083,9 @@ screen hud():
     zorder 100
     style_prefix "hud"
 
-    frame at hud_appear:
+    frame at hud_appear_date:
         background Frame("gui/nvl.png", 40)
-        align (1.0, 0.05)
+        align (0.0, 0.05)
         left_padding 40
         right_padding 30
 
@@ -957,12 +1103,13 @@ screen hud1():
 
     frame at hud_appear:
         background Frame("gui/nvl.png", 40)
-        align (1.0, 0.15)
+        align (1.0, 0.05)
         left_padding 40
         right_padding 30
 
         has hbox:
             spacing 10
+        add "gui/mouse_icon.png" yalign 0.5
         text "People's tab updated!" size 30
     
     timer 5 action Hide('hud1')
@@ -972,13 +1119,15 @@ screen hud2():
     style_prefix "hud"
 
     frame at hud_appear:
+        
         background Frame("gui/nvl.png", 40)
-        align (1.0, 0.15)
+        align (1.0, 0.05)
         left_padding 40
         right_padding 30
 
         has hbox:
             spacing 10
+        add "gui/mouse_icon.png" yalign 0.5
         text "Cases's tab updated!" size 30
     
     timer 5 action Hide('hud2')
@@ -989,12 +1138,13 @@ screen hud3():
 
     frame at hud_appear:
         background Frame("gui/nvl.png", 40)
-        align (1.0, 0.15)
+        align (1.0, 0.05)
         left_padding 40
         right_padding 30
 
         has hbox:
             spacing 10
+        add "gui/mouse_icon.png" yalign 0.5
         text "Tip's tab updated!" size 30
     
     timer 5 action Hide('hud3')
@@ -1004,7 +1154,7 @@ init -2:
     style hud_text is notify_text
 
 
-# menu page title
+## Menu Title screen ############################################################
 
 
 default seen_chapters = None
@@ -1036,7 +1186,6 @@ init -2:
     style chapter_name_label_text is cardbook_character_name_label_text
 
     style chapter_buttons_frame:
-        # background Frame("gui/nvl.png", 4, 4)
         background None
         xoffset 10
         yoffset -50
@@ -1070,26 +1219,6 @@ init -2:
         size 25
         spacing 24
         outlines []
-
-# screen menu_navigation(alignment):
-
-#     # style_prefix "menu_navigation"
-
-#     frame:
-#         align alignment
-#         background None
-
-#         if not main_menu:
-#             hbox:
-#                 spacing 10
-
-
-#                 textbutton _("close") action Return()
-#         else:
-#             textbutton _("back") action Return()
-
-
-#     key "game_menu" action Return()
 
 init -2:
 
@@ -1134,6 +1263,7 @@ screen load():
 screen file_picker():
     
     default tt = Tooltip((Null(), "", "", ""))
+    # from datetime import datetime
     
     frame:
         background "gui/game_frames/load_frame_with_slot_frame.png"
@@ -1154,17 +1284,13 @@ screen file_picker():
 
             
             for slot in range(gui.file_slot_cols * gui.file_slot_rows):
-            # for slot in range(1, 7):
-                # Each file slot is a button.
-                # $ file_name = FileSlotName(i, 30)
-                # $ file_time = FileTime(i)
-                # $ save_name = FileSaveName(i)
+
                 $ slot_foot = FileSlotName(slot + 1, 6)
+                # $ get_date = Filetime
                 if len(slot_foot) == 1:
                     $ slot_foot = '0' + slot_foot
-                # if len(slot_foot) < 3:
-                #     $ slot_foot = '0' + slot_foot
-                # $ slot_foot = "No " + slot_foot
+                
+                
 
 
                 vbox:
@@ -1177,30 +1303,22 @@ screen file_picker():
                         background None
                         hover_background "gui/game_frames/bg_slot.png"
                         action FileAction(slot)
-                        # hovered tt.Action((FileScreenshot(slot), slot_foot, file_time, save_name))
+
                         vbox:
                             xoffset 18
                             yoffset 12.5
-                            # style_prefix "text_hover"
+
                             add FileScreenshot(slot)  size(325, 190)
                             frame:
                                 background None
-                                text FileTime(slot, format=_("{#file_time}%b/%d/%Y"), empty=_("No Data")):
+                                text FileTime(slot, format= _("{#file_time}%d/" + "%m" + "/%Y"), empty=_("No Data")):
                                     xalign 0 size 25 yoffset 0 hover_color "#000000" font "fonts/Poppins-Light.ttf"
                                 text slot_foot xalign 0.89 size 25 hover_color "#000000" font "fonts/Poppins-Light.ttf"
                                 text FileSaveName(slot) xalign 0 yoffset 35 size 25  hover_color "#000000"    
-                            # add "gui/number_slot_small.png" xalign 0.01 yoffset -240 xoffset -0
                             
                             
                         xfill True
 
-                        
-                        # Add the screenshot.
-                        # if file_time:
-                        #     add FileScreenshot(slot) xalign .5 xysize(300, 180)
-                        #     # xsize 200 ysize 125
-                        # else:
-                        #     add Solid("#900", xysize=(325, 190)) # HERE THE IMAGE OF THE EMPTY SLOT
 
                         key "save_delete" action FileDelete(slot)
 
@@ -1309,13 +1427,13 @@ screen file_picker():
         xoffset 165
         background None
         hbox:
-            # spacing 50
+
 
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
-                insensitive None
+                insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
                 action ShowMenu('save')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
@@ -1333,7 +1451,7 @@ screen file_picker():
                 idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
-                insensitive None
+                insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
                 action MainMenu()
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
@@ -1342,9 +1460,9 @@ screen file_picker():
                 insensitive None
                 action Quit(True)
             imagebutton:
-                idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
-                hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
-                selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 insensitive None
                 action Return()
                 
@@ -1393,8 +1511,6 @@ style slot_button_text:
 style pref_bar:
     yalign 0.5
     xysize(313, 27)
-    # left_bar "gui/slot.png"
-    # right_bar "gui/slot.png"
 
 style text_speed:
     yalign 0.5
@@ -1532,13 +1648,12 @@ screen sound_settings():
         xoffset 165
         background None
         hbox:
-            # spacing 50
 
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
-                insensitive None
+                insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
                 action ShowMenu('save')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
@@ -1551,12 +1666,12 @@ screen sound_settings():
                 hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 insensitive None
-                action ShowMenu('preferences') 
+                action ShowMenu('sound_settings') 
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
-                insensitive None
+                insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
                 action MainMenu()
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
@@ -1565,13 +1680,14 @@ screen sound_settings():
                 insensitive None
                 action Quit(True)
             imagebutton:
-                idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
-                hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
-                selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 insensitive None
                 action Return()
 
 screen text_settings():
+
     tag menu
     key "mousedown_3" action Return()   
     use settings_menu(_("Configurations"), scroll="viewport")
@@ -1701,13 +1817,12 @@ screen text_settings():
         xoffset 165
         background None
         hbox:
-            # spacing 50
 
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
-                insensitive None
+                insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
                 action ShowMenu('save')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
@@ -1720,12 +1835,12 @@ screen text_settings():
                 hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 insensitive None
-                action ShowMenu('preferences') 
+                action ShowMenu('text_settings')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
-                insensitive None
+                insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
                 action MainMenu()
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
@@ -1734,9 +1849,9 @@ screen text_settings():
                 insensitive None
                 action Quit(True)
             imagebutton:
-                idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
-                hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
-                selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 insensitive None
                 action Return()
                 
@@ -1749,6 +1864,8 @@ screen preferences():
 
     add "flickering_light"
     add "title_art"
+
+    default current_tab = "system"
     hbox:
         style_prefix "mailbox_button"
         text "SETTINGS" size 80 color "#ffff" font "fonts/Poppins-Light.ttf" xoffset 1490.5 yoffset 125
@@ -1771,7 +1888,7 @@ screen preferences():
                 hover ("gui/gui_buttons/GUI system_settings/system_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/system_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/system_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/system_selected.png"
-                action ShowMenu("preferences")
+                action SetScreenVariable("current_tab", "system")
             imagebutton:
                 xoffset 211
                 yoffset 175
@@ -1833,7 +1950,7 @@ screen preferences():
                                 idle "gui/gui_buttons/GUI system_settings/text_windowed.png" xalign 0.5 yalign 0.5 yoffset 27.5
                                 hover ("gui/gui_buttons/GUI system_settings/selected_windowed_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_windowed_hovered.png")
                                 selected_idle "gui/gui_buttons/GUI system_settings/selected_windowed.png"
-                                selected_hover ("gui/gui_buttons/GUI system_settings/selected_windowed_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_windowed.png")
+                                selected_hover "gui/gui_buttons/GUI system_settings/selected_windowed.png"
                                 action Preference("display", "window")
 
                     hbox:
@@ -1845,7 +1962,7 @@ screen preferences():
                                 idle "gui/gui_buttons/GUI system_settings/text_fullscreen.png" xalign 0.5 yalign 0.5 yoffset 27.5
                                 hover ("gui/gui_buttons/GUI system_settings/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_fullscreen_hovered.png")
                                 selected_idle "gui/gui_buttons/GUI system_settings/selected_fullscreen.png"
-                                selected_hover ("gui/gui_buttons/GUI system_settings/selected_fullscreen_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_fullscreen.png")
+                                selected_hover "gui/gui_buttons/GUI system_settings/selected_fullscreen.png"
                                 action Preference("display", "fullscreen")
 
                 hbox: 
@@ -1864,7 +1981,7 @@ screen preferences():
                                 idle "gui/gui_buttons/GUI system_settings/text_skipall.png" xalign 0.5 yalign 0.5 yoffset 27.5
                                 hover ("gui/gui_buttons/GUI system_settings/selected_skipall_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_skipall_hovered.png")
                                 selected_idle "gui/gui_buttons/GUI system_settings/selected_skipall.png"
-                                selected_hover ("gui/gui_buttons/GUI system_settings/selected_skipall_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_skipall.png")
+                                selected_hover "gui/gui_buttons/GUI system_settings/selected_skipall.png"
                                 action Preference("skip", "all")
                     hbox:
                         xoffset 50
@@ -1875,15 +1992,18 @@ screen preferences():
                                 idle "gui/gui_buttons/GUI system_settings/text_skipseen.png" xalign 0.5 yalign 0.5 yoffset 27.5
                                 hover ("gui/gui_buttons/GUI system_settings/selected_skipseen_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_skipseen_hovered.png")
                                 selected_idle "gui/gui_buttons/GUI system_settings/selected_skipseen.png"
-                                selected_hover ("gui/gui_buttons/GUI system_settings/selected_skipseen_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/selected_skipseen.png")
+                                selected_hover "gui/gui_buttons/GUI system_settings/selected_skipseen.png"
                                 action Preference("skip", "seen")
 
     hbox:
         xalign 0.5
         yalign 0.5
-        xoffset 725
+        xoffset 685
         yoffset 250
-        textbutton "Reset Settings" action ResetToDefaults              
+        imagebutton:
+            idle "gui/gui_buttons/GUI system_settings/restart_idle.png"
+            hover "gui/gui_buttons/GUI system_settings/restart_hover.png"
+            action SetPreferencesDefault()              
 
     frame:
         xsize 850
@@ -1893,13 +2013,12 @@ screen preferences():
         xoffset 165
         background None
         hbox:
-            # spacing 50
 
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/save_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
-                insensitive None
+                insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
                 action ShowMenu('save')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
@@ -1917,7 +2036,7 @@ screen preferences():
                 idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
-                insensitive None
+                insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
                 action MainMenu()
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
@@ -1926,9 +2045,9 @@ screen preferences():
                 insensitive None
                 action Quit(True)
             imagebutton:
-                idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
-                hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
-                selected_idle "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 insensitive None
                 action Return()
                         
@@ -2011,67 +2130,66 @@ style slider_vbox:
 ##
 ## https://www.renpy.org/doc/html/history.html
 
+
 screen history():
 
     tag menu
     key "mousedown_3" action Return()
     predict False
+
     frame:
-        background Image("gui/nvl.png")
-    frame:
-        # background Image("gui/nvl.png")
-        background None
-        # background None
-        # style_prefix "history"
-
-        # left_margin 200
-        # right_margin 200
-        # top_margin 50
-        # bottom_margin 50
-
-        # left_padding 0
-        # right_padding 0
-        # top_padding 50
-        # bottom_padding 100
-
+        background Image("gui/right_click_bg.png")
+        add "gui/black_arrows.png" xalign 0.96575 yoffset 47.5 xoffset -46
         vpgrid:
-            yoffset 90
-            ysize 900
+            yoffset 75  
+            ysize 910
             cols 1
             yinitial 1.0
-
+            xsize 1850
+            xoffset -50
             draggable True
             mousewheel True
-            scrollbars "vertical"
+            scrollbars "vertical" 
 
+            
             for h in _history_list:
-
+                
                 window:
-                    ysize 300
+                    xoffset 185
+                          
+                    background None
+                    ysize 350
+                    
                     ## This lays things out properly if history_height is None.
                     has fixed:
                         yfit True
 
-                    if h.rollback_identifier is not Null:
-                        textbutton "JUMP":
-                            
-                            xalign 0.25
-                            yalign 0.1
-                            action RollbackToIdentifier(h.rollback_identifier)
+                        if h.rollback_identifier is not Null:
+                            imagebutton:
+                                idle "gui/gui_buttons/GUI main_buttons/jump_idle.png"
+                                hover "gui/gui_buttons/GUI main_buttons/jump_selected.png"
+                                action Confirm("Jump back on this dialogue?", RollbackToIdentifier(h.rollback_identifier))
+                                yoffset 125 xoffset 55
+
+                        
 
                     if h.who:
-                        
-                        label h.who:
-                            style "history_name"
-                            xoffset -25
-                            yoffset 50
-                            ## Take the color of the who text from the Character, if
-                            ## set.
-                            if "color" in h.who_args:
-                                text_color h.who_args["color"]
+                        frame:
+                            background None
+                            add "gui/separator.png" xoffset 215
+                            label h.who:
+                                style "history_name"
+                                xoffset 0
+                                yoffset 0
+                                ## Take the color of the who text from the Character, if set.
+                                if "color" in h.who_args:
+                                    text_color h.who_args["color"]
 
                     $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
-                    text what xoffset 125 yoffset 100 xsize 1580
+                    text what:
+                        xoffset 235
+                        yoffset 10
+                        xsize 1250
 
             if not _history_list:
 
@@ -2080,8 +2198,13 @@ screen history():
                 ## from getting cut off. Adjust when replacing the
                 ## default fonts.
 
-        textbutton _("Return") action Return() text_size 50 xalign 0.9 yalign 0.9 yoffset 100 xoffset 125
-        text "History" size 100 yoffset -30 xalign 0.5
+        imagebutton:
+                xalign 0.9 yalign 0.9 yoffset 75 xoffset 25
+                idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+                hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                insensitive None
+                action Return()
 
 ## This determines what tags are allowed to be displayed on the history screen.
 
@@ -2145,29 +2268,49 @@ screen confirm(message, yes_action, no_action):
 
     style_prefix "confirm"
     
-    add "gui/overlay/confirm.png"
-
+    add "gui/right_click_bg.png"
     frame:
-
+        background None
         vbox:
             xalign .5
             yalign .5
             spacing 30
 
-            label _(message):
+            text _(message):
                 style "confirm_prompt"
                 xalign 0.5
 
             hbox:
                 xalign 0.5
                 spacing 100
+                yoffset 25
 
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                imagebutton:
+                    idle "gui/confirm_idle.png"
+                    hover "gui/confirm_selected.png"
+                    action yes_action
+                imagebutton:
+                    idle "gui/confirm_idle1.png"
+                    hover "gui/confirm_selected1.png"
+                    action no_action
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
 
+screen reset_default_navigation(page, alignment):
+
+    style_prefix "menu_navigation"
+
+    frame:
+        align alignment
+        background None
+
+        has hbox:
+            spacing 10
+
+        textbutton _("reset page") action SetPreferencesDefault(page)
+
+        textbutton _("reset all") action SetPreferencesDefault()
 
 style confirm_frame is gui_frame
 style confirm_prompt is gui_prompt
@@ -2192,23 +2335,23 @@ style confirm_button_text:
     properties gui.button_text_properties("confirm_button")
 
 
-## Skip indicator screen #######################################################
+# Skip indicator screen #######################################################
 
 screen skip_indicator():
 
     zorder 100
     style_prefix "skip"
 
-    frame:
+    # frame:
 
-        hbox:
-            spacing 6
+    #     hbox:
+    #         spacing 6
 
-            text _("Skipping")
+    #         text _("Skipping")
 
-            text "▸" at delayed_blink(0.0, 1.0) style "skip_triangle"
-            text "▸" at delayed_blink(0.2, 1.0) style "skip_triangle"
-            text "▸" at delayed_blink(0.4, 1.0) style "skip_triangle"
+    #         text "▸" at delayed_blink(0.0, 1.0) style "skip_triangle"
+    #         text "▸" at delayed_blink(0.2, 1.0) style "skip_triangle"
+    #         text "▸" at delayed_blink(0.4, 1.0) style "skip_triangle"
 
 transform delayed_blink(delay, cycle):
     alpha .5

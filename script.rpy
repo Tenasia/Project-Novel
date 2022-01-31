@@ -1,5 +1,7 @@
 ﻿
 define config.rollback_enabled = False
+# from datetime import datetime as d
+define _dismiss_pause = True
 
 init:
     
@@ -21,10 +23,37 @@ init -3:
 
 return
 
+label _hide_windows_override:
+
+    if renpy.context()._menu:
+        return
+
+    if _windows_hidden:
+        return
+
+    python:
+        _windows_hidden = True
+
+        config.skipping = None
+        renpy.run(Preference("auto-forward", "disable"))
+        renpy.context_dynamic("_last_voice_play")
+        renpy.transition(Dissolve(0.2))
+
+        ui.saybehavior(dismiss=['dismiss', 'hide_windows', 'game_menu', 'rollback', 'rollforward', 'toggle_skip', 'skip'])
+        ui.interact(suppress_overlay=True, suppress_window=True)
+
+
+        renpy.transition(Dissolve(0.2))
+
+        _windows_hidden = False
+
+    return
 
 
 
 label start1:
+
+    $_dismiss_pause = False
 
     stop music fadeout 2.0
     scene black
@@ -40,6 +69,7 @@ label start1:
 label chapter1:
 
     stop music fadeout 2.0
+    $_dismiss_pause = False
     scene black 
     hide screen navigation
     hide screen chapters
@@ -55,6 +85,15 @@ init -2 python:
 
     if persistent.firstchapter_clear is None:
         persistent.firstchapter_clear = False
+
+    if persistent.secondchapter_clear is None:
+        persistent.secondchapter_clear = False
+    
+    if persistent.thirdchapter_clear is None:
+        persistent.thirdchapter_clear = False
+
+    if persistent.seen_words is None:
+        persistent.seen_words = {}
 init -2 python:
     
     import datetime
@@ -88,7 +127,7 @@ init -2 python:
             weekday != "???"):
             raise ValueError("No such a weekday: {0}.".format(weekday))
         
-        gameinfo_date = "{0}/{1} ({2})".format(str(month).zfill(2), str(day).zfill(2), weekday.upper())
+        gameinfo_date = "{0} {1} ({2})".format(str(month).zfill(2), str.upper(day).zfill(2), weekday.upper())
 
     def get_current_bgm_title():
             
@@ -196,7 +235,6 @@ init -2 python:
     
     def show_people():
 
-        hud1 = False
         if config.skipping:
             if renpy.get_screen("hud1"):
                 renpy.hide_screen("hud1")
@@ -217,7 +255,6 @@ init -2 python:
 
     def show_tips():
 
-        hud1 = False
         if config.skipping:
             if renpy.get_screen("hud3"):
                 renpy.hide_screen("hud3")
@@ -243,15 +280,181 @@ define gameinfo_date = ""
 define gameinfo_location = ""
 define gameinfo_seen_chapters = ""
 
-# init python:
-#     g = Gallery()
+init -2 python:
 
-#     g.button()
+    def get_seen_words():
+        global words_seen_dictionary
+        
+        words_dic = {}
+        words = words_seen_dictionary.split(",")[:-1]
+        
+        for word in words:
+            split_word = word.split("-")
+            
+            if split_word[0] not in words_dic:
+                words_dic[split_word[0]] = []
+            
+            words_dic[split_word[0]].append(split_word[1])
+        
+        return words_dic
+
+    def add_seen_words(words_name):
+        global words_seen_dictionary
+        
+        if words_name not in word_definition:
+            raise Exception("'" + words_name + "' is not a valid name.")
+        
+        if words_name not in words_seen_dictionary.split(","):
+            words_seen_dictionary += words_name + ","
+        
+        
+        words_name_split = words_name.split("-")
+        key = words_name_split[0]
+        value = words_name_split[1]
+        
+        if key not in persistent.seen_words:
+            persistent.seen_words[key] = []
+        
+        if value not in persistent.seen_words[key]:
+            persistent.seen_words[key].append(value)
+            
+    def sort_word_buttons(key):
+        
+        split_key = key.split("_")
+        
+        split_key_len = len(split_key) 
+        
+        if split_key_len > 2 or split_key_len == 0:
+            raise Exception("'" + key + "' is not a valid format for the chapter key.")
+        
+        elif split_key_len == 2:
+            return int(split_key[0]) * 10 + int(split_key[1])
+        
+        else:
+            return int(split_key[0]) * 10
+
+            
+define words_seen_dictionary = ""
+
+init -2 python:
+
+    @renpy.pure
+    class SetPreferencesDefault(Action):        
+        
+        def __init__(self, page=None, confirm=True):
+            self.page = page
+            self.confirm = confirm
+        
+        def __call__(self):
+            
+            func = None
+            msg = ""
+            
+            if self.page:
+                
+                if self.page == "system":
+                    func = SetPreferencesDefault.set_system
+                
+                elif self.page == "sound":
+                    func = SetPreferencesDefault.set_sound
+                
+                else:
+                    raise Exception("'" + self.page + "' is not a valid value.")
+                
+                msg = _("このページの環境設定を初期化しますか？")
+            
+            else:
+                func = SetPreferencesDefault.set_all
+                msg = _("Restart the settings to default?")
+            
+            
+            if self.confirm:
+                renpy.run(Confirm(msg, yes=func, no=None))
+            else:
+                func()
+        
+        @staticmethod
+        def set_system():
+            
+            if config.default_fullscreen:
+                renpy.run(Preference("display", "fullscreen"))
+            else:
+                renpy.run(Preference("display", "window"))
+            
+            persistent.window_opacity = config.window_opacity_default
+
+            renpy.run(Preference("text speed", config.default_text_cps))
+            
+            renpy.run(Preference("auto-forward time", config.default_afm_time))
+            
+            renpy.run(Preference("skip", "seen"))
+            
+            if config.has_voice:
+                renpy.run(Preference("wait for voice", "enable"))
+        
+        @staticmethod
+        def set_sound():
+            
+            renpy.run(Preference("music volume", config.default_music_volume))
+            
+            renpy.run(Preference("sound volume", config.default_sfx_volume))
+            
+            if config.has_voice:
+                renpy.run(Preference("voice mute", "disable"))
+                
+                renpy.run(Preference("voice volume", config.default_voice_volume))
+                
+                renpy.run(Preference("voice sustain", "disable"))
+        
+        @staticmethod
+        def set_all():
+            SetPreferencesDefault.set_system()
+            SetPreferencesDefault.set_sound()
+
+init -2 python:
+    @renpy.pure
+    class JumpDialogue(Action):        
+        
+        def __init__(self,func1, page=None, confirm=True):
+            self.page = page
+            self.confirm = confirm
+            self.func1 = func1
+        def __call__(self):
+            
+            func = None
+            msg = ""
+            
+            if self.page:
+                
+                if self.page == "system":
+                    func = JumpDialogue.set_system
+                
+                elif self.page == "sound":
+                    func = JumpDialogue.set_sound
+                
+                else:
+                    raise Exception("'" + self.page + "' is not a valid value.")
+                
+                msg = _("このページの環境設定を初期化しますか？")
+            
+            else:
+                func = renpy.run(RollbackToIdentifier(self))
+                msg = _("Restart the settings to you?")
+            
+            
+            if self.confirm:
+                renpy.run(Confirm(msg, yes=func, no=None))
+            else:
+                func()
 
 
 init -2 python:
+
     if persistent.seen_chapters is None:
         persistent.seen_chapters = {}
+    
+    if persistent.window_opacity is None:
+        persistent.window_opacity = config.window_opacity_default
 
 
 init python:
@@ -278,15 +481,15 @@ init python:
 
     KeymapTransform = renpy.curry(Keymapper)
 
-    def ResetToDefaults():
-        _preferences.text_cps = config.default_text_cps
-        _preferences.afm_time = config.default_afm_time
-        _preferences.afm_enable = config.default_afm_enable
-        _preferences.set_volume('sfx', 1.0)
-        _preferences.set_volume('music', 1.0)
-        # _preferences.window_opacity(persistent, 1.0)
-        # persistent('window_opacity', 1.0)
-        renpy.restart_interaction()
+    # def ResetToDefaults():
+    #     _preferences.text_cps = config.default_text_cps
+    #     _preferences.afm_time = config.default_afm_time
+    #     _preferences.afm_enable = config.default_afm_enable
+    #     _preferences.set_volume('sfx', 1.0)
+    #     _preferences.set_volume('music', 1.0)
+    #     # _preferences.window_opacity(persistent, 1.0)
+    #     # persistent('window_opacity', 1.0)
+    #     renpy.restart_interaction()
 
     class NoRollbackObj(NoRollback):
         def __init__(self):
@@ -299,10 +502,23 @@ init python:
 
 
 
+
+
 init -3 python:
 
+    DELAY_FASTEST = 0.1
+    DELAY_FAST = 0.2
+    DELAY_NORMAL = 0.5
+    DELAY_LONG = 1.0
+    DELAY_LONGEST = 2.0
 
+    renpy.const(DELAY_FASTEST)
+    renpy.const(DELAY_FAST)
+    renpy.const(DELAY_NORMAL)
+    renpy.const(DELAY_LONG)
+    renpy.const(DELAY_LONGEST)
 
+init -3 python:
 
     def linear(t):
         return t    
@@ -326,10 +542,21 @@ init -3 python:
         t -= 1
         return t * t * ((BACK_S + 1) * t + BACK_S) + 1
 
+    def ComposedTransition(transition1, transition2=None, inbetween_color="#000", inbetween_time=DELAY_NORMAL):
+        inbetween_image = Solid(color=inbetween_color)
+        return MultipleTransition([False,
+            transition1, inbetween_image,
+            Pause(inbetween_time),
+            inbetween_image, transition2 and transition2 or transition1,
+            True])
 
 
 init python:
-    
+    skipping = False
+    rain_ingame = True
+    preference_page = True
+    current_mode = "main"
+
     maxnumx = 2
     maxnumy = 2
     maxthumbx = config.screen_width / (maxnumx + 1)

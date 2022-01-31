@@ -4,13 +4,16 @@ screen tips_page():
 
     $ hours_played = convertSeconds( renpy.get_game_runtime() )[0]
     $ minutes_played = convertSeconds( renpy.get_game_runtime() )[1]
+    $ seconds_played = convertSeconds( renpy.get_game_runtime() )[2]
     $ bgm_title = get_current_bgm_title()
 
-    add "gui/nvl.png"
-
+    $ seen_words = get_seen_words()
+    add "gui/right_click_bg.png"
     frame:
+
+        #notebook cover
         background None
-        add "gui/black_image.png" xoffset 75 yoffset 140
+        add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
 
         hbox:
             #notebook stubs
@@ -30,9 +33,11 @@ screen tips_page():
                 hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
                 action ShowMenu("game_menu")
+
         frame:
+            #notebook paper
             background None
-            # align (0.10, 0.3)
+            # align (0.15, 0.5)
             xoffset 70
             yoffset 50
             add "gui/game_frames/notebook_paper.png" xoffset 60 yoffset 100.5
@@ -45,39 +50,153 @@ screen tips_page():
                     selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
                     action ShowMenu("tips_page")
 
-            hbox spacing 200:
-                viewport:
-                    xoffset 155
-                    yoffset 200
-                    xsize 445
-                    ysize 600
-                    child_size (None, 4000)
+    default current_word = None
+
+    
+
+    use menu_page_title(_("あらすじ"), (1.0, 0.03))
+
+    if current_word:
+        label word_titles[current_word] style "chapter_name_label" align (0.51, 0.21) text_color "#000"
+        # text "________________________" xalign 0.51 yalign 0.24 color "#000" font "fonts/Kalam-Regular.ttf"
+    
+    hbox:
+        spacing 50
+        xalign 0.225
+        yalign 0.60
+
+        frame:
+            style_prefix "chapter_buttons"
+            yoffset -10
+            ysize 600
+            has vpgrid:
+                cols 1
+                xfill True
+                spacing 0
+            
+            if seen_words:
+                # ysize 1000
+
+                if len(seen_words.keys()) >= 12:
+                    # ysize 1000
                     scrollbars "vertical"
-                    spacing 5
-                    draggable True
                     mousewheel True
-                    arrowkeys True
-                    # add "#000c"
-                    vbox spacing 20:
-                        #glossary_dict
-                        #use sorted(glossary_dict.keys())
-                        for word in sorted(persistent.unlocked_text):
-                            textbutton word:
-                                style "chapter_name_label"
-                                text_size 33
-                                # action SetVariable("display_desc", word)
-                                action Jump("flashback")
-                vbox ypos 150 xsize 500 ysize 500:
-                    xoffset 15
-                    text glossary_dict.get(display_desc, ""):
-                        size 33
-                        font "fonts/Kalam-Regular.ttf"
-                        color "#000"
-        default current_chapter = None
+                    draggable False
+
+
+                for k in sorted(seen_words.keys(), key=sort_word_buttons):
+                    button:
+                        text word_labels[k] font "fonts/Kalam-Regular.ttf"
+                        sensitive "#000"
+                        action [SetScreenVariable("current_word", k), SensitiveIf(current_word != k)] 
+                        
+                        
+
+        frame:
+            
+            style_prefix "chapter_contents"
+            yoffset 60
+            ysize 625
+            window:
+                has viewport:
+                    id "word_contents_window_vp"
+                    mousewheel True
+                    ysize 575
+                    yoffset -100
+
+                if current_word:
+
+                    $ height_separator = 20
+
+                    vbox:
+  
+                        null height height_separator
+
+                        for obj in seen_words[current_word]:
+                            text word_definition[current_word + "-" + obj] font "fonts/Kalam-Regular.ttf"
+                            null height height_separator
+
+            vbar:
+                value YScrollValue("word_contents_window_vp")
+                bar_invert True
+                unscrollable "hide"
+                xsize 25
+                ysize 575
+                yoffset -20
+                xalign 1.0
+
+    # add "gui/nvl.png"
+
+    # frame:
+    #     background None
+    #     add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
+
+    #     hbox:
+    #         #notebook stubs
+    #         xoffset 160        
+    #         imagebutton:
+    #             xoffset 200
+    #             yoffset 102.5
+    #             idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
+    #             hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+    #             selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+    #             action ShowMenu("gallery")
+
+    #         imagebutton:
+    #             xoffset -130
+    #             yoffset 102.5
+    #             idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
+    #             hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
+    #             selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
+    #             action ShowMenu("game_menu")
+    #     frame:
+    #         background None
+    #         # align (0.10, 0.3)
+    #         xoffset 70
+    #         yoffset 50
+    #         add "gui/game_frames/notebook_paper.png" xoffset 60 yoffset 100.5
+    #         hbox: 
+    #             imagebutton:
+    #                 xoffset 455
+    #                 yoffset 40
+    #                 idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
+    #                 hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
+    #                 selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
+    #                 action ShowMenu("tips_page")
+
+    #         hbox spacing 200:
+    #             viewport:
+    #                 xoffset 155
+    #                 yoffset 200
+    #                 xsize 445
+    #                 ysize 600
+    #                 child_size (None, 4000)
+    #                 scrollbars "vertical"
+    #                 spacing 5
+    #                 draggable True
+    #                 mousewheel True
+    #                 arrowkeys True
+    #                 # add "#000c"
+    #                 vbox spacing 20:
+    #                     #glossary_dict
+    #                     #use sorted(glossary_dict.keys())
+    #                     for word in sorted(persistent.unlocked_text):
+    #                         textbutton word:
+    #                             style "chapter_name_label"
+    #                             text_size 33
+    #                             action SetVariable("display_desc", word)
+    #                             # action Jump("flashback")
+    #             vbox ypos 150 xsize 500 ysize 500:
+    #                 xoffset 15
+    #                 text glossary_dict.get(display_desc, ""):
+    #                     size 33
+    #                     font "fonts/Kalam-Regular.ttf"
+    #                     color "#000"
+    #     default current_chapter = None
 
     vbox style_suffix "chaptername_vbox":
-        xoffset -10 
-        yoffset -50
+        xalign 0.875
+        yalign 0.175
         text save_name style_suffix "chaptername_text"
 
         hbox:
@@ -90,39 +209,49 @@ screen tips_page():
 
     on "show" action [Preference("auto-forward", "disable"), SetField(config, "skipping", None)]
 
-    use info_panel(_("BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.90, 0.35))
+    use info_panel(_(" BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.925, 0.325))
 
-    use info_panel(_("Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.90, 0.525))
+    use info_panel(_(" Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.925, 0.550))
 
-    use info_panel(_("Pointers"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.90, 0.730))
+    use info_panel(_(" Info"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.925, 0.775))
     
     frame:
         # ysize 48
-        xoffset 1277.5
-        yoffset 790
-        text "Playtime" size 30 xoffset 91 yoffset -9
-        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
-        add "gui/clock.png" xsize 50 ysize 50 xoffset 32.5 yoffset -25
+        xoffset 135
+        yoffset 895
+        text "Playtime:" size 35 xoffset 51 yoffset 0 color "#000" font "fonts/Kalam-Regular.ttf"
+        background None
+        # background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
+        # add "gui/clock.png" xsize 50 ysize 50 xoffset 32.5 yoffset -25 
         hbox:
-            yoffset 60
-            xoffset 47.5
-            text "[hours_played] Hours, [minutes_played] Minutes." color "#fff" font "fonts/Poppins-Light.ttf" size 25
-
+            yoffset 0
+            xoffset 200
+            text "[hours_played]:[minutes_played]:[seconds_played]" color "#000" font "fonts/Kalam-Regular.ttf" size 35
+    imagebutton:
+        xalign 0.95
+        yalign 0.925
+        idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+        hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+        selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+        insensitive None
+        action Return()
 # screen cardbook
 
 screen gallery():
+    
     key "mousedown_3" action Return()
 
     style_prefix "game_menu" tag menu
 
     $ hours_played = convertSeconds( renpy.get_game_runtime() )[0]
     $ minutes_played = convertSeconds( renpy.get_game_runtime() )[1]
+    $ seconds_played = convertSeconds( renpy.get_game_runtime() )[2]
     $ bgm_title = get_current_bgm_title()
     
-    add "gui/nvl.png"
+    add "gui/right_click_bg.png"
     frame:
         background None
-        add "gui/black_image.png" xoffset 75 yoffset 140
+        add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
         hbox:
 
             imagebutton:
@@ -227,8 +356,8 @@ screen gallery():
         default current_chapter = None
 
     vbox style_suffix "chaptername_vbox":
-        xoffset -10 
-        yoffset -50
+        xalign 0.875
+        yalign 0.175
         text save_name style_suffix "chaptername_text"
 
         hbox:
@@ -241,24 +370,32 @@ screen gallery():
 
     on "show" action [Preference("auto-forward", "disable"), SetField(config, "skipping", None)]
 
-    use info_panel(_("BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.90, 0.35))
+    use info_panel(_(" BGM"), get_current_bgm_title(), "gui/game_menu_icons/audio-playlist_w.png", (0.925, 0.325))
 
-    use info_panel(_("Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.90, 0.525))
+    use info_panel(_(" Location"), get_location_name(), "gui/game_menu_icons/map_w.png", (0.925, 0.550))
 
-    use info_panel(_("Pointers"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.90, 0.730))
+    use info_panel(_(" Info"), get_location_tip(), "gui/game_menu_icons/comment-bubble_w.png", (0.925, 0.775))
 
     frame:
         # ysize 48
-        xoffset 1277.5
-        yoffset 790
-        text "Playtime" size 30 xoffset 91 yoffset -9
-        background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
-        add "gui/clock.png" xsize 50 ysize 50 xoffset 32.5 yoffset -25
+        xoffset 135
+        yoffset 895
+        text "Playtime:" size 35 xoffset 51 yoffset 0 color "#000" font "fonts/Kalam-Regular.ttf"
+        background None
+        # background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
+        # add "gui/clock.png" xsize 50 ysize 50 xoffset 32.5 yoffset -25 
         hbox:
-            yoffset 60
-            xoffset 47.5
-            text "[hours_played] Hours, [minutes_played] Minutes." color "#fff" font "fonts/Poppins-Light.ttf" size 25
-
+            yoffset 0
+            xoffset 200
+            text "[hours_played]:[minutes_played]:[seconds_played]" color "#000" font "fonts/Kalam-Regular.ttf" size 35
+    imagebutton:
+        xalign 0.95
+        yalign 0.925
+        idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
+        hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+        selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+        insensitive None
+        action Return()
 init -2:
 
     style game_menu_chaptername_vbox:
