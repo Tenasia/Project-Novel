@@ -8,7 +8,7 @@ screen tips_page():
     $ bgm_title = get_current_bgm_title()
 
     $ seen_words = get_seen_words()
-    add "gui/right_click_bg.png"
+    add "gui/game_frames/right_click_bg.png"
     frame:
 
         #notebook cover
@@ -221,8 +221,6 @@ screen tips_page():
         yoffset 895
         text "Playtime:" size 35 xoffset 51 yoffset 0 color "#000" font "fonts/Kalam-Regular.ttf"
         background None
-        # background Frame("gui/var_bar.png", 38, 0, 12, 0, ysize = 48, yoffset=0, xsize= 525)
-        # add "gui/clock.png" xsize 50 ysize 50 xoffset 32.5 yoffset -25 
         hbox:
             yoffset 0
             xoffset 200
@@ -248,7 +246,7 @@ screen gallery():
     $ seconds_played = convertSeconds( renpy.get_game_runtime() )[2]
     $ bgm_title = get_current_bgm_title()
     
-    add "gui/right_click_bg.png"
+    add "gui/game_frames/right_click_bg.png"
     frame:
         background None
         add "gui/game_frames/black_image.png" xoffset 75 yoffset 140

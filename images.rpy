@@ -5,12 +5,12 @@
 
 image ctc:
     "gui/ctc_icon/ctc1.png"
-    xalign 0.825
-    yalign 0.925
+    xalign 0.855
+    yalign 0.955
     xoffset 50
     yoffset 0
-    xsize 50
-    ysize 65
+    xsize 40
+    ysize 55
     alpha 1
 
     block:
@@ -432,7 +432,7 @@ image ctc:
     
 
 image title_particle1 = SnowBlossom(
-    At("gui/title_particle.png", zoom(0.4)),
+    At("gui/particle_img/title_particle.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(5),
@@ -442,7 +442,7 @@ image title_particle1 = SnowBlossom(
     horizontal=False)
 
 image title_particle2 = SnowBlossom(
-    At("gui/title_particle3.png", zoom(0.4)),
+    At("gui/particle_img/title_particle3.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(10),
@@ -452,7 +452,7 @@ image title_particle2 = SnowBlossom(
     horizontal=False)
 
 image title_particle3 = SnowBlossom(
-    At("gui/title_particle2.png", zoom(0.4)),
+    At("gui/particle_img/title_particle2.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(15),
@@ -463,7 +463,7 @@ image title_particle3 = SnowBlossom(
 
 
 image title_particle4 = SnowBlossom(
-    At("gui/title_particle2.png", zoom(0.4)),
+    At("gui/particle_img/title_particle2.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(20),
@@ -473,7 +473,7 @@ image title_particle4 = SnowBlossom(
     horizontal=False)
 
 image title_particle5 = SnowBlossom(
-    At("gui/title_particle.png", zoom(0.4)),
+    At("gui/particle_img/title_particle.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(25),
@@ -483,7 +483,7 @@ image title_particle5 = SnowBlossom(
     horizontal=False)
 
 image title_particle6 = SnowBlossom(
-    At("gui/title_particle3.png", zoom(0.4)),
+    At("gui/particle_img/title_particle3.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(30),
@@ -493,7 +493,7 @@ image title_particle6 = SnowBlossom(
     horizontal=False)
 
 image title_particle7 = SnowBlossom(
-    At("gui/title_particle2.png", zoom(0.4)),
+    At("gui/particle_img/title_particle2.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(35),
@@ -504,7 +504,7 @@ image title_particle7 = SnowBlossom(
 
 
 image title_particle8 = SnowBlossom(
-    At("gui/title_particle2.png", zoom(0.4)),
+    At("gui/particle_img/title_particle2.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(40),
@@ -514,7 +514,7 @@ image title_particle8 = SnowBlossom(
     horizontal=False)
 
 image rain1 = SnowBlossom(
-    At("gui/title_particle.png", zoom(0.4)),
+    At("gui/particle_img/title_particle.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(5),
@@ -524,7 +524,7 @@ image rain1 = SnowBlossom(
     horizontal=False)
 
 image rain2 = SnowBlossom(
-    At("gui/title_particle3.png", zoom(0.4)),
+    At("gui/particle_img/title_particle3.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(10),
@@ -534,7 +534,7 @@ image rain2 = SnowBlossom(
     horizontal=False)
 
 image rain3 = SnowBlossom(
-    At("gui/title_particle2.png", zoom(0.4)),
+    At("gui/particle_img/title_particle2.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(15),
@@ -545,7 +545,7 @@ image rain3 = SnowBlossom(
 
 
 image rain4 = SnowBlossom(
-    At("gui/title_particle2.png", zoom(0.4)),
+    At("gui/particle_img/title_particle2.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(20),
@@ -555,7 +555,7 @@ image rain4 = SnowBlossom(
     horizontal=False)
 
 image rain5 = SnowBlossom(
-    At("gui/title_particle.png", zoom(0.4)),
+    At("gui/particle_img/title_particle.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(25),
@@ -565,7 +565,7 @@ image rain5 = SnowBlossom(
     horizontal=False)
 
 image rain6 = SnowBlossom(
-    At("gui/title_particle3.png", zoom(0.4)),
+    At("gui/particle_img/title_particle3.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(30),
@@ -575,7 +575,7 @@ image rain6 = SnowBlossom(
     horizontal=False)
 
 image rain7 = SnowBlossom(
-    At("gui/title_particle2.png", zoom(0.4)),
+    At("gui/particle_img/title_particle2.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(35),
@@ -586,7 +586,7 @@ image rain7 = SnowBlossom(
 
 
 image rain8 = SnowBlossom(
-    At("gui/title_particle2.png", zoom(0.4)),
+    At("gui/particle_img/title_particle2.png", zoom(0.4)),
     count=500,
     border=50,
     xspeed=(40),
@@ -633,25 +633,29 @@ label splashscreen:
 init:
 
     image flickering_light:
-        "images/background_GUI/Lit.png"
+        "gui/bg_title/Lit.png"
         pause 1.5
-        "images/background_GUI/Not_lit.png"
+        "gui/bg_title/Not_lit.png"
         pause 0.1
-        "images/background_GUI/Lit.png"
+        "gui/bg_title/Lit.png"
         pause 1.5
-        "images/background_GUI/Not_lit.png"
+        "gui/bg_title/Not_lit.png"
         pause 0.1
-        "images/background_GUI/Lit.png"
+        "gui/bg_title/Lit.png"
         pause 0.2
-        "images/background_GUI/Not_lit.png"
+        "gui/bg_title/Not_lit.png"
         pause 0.1
-        "images/background_GUI/Dim.png"
+        "gui/bg_title/Dim.png"
         pause 0.2
-        "images/background_GUI/Lit.png"
+        "gui/bg_title/Lit.png"
         pause 1.5
         
         repeat
 
+# init:
+#     image fuujia =  ConditionSwitch(
+#         "_last_say_who == 'Fuuji'", "images/Oswald/os_angry.png",
+#         "not _last_say_who == 'Fuuji'", "images/Oswald/os_angry_dark.png",)
 
 #Oswald Sprites
 image fuuji angry :
@@ -878,28 +882,28 @@ image kikuchiyo upset :
 image kikuchiyo upset_dark :
     "images/Kikuchiyo/kk_upset_dark.png" with renpy.transition(Dissolve(0.25), layer="master")
 
-image img1 = "images/bg apartment.png"
-image img2 = "images/bg cram_hallway.jpg"
-image img3 = "gui/unknown.png"
-image img4 = "gui/unknown.png"
-image img5 = "gui/unknown.png"
+image img1 = "images/bg_temp/bg apartment.png"
+image img2 = "images/bg_temp/bg cram_hallway.jpg"
+image img3 = "gui/cases/unknown.png"
+image img4 = "gui/cases/unknown.png"
+image img5 = "gui/cases/unknown.png"
 
 
 image black= "#000"
 
 
-image lockedthumb = "gui/photocard.png"
+image lockedthumb = "gui/game_frames/photocard.png"
 
 
 image thumb1 :
     xysize (350, 250)
-    "images/bg cram_school.png"
+    "images/bg_temp/bg cram_school.png"
 image thumb2 :
     xysize (350, 250) 
-    "images/bg flashback.png"
+    "images/bg_temp/bg flashback.png"
 image thumb3 : 
-    "images/bg cram_school.png"
+    "images/bg_temp/bg cram_school.png"
     xysize (350, 250)
 image thumb4 : 
-    "images/bg flashback.png"
+    "images/bg_temp/bg flashback.png"
     xysize (350, 250)

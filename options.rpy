@@ -90,6 +90,10 @@ init -1 python hide:
     config.window_hide_transition = config.window_show_transition
 
     config.label_overrides = {"_hide_windows" : "_hide_windows_override"}
+
+    config.after_load_transition = ComposedTransition(Dissolve(2.0))
+
+    config.default_fullscreen = True
 ## Between screens of the game menu.
 
 # define config.intra_transition = None
@@ -182,4 +186,4 @@ init -2 python:
     renpy.music.register_channel("music", mixer="music", loop = True, file_prefix="audio/bgm/", file_suffix=".mp3")
     
 init -1500 python:
-    config.window_opacity_default = 1.0
+    config.window_opacity_default = 0.85

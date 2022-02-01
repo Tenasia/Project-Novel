@@ -578,7 +578,7 @@ define gui.name_text_font = "fonts/Poppins-Light.ttf"
 define gui.interface_text_font = "fonts/Poppins-Light.ttf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 33
+define gui.text_size = 35
 
 ## The size of character names.
 define gui.name_text_size = 40
@@ -599,8 +599,8 @@ define gui.title_text_size = 75
 ## Main and Game Menus #########################################################
 
 ## The images used for the main and game menus.
-define gui.main_menu_background = "gui/main_menu.png"
-define gui.game_menu_background = "gui/game_menu.png"
+# define gui.main_menu_background = "gui/main_menu.png"
+# define gui.game_menu_background = "gui/game_menu.png"
 
 
 
@@ -643,11 +643,11 @@ define gui.namebox_tile = False
 ## The placement of dialogue relative to the textbox. These can be a whole
 ## number of pixels relative to the left or top side of the textbox, or 0.5 to
 ## center.
-define gui.dialogue_xpos = 240  
+define gui.dialogue_xpos = 440  
 define gui.dialogue_ypos = -25
 
 ## The maximum width of dialogue text, in pixels.
-define gui.dialogue_width = 1440
+define gui.dialogue_width = 1340
 
 ## The horizontal alignment of the dialogue text. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
@@ -822,7 +822,7 @@ define gui.frame_tile = False
 ## The height of horizontal bars, scrollbars, and sliders. The width of vertical
 ## bars, scrollbars, and sliders.
 define gui.bar_size = 38
-define gui.scrollbar_size = 18
+define gui.scrollbar_size = 24
 define gui.slider_size = 38
 
 ## True if bar images should be tiled. False if they should be linearly scaled.
@@ -1015,7 +1015,7 @@ init python:
     # style.say_vbox.spacing = 35
     # style.say_vbox.xfill = True
 
-    style.say_who_window.background = Transform(Frame("gui/name_box.png", 36, 0, yoffset = -87.5,xoffset= 0, ysize = 82, xsize = 400))
+    # style.say_who_window.background = 
     style.say_who_window.margin = (0, 0)
     style.say_who_window.xalign = 0.5
     style.say_who_window.xminimum = 280

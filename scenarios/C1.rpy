@@ -202,7 +202,7 @@ label school:
     python:
         set_info_scene("02")
         set_info_location("03")
-        set_info_date(5, 2, "wed")
+        set_info_date(2, "may", "wed")
         set_info_time("day")
 
     play music audio.day
