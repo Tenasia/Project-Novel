@@ -471,8 +471,8 @@ screen navigation():
         xalign 0.8
         yalign 0.50
         box_layout u'vertical'
-        text "{size=195}F{/size}OR {size=195}T{/size}HEE" size 150 xalign 0.785 yalign 0.25 font "fonts/Cinzel-Extrabold.ttf"
-        text "{size=50}T{/size}HE {size=50}U{/size}NBROKEN" size 35 xalign 0.5 yoffset -50 font "fonts/Cinzel-Extrabold.ttf"
+        text "{size=195}R{/size}ainfall" size 150 xalign 0.785 yalign 0.25 font "fonts/Cinzel-Extrabold.ttf"
+        # text "{size=50}T{/size}HE {size=50}U{/size}NBROKEN" size 35 xalign 0.5 yoffset -50 font "fonts/Cinzel-Extrabold.ttf"
         
         
         if main_menu:
@@ -480,7 +480,8 @@ screen navigation():
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/start_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/start_selected.png"
-                selected_idle "gui/gui_buttons/GUI main_buttons/start_selected.png"
+                selected_idle "gui/gui_buttons/GUI main_buttons/start_selected1.png"
+                selected_hover "gui/gui_buttons/GUI main_buttons/start_selected1.png"
                 action [SetVariable("current_mode", "chapters"), Show("chapters", dissolve)]
                 xalign 0.5
 
@@ -579,19 +580,19 @@ screen chapters():
     hbox at chapter_line_disappear(delay=0.1):
         # add "underline" xoffset 1200 yoffset 570 xsize 425
         # add "gui/cover_buttons.png" xoffset 1195 yoffset 640 
-        add "gui/game_frames/arc_lines.png" xoffset 1225 yoffset 570 xsize 195
+        add "gui/game_frames/arc_lines.png" xoffset 1250 yoffset 538 xsize 195
 
        
     frame at chapters_appear:
         
         background None
-        yalign 0.765
-        xoffset 1250
+        yalign 0.725
+        xoffset 1275
 
         
         vbox:
             spacing 10
-            yalign 0.855
+            yalign 0.854
             xalign 0.05
             xoffset -47.5 - 225
             
@@ -634,7 +635,7 @@ screen chapters():
 screen main_menu():
 
     tag menu
-
+    
 
     add "flickering_light"
     add "title_art"
@@ -956,9 +957,10 @@ screen game_menu():
             
     vbox style_suffix "chaptername_vbox":
         
-        xalign 0.875
+        xalign 0.5
+        xoffset 610
         yalign 0.175
-        text save_name style_suffix "chaptername_text"
+        text save_name style_suffix "chaptername_text" xalign 0.5
         
         hbox:
             spacing 15
@@ -1088,7 +1090,7 @@ screen hud():
     style_prefix "hud"
 
     frame at hud_appear_date:
-        background Frame("gui/game_frames/nvl.png", 40)
+        background Frame("gui/game_frames/hud_bg.png", 40)
         align (0.0, 0.05)
         left_padding 40
         right_padding 30
@@ -1106,7 +1108,7 @@ screen hud1():
     style_prefix "hud"
 
     frame at hud_appear:
-        background Frame("gui/game_frames/nvl.png", 40)
+        background Frame("gui/game_frames/hud_bg.png", 40)
         align (1.0, 0.05)
         left_padding 40
         right_padding 30
@@ -1124,7 +1126,7 @@ screen hud2():
 
     frame at hud_appear:
         
-        background Frame("gui/game_frames/nvl.png", 40)
+        background Frame("gui/game_frames/hud_bg.png", 40)
         align (1.0, 0.05)
         left_padding 40
         right_padding 30
@@ -1141,7 +1143,7 @@ screen hud3():
     style_prefix "hud"
 
     frame at hud_appear:
-        background Frame("gui/game_frames/nvl.png", 40)
+        background Frame("gui/game_frames/hud_bg.png", 40)
         align (1.0, 0.05)
         left_padding 40
         right_padding 30
@@ -1254,6 +1256,7 @@ screen save():
     use file_picker
 
 screen load():
+    # on "replaced" action Stop("music", fadeout=2.0)
     add "flickering_light" 
     add "title_art"
     key "mousedown_3" action Return() 
@@ -1792,11 +1795,11 @@ screen text_settings():
                     hbox:
                         xsize 841
                         ysize 217
-                        text "_______________________________________" color "#ffffff" yoffset 25 xoffset -100
+                        text "_____________________________________" color "#ffffff" yoffset 25 xoffset -100
                     hbox:
                         xsize 841
                         ysize 217
-                        text "_______________________________________" color "#ffffff" yoffset 75 xoffset -100
+                        text "_____________________________________" color "#ffffff" yoffset 75 xoffset -100
 
                     xsize 500
                     xoffset 87.5
@@ -1806,7 +1809,7 @@ screen text_settings():
                 default mouse_clicked = False
                 fixed at KeymapTransform([('mousedown_1', SetScreenVariable('mouse_clicked', True)), ('mouseup_1', SetScreenVariable('mouse_clicked', False))]):
                     imagebutton:
-                        yoffset 343 
+                        yoffset 340
                         xoffset -1313
                         idle "gui/gui_buttons/GUI system_settings/preview_textspeed_idle.png"
                         hover ("gui/gui_buttons/GUI system_settings/preview_textspeed_selected.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/preview_textspeed_clicked.png")

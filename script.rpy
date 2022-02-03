@@ -20,6 +20,9 @@ init -3:
     define audio.thin_purple = "<loop 000.167 to 097.818>bgm_08"
     define audio.Title = "<loop 000.0167 to 150.019>bgm_09"
     define audio.true_home = "<loop 000.0167 to 150.019>bgm_10"
+    define audio.rainfall = "<loop 000.0167 to 150.019>bgm_11"
+    define audio.presence = "<loop 000.0167 to 150.019>bgm_12"
+    define audio.strolling = "<loop 000.0167 to 150.019>bgm_13"
 
 return
 

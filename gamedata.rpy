@@ -11,18 +11,27 @@ define bgm_titles = {
     "bgm_08" : _("Thin Purple"),
     "bgm_09" : _("Title"),
     "bgm_10" : _("True Home"),
+    "bgm_11" : _("Rainfall"),
+    "bgm_12" : _("Presence"),
+    "bgm_13" : _("Strolling")
 }
 
 define scenes = {
     "00" : _("Prologue"),
     "01" : _("Home"),
-    "02" : _("School Day")
+    "02" : _("School Day"),
+    "03" : _("Fight"),
+    "04" : _("Cramming Day"),
+
 }
 
 define locations = {
     "01" : {"name" : _("？？？"), "tip" : ""},
     "02" : {"name" : _("Somewhere in Tokyo"), "tip" : "This is home to the Fuuji's, which was built upon many years ago. There were rumors that they were a family of heritage, with German descendants."},
-    "03" : {"name" : _("Tokyo University"), "tip" : "The school was said to be only accepting Elites, but you'll see for yourself if that's true."}    
+    "03" : {"name" : _("Tokyo University"), "tip" : "The school was said to be only accepting Elites, but you'll see for yourself if that's true."},
+    "04" : {"name" : _("School Backyard"), "tip" : "This area is reserved for the school's excess things to put on, including trashes."},
+    "04" : {"name" : _("Shintaku School"), "tip" : "Rumored that this cram school is racking up to $100,000 per month just from the students this year."},
+
 }
 
 

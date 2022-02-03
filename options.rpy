@@ -62,7 +62,10 @@ define config.has_voice = True
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-# define config.main_menu_music = "main-menu-theme.ogg"
+# define config.main_menu_music = audio.rainfall
+
+# define config.fade_music = 1.0
+define config.main_menu_music = audio.rainfall
 
 
 ## Transitions #################################################################
@@ -73,15 +76,18 @@ define config.has_voice = True
 
 ## Entering or exiting the game menu.
 init -2 python:
+
+    ### Transition ###########
     config.enter_transition = Dissolve(.3)
     config.exit_transition = Dissolve(.3)
     config.intra_transition = Dissolve(.2)
 
-    config.default_music_volume = 0.50
 
+    ### Sounds ##########
+    config.default_music_volume = 0.50
     config.default_sfx_volume = 0.50
-# define config.enter_transition = dissolve
-# define config.exit_transition = dissolve
+    config.fade_music = 1.0
+
 
 init -1 python hide:
     config.window_show_transition = Dissolve(.2)
@@ -94,6 +100,10 @@ init -1 python hide:
     config.after_load_transition = ComposedTransition(Dissolve(2.0))
 
     config.default_fullscreen = True
+
+    config.game_main_transition = ComposedTransition(Dissolve(2.0))
+
+    config.default_afm_time = 5
 ## Between screens of the game menu.
 
 # define config.intra_transition = None
@@ -156,7 +166,7 @@ default preferences.text_cps = 50
 ## The default auto-forward delay. Larger numbers lead to longer waits, with 0
 ## to 30 being the valid range.
 
-default preferences.afm_time = 15
+# default preferences.afm_time = 10
 
 
 # define config.save_directory = "BellumPerpetuumv3-1640259307"

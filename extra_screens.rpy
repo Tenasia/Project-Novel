@@ -195,9 +195,10 @@ screen tips_page():
     #     default current_chapter = None
 
     vbox style_suffix "chaptername_vbox":
-        xalign 0.875
+        xalign 0.5
+        xoffset 610
         yalign 0.175
-        text save_name style_suffix "chaptername_text"
+        text save_name style_suffix "chaptername_text" xalign 0.5
 
         hbox:
             spacing 15
@@ -354,9 +355,10 @@ screen gallery():
         default current_chapter = None
 
     vbox style_suffix "chaptername_vbox":
-        xalign 0.875
+        xalign 0.5
+        xoffset 610
         yalign 0.175
-        text save_name style_suffix "chaptername_text"
+        text save_name style_suffix "chaptername_text" xalign 0.5
 
         hbox:
             spacing 15

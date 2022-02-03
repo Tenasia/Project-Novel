@@ -27,6 +27,7 @@ label start:
     # with Dissolve(5)
     # pause 1
     # call discord_status ("Chapter 1", "2")
+
     play music audio.prologue
 
     scene bg war
@@ -73,8 +74,9 @@ label prologue:
     show img2 
     hide img1 
     hide img2
-    
-    play music audio.thin_purple
+    $ renpy.music.play(audio.thin_purple, channel="music", fadeout=1.0, fadein = 2.0)
+
+    # play music audio.thin_purple fadeout 2.0 fadein 1.0
     
     $ add_seen_words("1-1")
     $ add_seen_words("1-2")
@@ -241,14 +243,15 @@ label school:
     hide fuuji 
     stop music fadeout 1.0
     Thought "It’s been like this since; people treat me as if I wanted this.  I just have to keep up the act."
-    play music "audio/tense.mp3" fadein 3.0 
+    play music audio.tense fadein 1.0
     scene bg school_corner
     show fuuji disgust with vpunch
     python:
         set_info_scene("02")
-        set_info_location("03")
-        set_info_date(5, 2, "wed")
-        set_info_time("day")
+        set_info_location("04")
+        set_info_date(2, "may", "wed")
+        set_info_time("evening")
+
     play sound "audio/sfx/punch1.mp3"
     Fuuji "...!"
     show fuuji disgust_dark
@@ -257,7 +260,6 @@ label school:
     show fuuji sigh_dark 
     Thought "He held my head as if I was a doll."
     show fuuji worry with hpunch
-    play music audio.day
     Fuuji "Ghh-"
     show fuuji worry_dark
     Student "Look, I’m gonna ask you one more time."
@@ -306,7 +308,7 @@ label school:
     Thought "My face was seemingly swelling. I was more concerned that if my sister sees me like this, she’ll just be disappointed instead of trying to tend me."
     Thought "Since she was still a junior high, she gets to leave the school much early than me, she only has to take a train 5 minutes away from the school to get back home."
     Thought "..."
-    play music "audio/home.mp3" fadein 3.0 
+    play music audio.home fadein 1.0
     show fuuji sigh 
     Fuuji "Sigh, now where was the faucet again in this side of the building."
     show fuuji sigh_dark
@@ -336,13 +338,18 @@ label flashback:
     Thought2 "Mom had to take care both of us for our daily needs, reason why I have so much respect to her."
     Thought2 "I do not hate my dad, but I’m just disappointed that after all these years there has been no communication between us."
     stop music fadeout 1.0
-
+    nvl clear
 label application:
     
+    python:
+        set_info_scene("04")
+        set_info_location("04")
+        set_info_date(5, "may", "wed")
+        set_info_time("day")
+
     scene bg cram_hallway
     with fade 
-    Thought "..."
-    play music "audio/day.mp3" fadein 3.0 volume 0.75 
+    play music audio.day fadein 1.0
     show fuuji neutral2
     Fuuji "Hmmm… This cram school is neat."
     show fuuji neutral2_dark
@@ -354,7 +361,7 @@ label application:
     Thought "As I was waiting in line to manage the fees –"
     hide fuuji 
     show kikuchiyo neutral with fade
-    play music "audio/presence.mp3"
+    play music audio.presence fadein 1.0
     Princess "..."
     show kikuchiyo neutral_dark 
     Thought "I met her, a girl in Kimono entered the premise with a 2 man in a traditional garb side by side as if ready to answer to any whims of the maiden."
@@ -381,7 +388,7 @@ label application:
     Thought "As you already guess my mother and I heed to Akane seemingly. We love her that much, but she’s still annoying."
     stop music fadeout 1.0
     Thought "After a few minutes the said people came back to where they came from, and the line was restored, seemingly back to normal. Even the people who bowed are now standing upright and some of them sighed as they do."
-    play music "audio/day.mp3" fadein 3.0 volume 0.75
+    play music audio.day fadein 1.0
     Applicant "Sheesh, that was scary. Is the {i}hime{/i} {size=-10}(Princess){/size} applying on this cram school as well?"
     Applicant "She could have gotten a personal tutor instead. Man, it would be scary to be in the same room with her." 
     Thought "The man begrudgingly says to what looks like his friend."
@@ -407,7 +414,7 @@ label meeting:
     scene bg apartment 
     with fade
     Thought "..."
-    play music "audio/strolling.mp3" fadein 3.0 volume 1
+    play music audio.strolling fadein 1.0
     Thought "Fortunately, the cram school is only available during weekends, and so I woke up today a bit earlier than usual so I can prepare myself."
     show fuuji smile
     Fuuji "Hmm, if Akane comes here right now, my room being this empty, she'll nag me."
@@ -428,7 +435,7 @@ label meeting:
     scene bg road_cram 
     with fade 
     Thought "..."
-    play music "audio/day.mp3" fadein 3.0 volume 0.75
+    play music audio.day fadein 1.0
     Thought "On my way to the cram school, I saw Akane with her friends, eating a crepe by the side."
     show akane happy_dark
     Thought "Akane is quite popular as she can communicate with everyone with ease, and other people that are talking to her also seems to like her."

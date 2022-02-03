@@ -882,8 +882,12 @@ image kikuchiyo upset :
 image kikuchiyo upset_dark :
     "images/Kikuchiyo/kk_upset_dark.png" with renpy.transition(Dissolve(0.25), layer="master")
 
-image img1 = "images/bg_temp/bg apartment.png"
-image img2 = "images/bg_temp/bg cram_hallway.jpg"
+
+### Cases Page ##############################
+
+
+image img1 = "images/bg temp/bg apartment.png"
+image img2 = "images/bg temp/bg cram_hallway.jpg"
 image img3 = "gui/cases/unknown.png"
 image img4 = "gui/cases/unknown.png"
 image img5 = "gui/cases/unknown.png"
