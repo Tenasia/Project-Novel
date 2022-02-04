@@ -597,12 +597,46 @@ image rain_particle = Fixed(
     "rain1",
     "rain2",
     "rain3",
-    "rain4",
-    "title_particle5",
-    "title_particle6",
-    "title_particle7",
-    "title_particle8"
     )
+
+
+init:
+    image rev_lightning = im.Flip("gui/lightning.png", horizontal=True)
+
+    image rain:
+  
+        "gui/rain1.png"
+        0.1
+        "gui/rain3.png"
+        0.1
+        "gui/rain2.png"
+        0.1
+        "gui/rain3.png"
+        0.1
+        "gui/rain1.png"
+        0.1
+        "gui/rain2.png"
+        repeat
+        
+    image lightning:
+        choice:        #weight of choice is 1
+            "gui/lightning.png"
+            alpha  0.0
+            0.5                 # show nothing for 0.5 seconds
+        
+        choice 0.1:   #weight of choice is 0.1
+            "gui/lightning.png"
+            alpha  0.0
+            linear 0.3 alpha  1.0
+            linear 0.3 alpha  0.0
+            
+        choice 0.1:
+            "gui/lightning"
+            alpha  0.0
+            linear 0.3 alpha  1.0
+            linear 0.3 alpha  0.0
+            
+        repeat
 
 label splashscreen:
 
