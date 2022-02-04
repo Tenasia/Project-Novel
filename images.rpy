@@ -417,24 +417,10 @@ image ctc:
         
         repeat
 
-# image underline:
-#     "gui/underline_animation/underline1.png"
-
-#     block:
-#         linear 0.25
-#         "gui/underline_animation/underline2.png"
-#         linear 0.25
-#         "gui/underline_animation/underline3.png"
-#         linear 0.25
-#         "gui/underline_animation/underline4.png"
-#         linear 0.25
-#         "gui/underline_animation/underline5.png"
-    
-
 image title_particle1 = SnowBlossom(
     At("gui/particle_img/title_particle.png", zoom(0.4)),
-    count=500,
-    border=50,
+    count =500,
+    border=0,
     xspeed=(5),
     yspeed=(4500),
     start=0,
@@ -599,11 +585,11 @@ image title_art = Fixed(
     "title_particle1",
     "title_particle2",
     "title_particle3",
-    "title_particle4",
-    "title_particle5",
-    "title_particle6",
-    "title_particle7",
-    "title_particle8"
+    # "title_particle4",
+    # "title_particle5",
+    # "title_particle6",
+    # "title_particle7",
+    # "title_particle8"
 
     )
 
