@@ -112,7 +112,7 @@ label prologue:
 
     $ add_seen_chapter("3-1")
     $ add_seen_chapter("3-2")
-
+    show title_art
     Mom "Now, now. I’ll just replace your coffee and Akane, you really need to stop with that behavior."
     $ add_seen_chapter("4-1")
     $ show_people()

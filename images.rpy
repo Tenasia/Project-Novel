@@ -419,7 +419,7 @@ image ctc:
 
 image title_particle1 = SnowBlossom(
     At("gui/particle_img/title_particle.png", zoom(0.4)),
-    count =500,
+    count =5000,
     border=0,
     xspeed=(5),
     yspeed=(4500),
@@ -429,7 +429,7 @@ image title_particle1 = SnowBlossom(
 
 image title_particle2 = SnowBlossom(
     At("gui/particle_img/title_particle3.png", zoom(0.4)),
-    count=500,
+    count=5000,
     border=50,
     xspeed=(10),
     yspeed=(2500),
@@ -439,7 +439,7 @@ image title_particle2 = SnowBlossom(
 
 image title_particle3 = SnowBlossom(
     At("gui/particle_img/title_particle2.png", zoom(0.4)),
-    count=500,
+    count=5000,
     border=50,
     xspeed=(15),
     yspeed=(4000),
