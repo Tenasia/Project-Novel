@@ -24,7 +24,7 @@ screen tips_page():
                 idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
-                action ShowMenu("gallery")
+                action ShowMenu("gallery", transition= None)
 
             imagebutton:
                 xoffset -130
@@ -32,7 +32,7 @@ screen tips_page():
                 idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-                action ShowMenu("game_menu")
+                action ShowMenu("game_menu", transition= None)
 
         frame:
             #notebook paper
@@ -48,7 +48,7 @@ screen tips_page():
                     idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
                     hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
                     selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-                    action ShowMenu("tips_page")
+                    action ShowMenu("tips_page", transition= None)
 
     default current_word = None
 

@@ -144,7 +144,6 @@ label prologue:
     Fuuji "Anyway, graduation is nearing, I will have to find a Juku (cram) school to get into Tokyo University. So, I won’t be coming back here much often."
     $ add_seen_chapter("9-1")
     show fuuji neutral2_dark 
-    hide title_art
     Thought "Since College was just in a few months away, I asked my uncle if I could use a spare house he had so that I can get to the university easily."
     $ add_seen_chapter("10-1")
     $ add_seen_chapter("10-2")

@@ -581,23 +581,40 @@ image rain8 = SnowBlossom(
     fast=False,
     horizontal=False)
 
-image title_art = Fixed(
+image high_rain_volume = Fixed(
     "title_particle1",
     "title_particle2",
     "title_particle3",
-    # "title_particle4",
-    # "title_particle5",
-    # "title_particle6",
-    # "title_particle7",
-    # "title_particle8"
-
+    "title_particle4",
+    "title_particle5",
+    "title_particle6",
+    "title_particle7",
+    "title_particle8"
     )
+
+image med_rain_volume = Fixed(
+    "title_particle1",
+    "title_particle2",
+    "title_particle3",
+    "title_particle4",
+)
+
+image low_rain_volume = Fixed(
+    "title_particle1",
+    "title_particle2",
+)
 
 image rain_particle = Fixed(
     "rain1",
     "rain2",
     "rain3",
+    "rain4",
+    "rain5",
+    "title_particle6",
+    "title_particle7",
+    "title_particle8"
     )
+
 
 
 init:
@@ -606,16 +623,64 @@ init:
     image rain:
   
         "gui/rain1.png"
-        0.1
-        "gui/rain3.png"
-        0.1
+        0.05
         "gui/rain2.png"
-        0.1
+        0.05
         "gui/rain3.png"
-        0.1
+        0.05
+        "gui/rain4.png"
+        0.05
+        "gui/rain5.png"
+        0.05
+        "gui/rain6.png"
+        0.05
+        "gui/rain7.png"
+        0.05
+        "gui/rain8.png"
+        0.05
+        "gui/rain9.png"
+        0.05
+        "gui/rain10.png"
+        0.05
+        "gui/rain11.png"
+        0.05
+        "gui/rain12.png"
+        0.05
+        "gui/rain13.png"
+        0.05
+        "gui/rain14.png"
+        0.05
+        "gui/rain15.png"
+        0.05
+        "gui/rain15.png"
+        0.05
+        "gui/rain14.png"
+        0.05
+        "gui/rain13.png"
+        0.05
+        "gui/rain12.png"
+        0.05
+        "gui/rain11.png"
+        0.05
+        "gui/rain10.png"
+        0.05
+        "gui/rain9.png"
+        0.05
+        "gui/rain8.png"
+        0.05
+        "gui/rain7.png"
+        0.05
+        "gui/rain6.png"
+        0.05
+        "gui/rain5.png"
+        0.05
+        "gui/rain4.png"
+        0.05
+        "gui/rain3.png"
+        0.05
+        "gui/rain2.png"
+        0.05
         "gui/rain1.png"
-        0.1
-        "gui/rain2.png"
         repeat
         
     image lightning:

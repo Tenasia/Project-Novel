@@ -193,7 +193,7 @@ style frame:
 screen say(who, what, side_image=None, two_window=False):
 
     key "mousedown_4" action ShowMenu("history")
-    key "mouseup_3" action ShowMenu("game_menu")
+    key "mouseup_3" action ShowMenu("game_menu", transition= Dissolve(0.2))
     
     if not two_window:
         window:
@@ -635,10 +635,15 @@ screen chapters():
 screen main_menu():
 
     tag menu
-    
-
+    # # $ rain_volume = change_rain_volume()
+    # textbutton _("セーブ"):
+    #         action [SetScreenVariable("current_mode", "save"),
+    #                 Function(FileManipulation.reset_selected),
+    #                 SensitiveIf(current_mode != "save" and not main_menu)]
     add "flickering_light"
-    add "title_art"
+
+    add "high_rain_volume"
+
     frame:
         style "main_menu_frame"
 
@@ -680,7 +685,8 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
     
     
     add "flickering_light"
-    add "title_art"
+    add "high_rain_volume"
+
     frame:
         style "game_menu_outer_frame"
 
@@ -860,14 +866,14 @@ screen game_menu():
                 idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-                action ShowMenu("tips_page")
+                action ShowMenu("tips_page", transition= None)
             imagebutton:
                 xoffset 200
                 yoffset 102.5
                 idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
-                action ShowMenu("gallery")
+                action ShowMenu("gallery", transition= None)
 
         frame:
             background None
@@ -881,7 +887,7 @@ screen game_menu():
                     idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
                     hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
                     selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-                    action ShowMenu("game_menu")
+                    action ShowMenu("game_menu", transition= Dissolve(0.1))
 
         default current_chapter = None
 
@@ -1249,7 +1255,7 @@ init python:
 
 screen save():
     add "flickering_light" 
-    add "title_art"
+    add "high_rain_volume"
     key "mousedown_3" action Return() 
     text "SAVE" text_align 0.5 xalign 0.75 yalign 0.125 xoffset 355 size 80 font "fonts/Poppins-Light.ttf"
     tag menu
@@ -1258,7 +1264,7 @@ screen save():
 screen load():
     # on "replaced" action Stop("music", fadeout=2.0)
     add "flickering_light" 
-    add "title_art"
+    add "high_rain_volume"
     key "mousedown_3" action Return() 
     text "LOAD" text_align 0.5 xalign 0.75 yalign 0.125 xoffset 355 size 80 font "fonts/Poppins-Light.ttf"
 
@@ -1870,7 +1876,7 @@ screen preferences():
     use settings_menu(_("Configurations"), scroll="viewport")
 
     add "flickering_light"
-    add "title_art"
+    add "high_rain_volume"
 
     default current_tab = "system"
     hbox:
@@ -2001,7 +2007,9 @@ screen preferences():
                                 selected_idle "gui/gui_buttons/GUI system_settings/selected_skipseen.png"
                                 selected_hover "gui/gui_buttons/GUI system_settings/selected_skipseen.png"
                                 action Preference("skip", "seen")
-
+        # hbox:
+        #     textbutton "low rain":
+        #         action SetVariable(current_rain_volume, "low_rain_volume")
     hbox:
         xalign 0.5
         yalign 0.5
@@ -2282,10 +2290,10 @@ screen confirm(message, yes_action, no_action):
             xalign .5
             yalign .5
             spacing 30
-
-            text _(message):
-                style "confirm_prompt"
-                xalign 0.5
+            text message xalign 0.5
+            # text _(message) xalign 0.5:
+            #     style "confirm_prompt"
+            #     xalign 0.5
 
             hbox:
                 xalign 0.5

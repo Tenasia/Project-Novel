@@ -80,7 +80,7 @@ init -2 python:
     ### Transition ###########
     config.enter_transition = Dissolve(.3)
     config.exit_transition = Dissolve(.3)
-    config.intra_transition = Dissolve(.2)
+    config.intra_transition = None
 
 
     ### Sounds ##########

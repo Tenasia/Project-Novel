@@ -336,7 +336,13 @@ init -2 python:
         else:
             return int(split_key[0]) * 10
 
-            
+# define high_rain_volume = Image("high_rain_volume")
+# define med_rain_volume = Image("med_rain_volume")
+# define low_rain_volume = Image("low_rain_volume")
+
+
+# define current_rain_volume = high_rain_volume
+
 define words_seen_dictionary = ""
 
 init -2 python:
@@ -368,7 +374,7 @@ init -2 python:
             
             else:
                 func = SetPreferencesDefault.set_all
-                msg = _("Restart the settings to default?")
+                msg = _("Reset the settings to default?")
             
             
             if self.confirm:
@@ -483,16 +489,6 @@ init python:
             return [ self.child ]
 
     KeymapTransform = renpy.curry(Keymapper)
-
-    # def ResetToDefaults():
-    #     _preferences.text_cps = config.default_text_cps
-    #     _preferences.afm_time = config.default_afm_time
-    #     _preferences.afm_enable = config.default_afm_enable
-    #     _preferences.set_volume('sfx', 1.0)
-    #     _preferences.set_volume('music', 1.0)
-    #     # _preferences.window_opacity(persistent, 1.0)
-    #     # persistent('window_opacity', 1.0)
-    #     renpy.restart_interaction()
 
     class NoRollbackObj(NoRollback):
         def __init__(self):
