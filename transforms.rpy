@@ -83,3 +83,25 @@ transform hud_appear_date:
             easein .3 alpha 1.0 xoffset 0
         on hide:
             easein .3 alpha 0.0 xoffset -200
+
+
+transform casefiletransform:
+        subpixel True
+
+        parallel:
+                zoom 1
+                ease 10 zoom 1.05
+                ease 10 zoom 1
+                repeat
+
+transform CF_SUSBUTTON:
+        on idle:
+            zoom 0.3
+            alpha 0.8
+           # rotate 0
+        on hover:
+            zoom 0.31
+            alpha 1
+        on selected_idle:
+            zoom 0.3
+            alpha 0.51

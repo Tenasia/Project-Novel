@@ -273,6 +273,8 @@ screen quick_menu(trans = None):
                             idle "gui/gui_buttons/GUI quick_buttons/auto_idle.png"
                             hover "gui/gui_buttons/GUI quick_buttons/auto_hover.png"
                             selected_idle "gui/gui_buttons/GUI quick_buttons/auto_hover.png"
+                            hover_sound None
+                            activate_sound "audio/sfx/clickcool.wav"
                             action Preference("auto-forward", "toggle")
                         # textbutton: _("SKIP") action S
                         imagebutton:
@@ -281,25 +283,35 @@ screen quick_menu(trans = None):
                             hover "gui/gui_buttons/GUI quick_buttons/skip_hover.png"
                             selected_idle "gui/gui_buttons/GUI quick_buttons/skip_hover.png"
                             selected_background "gui/gui_buttons/GUI quick_buttons/skip_hover.png"
+                            hover_sound None
+                            activate_sound "audio/sfx/clickcool.wav"
                             action Skip()
                         imagebutton:
                             idle "gui/gui_buttons/GUI quick_buttons/logs_idle.png"
                             hover "gui/gui_buttons/GUI quick_buttons/logs_hover.png"
+                            hover_sound None
+                            activate_sound "audio/sfx/clickcool.wav"
                             action ShowMenu('history')
                         imagebutton:
                             # xoffset 90
                             idle "gui/gui_buttons/GUI quick_buttons/save_idle.png"
                             hover "gui/gui_buttons/GUI quick_buttons/save_hover.png"
+                            hover_sound None
+                            activate_sound "audio/sfx/clickcool.wav"
                             action ShowMenu('save')
                         imagebutton:
                             # xoffset 80
                             idle "gui/gui_buttons/GUI quick_buttons/load_idle.png"
                             hover "gui/gui_buttons/GUI quick_buttons/load_hover.png"
+                            hover_sound None
+                            activate_sound "audio/sfx/clickcool.wav"
                             action ShowMenu('load')
                         imagebutton:
                             # xoffset -20
                             idle "gui/gui_buttons/GUI quick_buttons/settings_idle.png"
                             hover "gui/gui_buttons/GUI quick_buttons/settings_hover.png"
+                            hover_sound None
+                            activate_sound "audio/sfx/clickcool.wav"
                             action ShowMenu('preferences')
         hbox:
             xalign 0.89
@@ -337,6 +349,8 @@ style quick_button_text:
 
 ## Navigation screen ###########################################################
 
+# style.button.activate_sound = "audio/sfx/clicktriangle.wav"                
+
 screen navigation():
 
 
@@ -363,6 +377,8 @@ screen navigation():
                 hover "gui/gui_buttons/GUI main_buttons/start_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/start_selected1.png"
                 selected_hover "gui/gui_buttons/GUI main_buttons/start_selected1.png"
+                hover_sound "audio/sfx/clickcool.wav"
+                activate_sound None
                 action [SetVariable("current_mode", "chapters"), Show("chapters", dissolve)]
                 xalign 0.5
 
@@ -371,13 +387,14 @@ screen navigation():
                 hover "gui/gui_buttons/GUI main_buttons/continue_selected.png"
                 selected "gui/gui_buttons/GUI main_buttons/continue_selected"
                 insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
+                hover_sound "audio/sfx/clickcool.wav"
+                activate_sound "audio/sfx/clicktriangle.wav"
                 action [SetField(no_rollback, "last_loaded_slot", newest_slot),
                         FileLoad(newest_slot[1], confirm=False, page=newest_slot[0], newest=False),
                         SensitiveIf(current_mode != "chapters")]
                 xalign 0.5
+        
 
-         
-                
 
         else:
 
@@ -389,13 +406,17 @@ screen navigation():
             idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
             hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
             insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
-            action [ShowMenu("load"),Hide("chapters"), SensitiveIf(current_mode != "chapters")]
+            hover_sound "audio/sfx/clickcool.wav"
+            activate_sound None
+            action [ShowMenu("load", transition = Dissolve(0.3)),Hide("chapters"), SensitiveIf(current_mode != "chapters")]
             xalign 0.5
 
         imagebutton:
             idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
             hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
             insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
+            hover_sound "audio/sfx/clickcool.wav"
+            activate_sound None
             action [ShowMenu("preferences", transition= Dissolve(0.3)),Hide("chapters"), SensitiveIf(current_mode != "chapters")]
             xalign 0.5
 
@@ -413,6 +434,8 @@ screen navigation():
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
+                hover_sound "audio/sfx/clickcool.wav"
+                activate_sound None
                 action [Quit(confirm=not main_menu), SensitiveIf(current_mode != "chapters")]
                 xalign 0.5
 
@@ -484,6 +507,8 @@ screen chapters():
                     xoffset -75
                     idle "gui/gui_buttons/GUI main_buttons/arc1_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/arc1_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/clicktriangle.wav"
                     action [Jump("start1"), SensitiveIf(persistent.firstchapter_clear)]
 
             hbox at chapters_disappear(delay = 0.25):
@@ -493,6 +518,8 @@ screen chapters():
                     idle "gui/gui_buttons/GUI main_buttons/arc2_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/arc2_selected.png"
                     insensitive "gui/gui_buttons/GUI main_buttons/arc2_insensitive.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/clicktriangle.wav"
                     action [Jump("start1"), SensitiveIf(persistent.secondchapter_clear)]
             hbox at chapters_disappear(delay = 0.5):
                 add "gui/game_frames/arc_lines.png" xoffset 185
@@ -501,6 +528,8 @@ screen chapters():
                     idle "gui/gui_buttons/GUI main_buttons/arc3_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/arc3_selected.png"
                     insensitive "gui/gui_buttons/GUI main_buttons/arc3_insensitive.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/clicktriangle.wav"
                     action [Jump("start1"), SensitiveIf(persistent.thirdchapter_clear)]
             hbox at chapters_disappear(delay = 0.65):
                 add "gui/game_frames/arc_lines.png" xoffset 235
@@ -508,6 +537,8 @@ screen chapters():
                     xoffset 75
                     idle "gui/gui_buttons/GUI main_buttons/back_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/back_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/clicknorm.mp3"
                     action [Hide("chapters", dissolve), SetVariable("current_mode", "main")]
         
 
@@ -627,17 +658,23 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
                     hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                     selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
                     insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/click.mp3"
                     action ShowMenu('save')
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
                     selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/click.mp3"
                     insensitive None
                     action ShowMenu('load')
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                     selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/click.mp3"
                     insensitive None
                     action ShowMenu('preferences') 
                 imagebutton:
@@ -645,17 +682,23 @@ screen settings_menu(title, scroll=None, yinitial=0.0):
                     hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                     selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
                     insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/click.mp3"
                     action MainMenu()
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
                     selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/click.mp3"
                     insensitive None
                     action Quit(True)
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                     selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/click.mp3"
                     insensitive None
                     action Return()
 
@@ -730,117 +773,203 @@ screen game_menu():
     key "mousedown_3" action Return()
     
     style_prefix "game_menu" tag menu
+    
     $ hours_played = convertSeconds( renpy.get_game_runtime() )[0]
     $ minutes_played = convertSeconds( renpy.get_game_runtime() )[1]
     $ seconds_played = convertSeconds( renpy.get_game_runtime() )[2]
     $ bgm_title = get_current_bgm_title()
-    $ seen_chapters = get_seen_chapters()
+
+
     add "gui/game_frames/right_click_bg.png"
-    frame:
-        background None
+   
+            
+    # tag saymenu
+    if notebook_page == "bloody":
         add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
-
-        hbox:
-            imagebutton:
-                xoffset 530
-                yoffset 102.5
-                idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
-                hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-                selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-                action ShowMenu("tips_page", transition= None)
-            imagebutton:
-                xoffset 200
-                yoffset 102.5
-                idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
-                hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
-                selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
-                action ShowMenu("gallery", transition= None)
-
+    else:
         frame:
             background None
-            xoffset 70
-            yoffset 50
-            add "gui/game_frames/notebook_paper.png" xoffset 60 yoffset 100.5
+            add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
+
             hbox:
                 imagebutton:
-                    xoffset 127.5
-                    yoffset 42.5
-                    idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
-                    hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-                    selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-                    action ShowMenu("game_menu", transition= None)
+                    xoffset 530
+                    yoffset 102.5
+                    idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
+                    hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
+                    selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
+                    action ShowMenu("tips_page", transition= None)
+                imagebutton:
+                    xoffset 200
+                    yoffset 102.5
+                    idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
+                    hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+                    selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+                    action ShowMenu("gallery", transition= None)
 
-        default current_chapter = None
+            frame:
+                background None
+                xoffset 70
+                yoffset 50
+                add "gui/game_frames/notebook_paper_cases.png" xoffset 60 yoffset 100.5
+                hbox:
+                    imagebutton:
+                        xoffset 127.5
+                        yoffset 42.5
+                        idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
+                        hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
+                        selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
+                        action ShowMenu("game_menu", transition= None)
+        
+    if person_of_interest == 1:
+        add "gui/sideimages-keyes.png" xpos 728 ypos 114 at casefiletransform
+        
+    elif person_of_interest == 2:
+        add "gui/people_info/casefilephotom2.png" xpos 728 ypos 114 at casefiletransform
 
-    
+    if notebook_page == False:
+        vbox:
+            xpos 200 
+            ypos 242
+            if person1 == True:
+                textbutton "1st page":
+                        hover_sound None
+                        activate_sound "audio/sfx/click.mp3"
+                        if person_of_interest == 1:
+                            action SetVariable("person_of_interest", 1)
+                        else:
+                            action SetVariable("person_of_interest", 1)
+            if person2 == True:
+                textbutton "2nd page":
+                        hover_sound None
+                        activate_sound "audio/sfx/click.mp3"
+                        if person_of_interest == 2:
+                            action SetVariable("person_of_interest", 2) 
+                        else:
+                            action SetVariable("person_of_interest", 2)  
+            if person3 == True:
+                textbutton "3rd page":
+                        hover_sound None
+                        activate_sound "audio/sfx/click.mp3"
+                        if person_of_interest == 3:
+                            action SetVariable("person_of_interest", 3) 
+                        else:
+                            action SetVariable("person_of_interest", 3) 
+            if person4 == True:
+                textbutton "4th page":
+                        hover_sound None
+                        activate_sound "audio/sfx/click.mp3"
+                        if person_of_interest == 4:
+                            action SetVariable("person_of_interest", 4) 
+                        else:
+                            action SetVariable("person_of_interest", 4)
+            if person5 == True:
+                textbutton "5th page":
+                        hover_sound None
+                        activate_sound "audio/sfx/click.mp3"
+                        if person_of_interest == 5:
+                            action SetVariable("person_of_interest", 5) 
+                        else:
+                            action SetVariable("person_of_interest", 5)  
+            if person6 == True:
+                textbutton "6th page":
+                        hover_sound None
+                        activate_sound "audio/sfx/click.mp3"
+                        if person_of_interest == 6:
+                            action SetVariable("person_of_interest", 6) 
+                        else:
+                            action SetVariable("person_of_interest", 6)
+        imagebutton:
+                idle "gui/temp_gui/arrow1idle.png"
+                hover "gui/temp_gui/arrow1hover.png"
+                xpos 440 ypos 742
+                hover_sound None
+                activate_sound "audio/sfx/click.mp3"
+                # focus_mask None
+                # hover_sound "sfx/UI/click1.ogg"
+                # activate_sound "sfx/UI/click2.ogg"
+                # NEXT               
+                if person_of_interest == persistent.person_of_interests:
+                    action NullAction()
+                else:
+                    action SetVariable("person_of_interest", person_of_interest + 1)
+        imagebutton:
+                
+                idle "gui/temp_gui/arrow2idle.png"
+                hover "gui/temp_gui/arrow2hover.png"
+                # PREVIOUS
+                xpos 305 ypos 723
+                hover_sound None
+                activate_sound "audio/sfx/click.mp3"
+                # focus_mask None
+                # hover_sound "sfx/UI/click1.ogg"
+                # activate_sound "sfx/UI/click2.ogg"
+                if person_of_interest == 1:
+                    action NullAction()
+                else:
+                    action SetVariable("person_of_interest", person_of_interest - 1)
 
-    use menu_page_title(_("あらすじ"), (1.0, 0.03))
+    frame:
+        background None
+        xpadding 10
+        ypadding 10
+        xpos 721
+        ypos 354
+        xsize 482
+        ysize 520
+        
+        # Info near profile
+        hbox:
+            xoffset 350
+            yoffset -150
+            if person_of_interest == 1:
+                if person_note1 == True:
+                    if person_info1 == "redacted":
+                        vbox:
+                            text "{color=#555}John Doe" size 25
+                            text "{color=#555}FeMale" size 25
+                            text "{color=#555}FBI" size 25
+                            text "{color=#555}Your" size 25
+                            text "{color=#555}Mom" size 25
+                            text "{color=#555}is Nice" size 25
+                    else:
+                        vbox:
+                            text "{color=#555}John Doe" size 25
+                            text "{color=#555}Male" size 25
+                            text "{color=#555}Police" size 25
+                            text "{color=#555}Your" size 25
+                            text "{color=#555}Mom" size 25
+                            text "{color=#555}is Nice" size 25
+                
+        # Info texts
+        viewport:
+            scrollbars "vertical"
+            mousewheel True
+            draggable True
 
-    if current_chapter:
-        label plot_titles[current_chapter] style "chapter_name_label" align (0.51, 0.21) text_color "#000"
-    
-    hbox:
-        spacing 50
-        xalign 0.225
-        yalign 0.60
+            side_yfill True
 
-        frame:
-            style_prefix "chapter_buttons"
-            yoffset -10
-            ysize 600
-            has vpgrid:
-                cols 1
-                xfill True
-                spacing 0
             
-            if seen_chapters:
-
-                if len(seen_chapters.keys()) >= 12:
-                    scrollbars "vertical"
-                    mousewheel True
-                    draggable False
-
-
-                for k in sorted(seen_chapters.keys(), key=sort_story_buttons):
-                    button:
-                        text plot_labels[k] font "fonts/Kalam-Regular.ttf"
-                        sensitive "#000"
-                        action [SetScreenVariable("current_chapter", k), SensitiveIf(current_chapter != k)] 
-                        
-                        
-
-        frame:
-            
-            style_prefix "chapter_contents"
-            yoffset 60
-            ysize 625
-            window:
-                has viewport:
-                    id "chapter_contents_window_vp"
-                    mousewheel True
-                    ysize 575
-                    yoffset -100
-
-                if current_chapter:
-
-                    $ separator_height = 20
-
-                    vbox:
-  
-                        null height separator_height
-
-                        for obj in seen_chapters[current_chapter]:
-                            text plots[current_chapter + "-" + obj] font "fonts/Kalam-Regular.ttf"
-                            null height separator_height
-
-            vbar:
-                value YScrollValue("chapter_contents_window_vp")
-                bar_invert True
-                unscrollable "hide"
-                xsize 19
-                ysize 575
-                yoffset -20
-                xalign 1.0
+            vbox:
+                
+                # if statement to decide which character to talk about
+                if person_of_interest == 1:
+                    
+                    if person_note1 == True:
+                        null height 20
+                        text "{color=#555}Introduction to case 1" size 25
+                    if person_note1_1 == "first_note":
+                        null height 20
+                        text "{color=#555}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 25
+                    elif person_note1_1 == "first_note_redacted":
+                        null height 20
+                        text "{color=#555}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 25
+                    if person_note1_2 == "second_note":
+                        null height 20
+                        text "{color=#555}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 25
+                    elif person_note1_2 == "second_note_redacted":
+                        null height 20
+                        text "{color=#555}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 25
             
     vbox style_suffix "chaptername_vbox":
         
@@ -1186,7 +1315,6 @@ screen file_picker():
                 
                 
 
-
                 vbox:
 
                     button:
@@ -1196,6 +1324,10 @@ screen file_picker():
                         xysize (374, 307)
                         background None
                         hover_background "gui/game_frames/bg_slot.png"
+
+                        # hover_sound None
+                        # activate_sound "audio/sfx/clicktriangle.wav"
+                        
                         action FileAction(slot)
 
                         vbox:
@@ -1233,7 +1365,10 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/one_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/one_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/one_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(1)
+                
         hbox:
             xoffset -1
             imagebutton:
@@ -1241,6 +1376,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/two_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/two_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/two_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(2)
         hbox:
             xoffset -2
@@ -1250,6 +1387,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/three_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/three_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/three_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(3)
         hbox:
             xoffset -3
@@ -1259,6 +1398,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/four_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/four_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/four_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(4)
         hbox:
             xoffset -2
@@ -1267,6 +1408,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/five_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/five_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/five_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(5)
         hbox:
             xoffset 0
@@ -1276,6 +1419,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/six_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/six_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/six_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(6)
         hbox:
             xoffset -1
@@ -1285,6 +1430,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/seven_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/seven_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/seven_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(7)
         hbox:
             xoffset -2
@@ -1294,6 +1441,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/eight_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/eight_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/eight_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(8)
         hbox:
             xoffset -3
@@ -1303,6 +1452,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/nine_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/nine_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/nine_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(9)
         hbox:
             xoffset -4
@@ -1312,6 +1463,8 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI save_load_pages/ten_hovered.png"
                 selected_idle "gui/gui_buttons/GUI save_load_pages/ten_selected.png"
                 selected_hover "gui/gui_buttons/GUI save_load_pages/ten_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action FilePage(10)
     frame:
         xsize 850
@@ -1328,36 +1481,49 @@ screen file_picker():
                 hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
+                
                 action ShowMenu('save')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action ShowMenu('load')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action ShowMenu('preferences') 
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action MainMenu()
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action Quit(True)
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action Return()
                 
 
@@ -1482,6 +1648,8 @@ screen sound_settings():
                 hover ("gui/gui_buttons/GUI system_settings/system_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/system_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/system_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/system_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action ShowMenu("preferences")
             imagebutton:
                 xoffset 211
@@ -1490,6 +1658,8 @@ screen sound_settings():
                 hover ("gui/gui_buttons/GUI system_settings/text_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/text_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/text_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/text_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action ShowMenu("text_settings")
             imagebutton:
                 xoffset 368.5
@@ -1498,6 +1668,8 @@ screen sound_settings():
                 hover ("gui/gui_buttons/GUI system_settings/sound_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/sound_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/sound_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action ShowMenu("sound_settings")
     frame:
         background "gui/game_frames/settings_frame_wide.png"
@@ -1548,35 +1720,47 @@ screen sound_settings():
                 hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action ShowMenu('save')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action ShowMenu('load')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action ShowMenu('sound_settings') 
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/title_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action MainMenu()
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 insensitive None
                 action Quit(True)
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 insensitive None
                 action Return()
 
@@ -1605,6 +1789,8 @@ screen text_settings():
                 hover ("gui/gui_buttons/GUI system_settings/system_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/system_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/system_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/system_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action ShowMenu("preferences")
             imagebutton:
                 xoffset 211
@@ -1613,6 +1799,8 @@ screen text_settings():
                 hover ("gui/gui_buttons/GUI system_settings/text_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/text_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/text_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/text_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action ShowMenu("text_settings")
             imagebutton:
                 xoffset 368.5
@@ -1622,6 +1810,8 @@ screen text_settings():
                 hover ("gui/gui_buttons/GUI system_settings/sound_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/sound_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/sound_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action ShowMenu("sound_settings")
     frame:
         background "gui/game_frames/settings_frame_wide.png"
@@ -1717,17 +1907,23 @@ screen text_settings():
                 hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action ShowMenu('save')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 insensitive None
                 action ShowMenu('load')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 insensitive None
                 action ShowMenu('text_settings')
             imagebutton:
@@ -1735,17 +1931,23 @@ screen text_settings():
                 hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action MainMenu()
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 insensitive None
                 action Quit(True)
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 insensitive None
                 action Return()
                 
@@ -1783,6 +1985,8 @@ screen preferences():
                 hover ("gui/gui_buttons/GUI system_settings/system_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/system_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/system_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/system_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action SetScreenVariable("current_tab", "system")
             imagebutton:
                 xoffset 211
@@ -1791,6 +1995,8 @@ screen preferences():
                 hover ("gui/gui_buttons/GUI system_settings/text_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/text_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/text_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/text_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action ShowMenu("text_settings")
             imagebutton:
                 xoffset 368.5
@@ -1800,7 +2006,10 @@ screen preferences():
                 hover ("gui/gui_buttons/GUI system_settings/sound_clicked.png" if mouse_clicked else "gui/gui_buttons/GUI system_settings/sound_hovered.png")
                 selected_idle "gui/gui_buttons/GUI system_settings/sound_selected.png"
                 selected_hover "gui/gui_buttons/GUI system_settings/sound_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clicknorm.mp3"
                 action ShowMenu("sound_settings")
+                
     frame:
         
         background "gui/game_frames/settings_frame_wide.png"
@@ -1916,17 +2125,23 @@ screen preferences():
                 hover "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/save_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/save_insensitive.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action ShowMenu('save')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/load_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/load_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/load_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action ShowMenu('load')
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/settings_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 insensitive None
                 action ShowMenu('preferences') 
             imagebutton:
@@ -1934,17 +2149,23 @@ screen preferences():
                 hover "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/title_selected.png"
                 insensitive "gui/gui_buttons/GUI main_buttons/title_insensitive.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action MainMenu()
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/quit_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/quit_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/quit_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action Quit(True)
             imagebutton:
                 idle "gui/gui_buttons/GUI main_buttons/back1_idle.png"
                 hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 insensitive None
                 action Return()
                         
@@ -2065,6 +2286,8 @@ screen history():
                             imagebutton:
                                 idle "gui/gui_buttons/GUI main_buttons/jump_idle.png"
                                 hover "gui/gui_buttons/GUI main_buttons/jump_selected.png"
+                                hover_sound None
+                                activate_sound "audio/sfx/clickcool.wav"
                                 action Confirm("Jump back on this dialogue?", RollbackToIdentifier(h.rollback_identifier))
                                 yoffset 125 xoffset 55
 
@@ -2101,6 +2324,8 @@ screen history():
                 hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
                 insensitive None
+                hover_sound None
+                activate_sound "audio/sfx/clickcool.wav"
                 action Return()
 
 ## This determines what tags are allowed to be displayed on the history screen.
@@ -2185,10 +2410,14 @@ screen confirm(message, yes_action, no_action):
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/confirm_idle.png"
                     hover "gui/gui_buttons/GUI main_buttons/confirm_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/clickcool.wav"
                     action yes_action
                 imagebutton:
                     idle "gui/gui_buttons/GUI main_buttons/confirm_idle1.png"
                     hover "gui/gui_buttons/GUI main_buttons/confirm_selected1.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/clickcool.wav"
                     action no_action
 
     ## Right-click and escape answer "no".
