@@ -70,125 +70,6 @@ style frame:
     top_padding 10
     background Frame("gui/extra/frame.png", gui.frame_borders, tile=gui.frame_tile)
 
-
-
-# screen say(who, what, side_image=None, two_window=False):
-#     # style_prefix "say"
-#     key "mousedown_4" action ShowMenu("history")
-#     key "mouseup_3" action ShowMenu("game_menu")
-
-#     if not two_window:
-
-#         window:
-#             background Transform(Frame("gui/textbox.png"), alpha=persistent.window_opacity)
-#             style_prefix "say"
-#             id "window"
-
-#             has vbox
-
-#             fixed:
-#                 ysize 34
-
-#                 if who:
-
-#                     text who:
-#                         id "who"
-#                         xoffset 860 yoffset -20
-
-#             text what id "what" yoffset 35
-#     else:
-
-#         window:
-            
-#             style_prefix "say"
-#             id "window"
-
-#             has vbox
-
-#             fixed:
-#                 ysize 34
-
-#                 if who:
-#                     window:
-#                         # style "say_who_window"
-#                         background Transform(Frame("gui/textbox.png"), alpha=persistent.window_opacity)
-#                         xalign 0.5
-#                         text who:
-#                             id "who"
-#                             yoffset -20 xalign 0.5
-
-#             text what id "what" yoffset 35
-
-
-#     if side_image:
-#         add side_image
-#     else:
-#         add SideImage() xalign 0.0 yalign 1.0
-
-
-#     use quick_menu
-
-#     if renpy.in_rollback():
-
-#         key "mousedown_5" action RollForward()
-
-
-
-# init python:
-#     config.character_id_prefixes.append('namebox')
-
-
-# screen say(who, what, side_image=None, two_window=False):
-    
-#     key "mousedown_4" action ShowMenu("history")
-#     key "mouseup_3" action ShowMenu("game_menu")
-
-    # if not two_window:
-
-
-    #     window:
-    #         id "window"
-
-    #         has vbox:
-    #             style "say_vbox"
-
-    #         if who:
-    #             text who id "who"
-
-    #         text what id "what"
-
-    # else:
-
-    #     window:
-    #         style_prefix "say"
-    #         id "window"
-
-    #         has vbox
-
-    #         fixed:
-    #             ysize 34
-
-    #             if who:
-    #                 window:
-    #                     style "say_who_window"
-
-    #                     text who:
-    #                         id "who"
-
-    #         text what id "what"
-
-
-#     if side_image:
-#         add side_image
-#     else:
-#         add SideImage() xalign 0.0 yalign 1.0
-
-
-#     use quick_menu
-
-#     if renpy.in_rollback():
-
-#         key "mousedown_5" action RollForward()
         
 screen say(who, what, side_image=None, two_window=False):
 
@@ -515,7 +396,7 @@ screen navigation():
             idle "gui/gui_buttons/GUI main_buttons/settings_idle.png"
             hover "gui/gui_buttons/GUI main_buttons/settings_selected.png"
             insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
-            action [ShowMenu("preferences"),Hide("chapters"), SensitiveIf(current_mode != "chapters")]
+            action [ShowMenu("preferences", transition= Dissolve(0.3)),Hide("chapters"), SensitiveIf(current_mode != "chapters")]
             xalign 0.5
 
         if _in_replay:
@@ -887,7 +768,7 @@ screen game_menu():
                     idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
                     hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
                     selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-                    action ShowMenu("game_menu", transition= Dissolve(0.1))
+                    action ShowMenu("game_menu", transition= None)
 
         default current_chapter = None
 
@@ -1872,7 +1753,8 @@ screen text_settings():
 screen preferences():
 
     tag menu
-    key "mousedown_3" action Return()   
+    
+    key "mousedown_3" action Return()
     use settings_menu(_("Configurations"), scroll="viewport")
 
     add "flickering_light"

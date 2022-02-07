@@ -125,75 +125,6 @@ screen tips_page():
                 yoffset -20
                 xalign 1.0
 
-    # add "gui/nvl.png"
-
-    # frame:
-    #     background None
-    #     add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
-
-    #     hbox:
-    #         #notebook stubs
-    #         xoffset 160        
-    #         imagebutton:
-    #             xoffset 200
-    #             yoffset 102.5
-    #             idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
-    #             hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
-    #             selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
-    #             action ShowMenu("gallery")
-
-    #         imagebutton:
-    #             xoffset -130
-    #             yoffset 102.5
-    #             idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
-    #             hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-    #             selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-    #             action ShowMenu("game_menu")
-    #     frame:
-    #         background None
-    #         # align (0.10, 0.3)
-    #         xoffset 70
-    #         yoffset 50
-    #         add "gui/game_frames/notebook_paper.png" xoffset 60 yoffset 100.5
-    #         hbox: 
-    #             imagebutton:
-    #                 xoffset 455
-    #                 yoffset 40
-    #                 idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
-    #                 hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-    #                 selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-    #                 action ShowMenu("tips_page")
-
-    #         hbox spacing 200:
-    #             viewport:
-    #                 xoffset 155
-    #                 yoffset 200
-    #                 xsize 445
-    #                 ysize 600
-    #                 child_size (None, 4000)
-    #                 scrollbars "vertical"
-    #                 spacing 5
-    #                 draggable True
-    #                 mousewheel True
-    #                 arrowkeys True
-    #                 # add "#000c"
-    #                 vbox spacing 20:
-    #                     #glossary_dict
-    #                     #use sorted(glossary_dict.keys())
-    #                     for word in sorted(persistent.unlocked_text):
-    #                         textbutton word:
-    #                             style "chapter_name_label"
-    #                             text_size 33
-    #                             action SetVariable("display_desc", word)
-    #                             # action Jump("flashback")
-    #             vbox ypos 150 xsize 500 ysize 500:
-    #                 xoffset 15
-    #                 text glossary_dict.get(display_desc, ""):
-    #                     size 33
-    #                     font "fonts/Kalam-Regular.ttf"
-    #                     color "#000"
-    #     default current_chapter = None
-
     vbox style_suffix "chaptername_vbox":
         xalign 0.5
         xoffset 610
@@ -259,7 +190,7 @@ screen gallery():
                 idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-                action ShowMenu("tips_page")
+                action ShowMenu("tips_page", transition= None)
         
             imagebutton:
                 xoffset 30
@@ -267,7 +198,7 @@ screen gallery():
                 idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-                action ShowMenu("game_menu")
+                action ShowMenu("game_menu", transition= None)
     
         frame:
             xoffset 25
@@ -282,7 +213,7 @@ screen gallery():
                     idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
                     hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
                     selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
-                    action ShowMenu("gallery")
+                    action ShowMenu("gallery", transition= None)
                     
             $start = gallery_page * maxperpage
             $end = min(start + maxperpage - 1, len(gallery_items) - 1)

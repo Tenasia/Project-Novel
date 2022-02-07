@@ -209,6 +209,7 @@ label school:
     play music audio.day
     scene bg road_school
     with fade
+    $ persistent.secondchapter_clear = True
     Thought "..."
     # play music "audio/day.mp3" fadein 3.0 volume 0.5
     Thought "We were done with our breakfast and since we go to the same school. We always go together whenever I came back home to visit mom, and well of course, Akane."

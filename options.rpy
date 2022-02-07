@@ -80,7 +80,7 @@ init -2 python:
     ### Transition ###########
     config.enter_transition = Dissolve(.3)
     config.exit_transition = Dissolve(.3)
-    config.intra_transition = None
+    # config.intra_transition = None
 
 
     ### Sounds ##########
@@ -106,7 +106,7 @@ init -1 python hide:
     config.default_afm_time = 5
 ## Between screens of the game menu.
 
-# define config.intra_transition = None
+define config.intra_transition = None
 
 
 ## A transition that is used after a game has been loaded.
@@ -123,7 +123,7 @@ init -1 python hide:
 
 ## Used when entering the main menu after the game has ended.
 
-define config.end_game_transition = None
+define config.end_game_transition = Dissolve(0.3)
 
 ## Used when entering the main menu after the splashscreen
 
