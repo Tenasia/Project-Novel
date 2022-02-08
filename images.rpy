@@ -971,8 +971,8 @@ image kikuchiyo upset_dark :
 ### Cases Page ##############################
 
 
-image img1 = "images/bg temp/bg apartment.png"
-image img2 = "images/bg temp/bg cram_hallway.jpg"
+image img1 = "images/bg_temp/bg apartment.png"
+image img2 = "images/bg_temp/bg cram_hallway.jpg"
 image img3 = "gui/cases/unknown.png"
 image img4 = "gui/cases/unknown.png"
 image img5 = "gui/cases/unknown.png"
