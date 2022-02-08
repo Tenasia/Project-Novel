@@ -40,6 +40,7 @@ init:
     $ person_of_interest = 0
     $ casefilecrimesave = 1
     $ persistent.person_of_interests = 0
+    
     #list of persons also the buttons for them
     define person1 = False
     define person2 = False
@@ -48,9 +49,17 @@ init:
     define person5 = False
     define person6 = False
     define person7 = False
+    define person8 = False
+    define person9 = False
+    define person10 = False
     
-    #person 1 notes the notes pasted on the page
+    #person1 notes pasted on the page
+
+    # person1 name if they haven't meet
+
+    # person1 note on the portrait
     define person_info1 = None
+
     define person_note1 = None
     define person_note1_1 = None
     define person_note1_2 = None
@@ -287,37 +296,5 @@ init -5:
         "day" : { "label" : _("昼"), "icon" : "gui/game_menu_icons/midday.png" },
         "evening" : { "label" : _("夕方"), "icon" : "gui/game_menu_icons/sunset.png" },
         "night" : { "label" : _("夜"), "icon" : "gui/game_menu_icons/midnight.png" },
-    }
-
-
-init -1 python:
-
-    display_desc = ""
-    
-    #add words to the dictionary
-    glossary_dict = \
-        {'Cook': """                {size=50}CUT{/size} 
-        
-- Cut your foreskin
-        """,
-        'Cut': """ Cut the damned food son """,
-        'Your Mom': """ We gotta get back to the bed mom hehehehehehe""",
-        'TEST': """ Cook the damned food son """,
-        'TEST2': """ Cut the damned food son """,
-        'TEST3': """ We gotta get back to the bed mom hehehehehehe""",
-        'TEST4': """ Cook the damned food son """,
-        'TEST5': """ Cut the damned food son """,
-        'TEST 1Mom': """ We gotta get back to the bed mom hehehehehehe""",
-        'TEST7': """ Cook the damned food son """,
-        'TEST8': """ Cut the damned food son """,
-        'TEST 2Mom': """ We gotta get back to the bed mom hehehehehehe""",
-        'TEST9': """ Cook the damned food son """,
-        'TEST10': """ Cut the damned food son """,
-        'TEST 3Mom': """ We gotta get back to the bed mom hehehehehehe""",
-        'TEST11': """ Cook the damned food son """,
-        'TEST12': """ Cut the damned food son """,
-        'TEST 4Mom': """ We gotta get back to the bed mom hehehehehehe""",
-
-
     }
 

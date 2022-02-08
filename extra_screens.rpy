@@ -24,6 +24,8 @@ screen tips_page():
                 idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/pageflip.wav"
                 action ShowMenu("gallery", transition= None)
 
             imagebutton:
@@ -32,6 +34,8 @@ screen tips_page():
                 idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/pageflip.wav"
                 action ShowMenu("game_menu", transition= None)
 
         frame:
@@ -48,6 +52,8 @@ screen tips_page():
                     idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
                     hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
                     selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
                     action ShowMenu("tips_page", transition= None)
 
     default current_word = None
@@ -164,6 +170,8 @@ screen tips_page():
         hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
         selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
         insensitive None
+        hover_sound None
+        activate_sound "audio/sfx/clickcool.wav"
         action Return()
 # screen cardbook
 
@@ -190,6 +198,8 @@ screen gallery():
                 idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/pageflip.wav"
                 action ShowMenu("tips_page", transition= None)
         
             imagebutton:
@@ -198,6 +208,8 @@ screen gallery():
                 idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
                 hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
                 selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
+                hover_sound None
+                activate_sound "audio/sfx/pageflip.wav"
                 action ShowMenu("game_menu", transition= None)
     
         frame:
@@ -213,6 +225,8 @@ screen gallery():
                     idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
                     hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
                     selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
                     action ShowMenu("gallery", transition= None)
                     
             $start = gallery_page * maxperpage
@@ -326,6 +340,8 @@ screen gallery():
         hover "gui/gui_buttons/GUI main_buttons/back1_selected.png"
         selected_idle "gui/gui_buttons/GUI main_buttons/back1_selected.png"
         insensitive None
+        hover_sound None
+        activate_sound "audio/sfx/clickcool.wav"
         action Return()
 init -2:
 
