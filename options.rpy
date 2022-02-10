@@ -104,6 +104,7 @@ init -1 python hide:
     config.game_main_transition = ComposedTransition(Dissolve(2.0))
 
     config.default_afm_time = 5
+
 ## Between screens of the game menu.
 
 define config.intra_transition = None

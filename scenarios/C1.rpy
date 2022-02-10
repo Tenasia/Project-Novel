@@ -83,6 +83,7 @@ label prologue:
     $ add_seen_words("1-1")
     $ add_seen_words("1-2")
     $ add_seen_words("1-3")
+    $ add_seen_words("2-1")
     # scene bg unknown_place    
     # scene bg japan
     show fuuji sigh 
@@ -123,6 +124,10 @@ label prologue:
 
     Akane "Pssh, alright alright."
 
+    $ case_of_interest = 1
+    $ persistent.cage_of_interests = 1 
+    $ case_note1_1 = "first_note"
+    $ available_page_case = 1
 
     show img4
     hide img4   
@@ -137,6 +142,7 @@ label prologue:
 
     $ persistent.person_of_interests = 2
     $ person_of_interest = 2
+    $ person_note2 = True
     $ person2 = True
 
     Fuuji "You never get tired, do you?"
@@ -156,6 +162,7 @@ label prologue:
     hide akane 
     show fuuji smile 
     Fuuji "I do.{w} And thanks mom for keeping up with my selfishness."
+    $ available_page_people = 1
     
     show fuuji smile_dark 
     Thought "We weren’t exactly rich, but we live comfortably because we’ve been receiving financial assistance from a certain organization my dad has an affiliation with, and mom provides us with everything else we need."
@@ -164,6 +171,12 @@ label prologue:
     show akane sad 
     Akane "..."
     show akane sad_dark 
+
+    $ case_of_interest = 2
+    $ persistent.cage_of_interests = 2
+    $ case_note2_1 = "first_note"
+    $ available_page_case = 2
+
 
     Mom "Son, there’s no need to thank me, it’s my responsibility after all, if I can see you two being happy then I’m also happy."
     Thought "I smiled at mom. She clearly supports us as best as she can."
@@ -176,6 +189,7 @@ label prologue:
     Thought "She proceeds to eat without looking at the food."
     hide akane 
     show fuuji happy 
+    $ person_note2_1 = "first_note"
     Fuuji "Akane, you can still come to the house whenever you feel like it, just contact me before doing so, alright?"
     hide fuuji 
     show akane shock 
@@ -212,6 +226,11 @@ label school:
     scene bg school_room 
     with fade
     show fuuji neutral 
+
+    $ persistent.person_of_interests = 3
+    $ person_of_interest = 3
+    $ person_note3 = True
+    $ person3 = True
     Fuuji "..."
     show fuuji neutral2_dark
     Student "Ah, he's here... let's get back later yeah?"
@@ -230,6 +249,12 @@ label school:
     Thought "I know that I look unapproachable but I just can’t change it, I also don’t have any reason to make friends proactively."
     Thought "Of course, there were still some people who would talk to me, despite the rumors. But they didn’t take long to change their mind and believe it. The usual. Ah and well the bad ones let’s not forget them."
     show fuuji neutral_dark 
+
+    $ persistent.person_of_interests = 4
+    $ person_of_interest = 4
+    $ person_note4 = True
+    $ person4 = True
+
     Student "Yo Fuuji-kun, you’re still trying to act cool after all this time huh, that face really never fails to irritate me hahaha!"
     show fuuji sigh_dark 
     Thought "The man who’s also a third year but has a bigger and taller build than me has his ‘goons’ surrounding me."
@@ -293,6 +318,12 @@ label school:
     Student "For once."
     show fuuji sigh 
     Fuuji "..."
+
+    $ persistent.person_of_interests = 5
+    $ person_of_interest = 5
+    $ person_note5 = True
+    $ person5 = True
+
     show fuuji sigh_dark
     Student "Phew! Man, that was tiresome."
     Thought "He lets go of me, the other students that was here was just watching."
@@ -346,6 +377,12 @@ label application:
     with fade 
     play music audio.day fadein 1.0
     show fuuji neutral2
+
+    $ persistent.person_of_interests = 6
+    $ person_of_interest = 6
+    $ person_note6 = True
+    $ person6 = True
+
     Fuuji "Hmmm… This cram school is neat."
     show fuuji neutral2_dark
     Thought "By that I meant that they have the newest equipment."
@@ -357,6 +394,10 @@ label application:
     hide fuuji 
     show kikuchiyo neutral with fade
     play music audio.presence fadein 1.0
+    $ persistent.person_of_interests = 7
+    $ person_of_interest = 7
+    $ person_note7 = True
+    $ person7 = True
     Princess "..."
     show kikuchiyo neutral_dark 
     Thought "I met her, a girl in Kimono entered the premise with a 2 man in a traditional garb side by side as if ready to answer to any whims of the maiden."
@@ -367,6 +408,10 @@ label application:
     Thought "He’s readying his stance to wield his sword to what seems like a katana with that size."
     show kikuchiyo neutral 
     Princess "..."
+    $ persistent.person_of_interests = 8
+    $ person_of_interest = 8
+    $ person_note8 = True
+    $ person8 = True
     show kikuchiyo neutral_dark
     Fuuji "...Ah, I'm sorry."
     hide kikuchiyo 
@@ -382,6 +427,16 @@ label application:
     Thought "When Akane wanted to be in a school that is popular, we decided to move here, that was just a few years ago."
     Thought "As you already guess my mother and I heed to Akane seemingly. We love her that much, but she’s still annoying."
     stop music fadeout 1.0
+    $ persistent.person_of_interests = 9
+    $ person_of_interest = 9
+    $ person_note9 = True
+    $ person9 = True
+
+    $ persistent.person_of_interests = 10
+    $ person_of_interest = 10
+    $ person_note10 = True
+    $ person10 = True
+
     Thought "After a few minutes the said people came back to where they came from, and the line was restored, seemingly back to normal. Even the people who bowed are now standing upright and some of them sighed as they do."
     play music audio.day fadein 1.0
     Applicant "Sheesh, that was scary. Is the {i}hime{/i} {size=-10}(Princess){/size} applying on this cram school as well?"
@@ -395,11 +450,18 @@ label application:
     Thought "He’s got a point, if a high-profile person needs to study for their exams, they could easily hire a personal instructor to teach the girl." 
     Thought "She must have her own reasons, but there’s not much going to happen if I keep thinking about it.{w} The two man is now quiet,{w}  Ah I was staring at them all this time."
     hide fuuji 
+    $ persistent.person_of_interests = 11
+    $ person_of_interest = 11
+    $ person_note11 = True
+    $ person11 = True
+    $ available_page_people = 2
+
     Applicant "..."
     Applicant "I just remembered, let’s go grab a drink, it seems like this would take a while ahaha…"
     show fuuji sigh 
     Thought "..."
     show fuuji sigh_dark
+    
     Thought "Sigh, anyway just a few more applicants before my turn, their building is quite nice and accommodating so the waiting isn’t that tiresome."
     hide fuuji 
     stop music fadeout 1.0
@@ -440,6 +502,7 @@ label meeting:
     Akane "Aniki!"
     hide akane 
     show fuuji neutral 
+    $ available_page_people = 3
     Fuuji "Akane, did you inform Mom you’re going out?"
     show fuuji neutral_dark
     Thought "I asked,{w} a senseless one."

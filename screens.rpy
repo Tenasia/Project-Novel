@@ -51,8 +51,8 @@ style scrollbar:
 
 style vscrollbar:
     xsize gui.scrollbar_size
-    base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+    base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile, xsize = 19)
+    thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile, xsize = 19)
 
 style slider:
     ysize gui.slider_size
@@ -88,9 +88,9 @@ screen say(who, what, side_image=None, two_window=False):
                     xalign 0.5
                     yalign 0.5
                     yoffset -125
-                    text who id "who" font "fonts/Poppins-Regular.ttf"
+                    text who id "who" font "fonts/Poppins-Light.ttf" outlines [(1, "#00000099", 0, 0)]
             hbox:
-                text what id "what" yoffset 65 xoffset -170 font"fonts/Poppins-Regular.ttf"
+                text what id "what" yoffset 65 xoffset -170 font"fonts/Poppins-Light.ttf" outlines [(1, "#00000099", 0, 0)]
        
     else:
         
@@ -117,12 +117,13 @@ screen say(who, what, side_image=None, two_window=False):
                         text who:
                             yoffset -75
                             id "who" xalign 0.5 xoffset -685 
-                            font "fonts/Poppins-Regular.ttf"
+                            font "fonts/Poppins-Light.ttf"
+                            outlines [(1, "#00000099", 0, 0)]
                             # if (len(_history_list) == 0) or (len(_history_list) > 0 and _history_list[-1].who != who):
                             #     at trans_say_label
                                 
 
-            text what id "what" yoffset 25 xoffset -170 font "fonts/Poppins-Regular.ttf"
+            text what id "what" yoffset 25 xoffset -170 font "fonts/Poppins-Light.ttf" outlines [(1, "#00000099", 0, 0)]
             
     if side_image:
         add side_image
@@ -750,7 +751,7 @@ screen info_panel(label_text, message_text, icon_d, alignment, trans=None):
 
 init -2:
     style info_panel_label_text is text:
-        font "fonts/Poppins-Regular.ttf"
+        font "fonts/Poppins-Light.ttf"
         size 20
         spacing 0
         kerning 0
@@ -772,7 +773,7 @@ init -2:
 screen game_menu():
     key "mousedown_3" action Return()
     
-    style_prefix "game_menu" tag menu
+    style_prefix "game_menu" tag case
     
     $ hours_played = convertSeconds( renpy.get_game_runtime() )[0]
     $ minutes_played = convertSeconds( renpy.get_game_runtime() )[1]
@@ -781,10 +782,10 @@ screen game_menu():
 
 
     add "gui/game_frames/right_click_bg.png"
-   
-            
-    # tag saymenu
-    if notebook_page == "bloody":
+               
+    ### The state of the notebook itself #########################################
+
+    if notebook_people == "bloody":
         add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
     else:
         frame:
@@ -811,6 +812,8 @@ screen game_menu():
                     activate_sound "audio/sfx/pageflip.wav"
                     action ShowMenu("gallery", transition= None)
 
+    ### The state of the notebook page for people's page ##########################
+
             frame:
                 background None
                 xoffset 70
@@ -829,71 +832,270 @@ screen game_menu():
                         hover_sound None
                         activate_sound "audio/sfx/pageflip.wav"
                         action ShowMenu("game_menu", transition= None)
-        
-    if person_of_interest == 1:
-            add "gui/people_info/profile1.png" xpos 729 ypos 242        
-    elif person_of_interest == 2:
-        add "gui/people_info/casefilephotom2.png" xpos 729 ypos 154 at casefiletransform
 
-    if notebook_page == False:
+    ### The number of people and their profile sprites ############################################
+
+    if person_of_interest == 1:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242        
+    elif person_of_interest == 2:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242
+    elif person_of_interest == 3:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242
+    elif person_of_interest == 4:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242
+    elif person_of_interest == 5:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242
+    elif person_of_interest == 6:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242
+    elif person_of_interest == 7:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242
+    elif person_of_interest == 8:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242
+    elif person_of_interest == 9:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242
+    elif person_of_interest == 10:
+        add "gui/people_info/profile1.png" xpos 729 ypos 242    
+
+
+    ### The number of buttons on the list of people ########################################
+
+    if notebook_page_people == 1:
         vbox:
             xpos 200 
             ypos 242
             if person1 == True:
-                textbutton "1st page":
+                textbutton "Takumi":
                     hover_sound None
                     activate_sound "audio/sfx/pageflip.wav"
                     text_font "fonts/Kalam-Regular.ttf"
+                    text_size 36
                     if person_of_interest == 1:
                         action SetVariable("person_of_interest", 1)
                     else:
                         action SetVariable("person_of_interest", 1)
             if person2 == True:
-                textbutton "2nd page":
-                        hover_sound None
-                        activate_sound "audio/sfx/pageflip.wav"
-                        text_font "fonts/Kalam-Regular.ttf"
-                        if person_of_interest == 2:
-                            action SetVariable("person_of_interest", 2) 
-                        else:
-                            action SetVariable("person_of_interest", 2)  
+                textbutton "Nakamura":
+                    yoffset -10
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 2:
+                        action SetVariable("person_of_interest", 2) 
+                    else:
+                        action SetVariable("person_of_interest", 2)  
             if person3 == True:
-                textbutton "3rd page":
-                        hover_sound None
-                        activate_sound "audio/sfx/pageflip.wav"
-                        text_font "fonts/Kalam-Regular.ttf"
-                        if person_of_interest == 3:
-                            action SetVariable("person_of_interest", 3) 
-                        else:
-                            action SetVariable("person_of_interest", 3) 
+                textbutton "Hiraku":
+                    yoffset -15
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 3:
+                        action SetVariable("person_of_interest", 3) 
+                    else:
+                        action SetVariable("person_of_interest", 3) 
             if person4 == True:
-                textbutton "4th page":
-                        hover_sound None
-                        activate_sound "audio/sfx/pageflip.wav"
-                        text_font "fonts/Kalam-Regular.ttf"
-                        if person_of_interest == 4:
-                            action SetVariable("person_of_interest", 4) 
-                        else:
-                            action SetVariable("person_of_interest", 4)
+                textbutton "TBD":
+                    yoffset -20
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 4:
+                        action SetVariable("person_of_interest", 4) 
+                    else:
+                        action SetVariable("person_of_interest", 4)
             if person5 == True:
-                textbutton "5th page":
-                        hover_sound None
-                        activate_sound "audio/sfx/pageflip.wav"
-                        text_font "fonts/Kalam-Regular.ttf"
-                        if person_of_interest == 5:
-                            action SetVariable("person_of_interest", 5) 
-                        else:
-                            action SetVariable("person_of_interest", 5)  
+                textbutton "Hikari":
+                    yoffset -25
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 5:
+                        action SetVariable("person_of_interest", 5) 
+                    else:
+                        action SetVariable("person_of_interest", 5)  
             if person6 == True:
-                textbutton "6th page":
-                        hover_sound None
-                        activate_sound "audio/sfx/pageflip.wav"
-                        text_font "fonts/Kalam-Regular.ttf"
-                        if person_of_interest == 6:
-                            action SetVariable("person_of_interest", 6) 
-                        else:
-                            action SetVariable("person_of_interest", 6)
+                textbutton "Maeda":
+                    yoffset -30
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 6:
+                        action SetVariable("person_of_interest", 6) 
+                    else:
+                        action SetVariable("person_of_interest", 6)
+            if person7 == True:
+                textbutton "Tetsuro":
+                    yoffset -35
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 7:
+                        action SetVariable("person_of_interest", 7) 
+                    else:
+                        action SetVariable("person_of_interest", 7)
+            if person8 == True:
+                textbutton "Kotani":
+                    yoffset -40
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 8:
+                        action SetVariable("person_of_interest", 8) 
+                    else:
+                        action SetVariable("person_of_interest", 8)
+            if person9 == True:
+                textbutton "Eizo":
+                    yoffset -45
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 9:
+                        action SetVariable("person_of_interest", 9) 
+                    else:
+                        action SetVariable("person_of_interest", 9)
+            if person10 == True:
+                textbutton "Genji":
+                    yoffset -50
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 10:
+                        action SetVariable("person_of_interest", 10) 
+                    else:
+                        action SetVariable("person_of_interest", 10)
+    elif notebook_page_people == 2:
+        vbox:
+            xpos 200 
+            ypos 242
+            if person11 == True:
+                textbutton "Takumi":
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    text_size 36
+                    if person_of_interest == 11:
+                        action SetVariable("person_of_interest", 11)
+                    else:
+                        action SetVariable("person_of_interest", 11)
+            if person12 == True:
+                textbutton "Nakamura":
+                    yoffset -10
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 12:
+                        action SetVariable("person_of_interest", 12) 
+                    else:
+                        action SetVariable("person_of_interest", 12)  
+            if person13 == True:
+                textbutton "Hiraku":
+                    yoffset -15
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 13:
+                        action SetVariable("person_of_interest", 13) 
+                    else:
+                        action SetVariable("person_of_interest", 13) 
+            if person14 == True:
+                textbutton "TBD":
+                    yoffset -20
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 4:
+                        action SetVariable("person_of_interest", 4) 
+                    else:
+                        action SetVariable("person_of_interest", 4)
+            if person15 == True:
+                textbutton "Hikari":
+                    yoffset -25
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 15:
+                        action SetVariable("person_of_interest", 15) 
+                    else:
+                        action SetVariable("person_of_interest", 15)  
+            if person16 == True:
+                textbutton "Maeda":
+                    yoffset -30
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 16:
+                        action SetVariable("person_of_interest", 16) 
+                    else:
+                        action SetVariable("person_of_interest", 16)
+            if person17 == True:
+                textbutton "Tetsuro":
+                    yoffset -35
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 17:
+                        action SetVariable("person_of_interest", 17) 
+                    else:
+                        action SetVariable("person_of_interest", 17)
+            if person18 == True:
+                textbutton "Kotani":
+                    yoffset -40
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 18:
+                        action SetVariable("person_of_interest", 18) 
+                    else:
+                        action SetVariable("person_of_interest", 18)
+            if person19 == True:
+                textbutton "Eizo":
+                    yoffset -45
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 19:
+                        action SetVariable("person_of_interest", 19) 
+                    else:
+                        action SetVariable("person_of_interest", 19)
+            if person20 == True:
+                textbutton "Genji":
+                    yoffset -50
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if person_of_interest == 20:
+                        action SetVariable("person_of_interest", 20) 
+                    else:
+                        action SetVariable("person_of_interest", 20)
+    
+    ### The pages flips ###############
 
+    if available_page_people >= 2:
+        imagebutton:
+            # NEXT   
+            idle "gui/cases_ui/right.png"
+            hover "gui/cases_ui/right_hover.png"
+            xpos 440 ypos 742
+            hover_sound None
+            activate_sound "audio/sfx/pageflip.wav"
+            if notebook_page_people == available_page_people:
+                action NullAction()
+            else:
+                action SetVariable("notebook_page_people", notebook_page_people + 1)
+        imagebutton:
+            # PREVIOUS
+            idle "gui/cases_ui/left.png"
+            hover "gui/cases_ui/left_hover.png"
+            xpos 305 ypos 723
+            hover_sound None
+            activate_sound "audio/sfx/pageflip.wav"
+            if notebook_page_people == 1:
+                action NullAction()
+            else:
+                action SetVariable("notebook_page_people", notebook_page_people - 1)
+
+
+    ### The content of each people's information per page ###################################
 
     frame:
         background None
@@ -902,8 +1104,10 @@ screen game_menu():
         xpos 725
         ypos 420
         xsize 482
-        ysize 495
-        # Info near profile
+        ysize 500
+
+        ### Information near the image sprite #######################
+
         hbox:
             xoffset 250
             yoffset -155
@@ -912,51 +1116,264 @@ screen game_menu():
                     if person_info1 == "redacted":
                         vbox:
                             yoffset -55
-                            text "{color=#000}John Doe" size 28 font "fonts/Kalam-Regular.ttf"
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
                         vbox:
-                            yoffset 15 xoffset -130
-                            text "{color=#000}19" size 28 font "fonts/Kalam-Regular.ttf"
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
                         vbox:
-                            yoffset 82.5 xoffset -160
-                            text "{color=#000}Police" size 28 font "fonts/Kalam-Regular.ttf"
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
                     else:
                         vbox:
                             yoffset -55
-                            text "{color=#000}John Doe" size 28 font "fonts/Kalam-Regular.ttf"
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
                         vbox:
-                            yoffset 15 xoffset -130
-                            text "{color=#000}19" size 28 font "fonts/Kalam-Regular.ttf"
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
                         vbox:
-                            yoffset 82.5 xoffset -160
-                            text "{color=#000}Police" size 28 font "fonts/Kalam-Regular.ttf"
-                
-        # Info texts
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 2:
+                if person_note2 == True:
+                    if person_info2 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 3:
+                if person_note3 == True:
+                    if person_info3 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 4:
+                if person_note4 == True:
+                    if person_info4 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 5:
+                if person_note5 == True:
+                    if person_info5 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 6:
+                if person_note6 == True:
+                    if person_info6 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 7:
+                if person_note7 == True:
+                    if person_info7 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 8:
+                if person_note8 == True:
+                    if person_info8 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 9:
+                if person_note9 == True:
+                    if person_info9 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+            if person_of_interest == 10:
+                if person_note10 == True:
+                    if person_info10 == "redacted":
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+                    else:
+                        vbox:
+                            yoffset -55
+                            text "{color=#000}Inoue Hiraku" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.05, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 10 xoffset -190
+                            text "{color=#000}19" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.65, "#00000099", 0, 0)]
+                        vbox:
+                            yoffset 77.5 xoffset -220
+                            text "{color=#000}Police" size 30 font "fonts/Kalam-Regular.ttf" outlines [(0.75, "#00000099", 0, 0)]
+
+
+        ### Information content about themselves ################################
+
         viewport:
             scrollbars "vertical"
+            xoffset 10
+            yoffset -5
             mousewheel True
             draggable True
             side_yfill True
 
-            
             vbox:
-                # page content texts
                 if person_of_interest == 1:
-                    
                     if person_note1 == True:
                         add None
-                        # text "{color=#000}Introduction to case 1" size 29 font "fonts/Kalam-Regular.ttf"
                     if person_note1_1 == "first_note":
                         null height 20
-                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 29 font "fonts/Kalam-Regular.ttf"
+                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 32 font "fonts/Kalam-Regular.ttf"
                     elif person_note1_1 == "first_note_redacted":
                         null height 20
-                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 29 font "fonts/Kalam-Regular.ttf"
+                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 30 font "fonts/Kalam-Regular.ttf"
                     if person_note1_2 == "second_note":
                         null height 20
-                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 29 font "fonts/Kalam-Regular.ttf"
+                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
                     elif person_note1_2 == "second_note_redacted":
                         null height 20
-                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 29 font "fonts/Kalam-Regular.ttf"
+                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 30 font "fonts/Kalam-Regular.ttf"
+                if person_of_interest == 2:
+                    if person_note2 == True:
+                        add None
+                    if person_note2_1 == "first_note":
+                        null height 20
+                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
+                    elif person_note2_1 == "first_note_redacted":
+                        null height 20
+                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 30 font "fonts/Kalam-Regular.ttf"
+                    if person_note2_2 == "second_note":
+                        null height 20
+                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
+                    elif person_note2_2 == "second_note_redacted":
+                        null height 20
+                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 30 font "fonts/Kalam-Regular.ttf"
             
 
 ### INFO PANEL ####################
@@ -2251,9 +2668,9 @@ screen history():
 
     frame:
         background Image("gui/game_frames/right_click_bg.png")
-        add "gui/scrollbar/black_arrows.png" xalign 0.96575 yoffset 47.5 xoffset -50
+        add "gui/scrollbar/black_arrows.png" xalign 0.95 yoffset 37 xoffset -28
         vpgrid:
-            yoffset 75  
+            yoffset 75 - 34  
             ysize 910
             cols 1
             yinitial 1.0

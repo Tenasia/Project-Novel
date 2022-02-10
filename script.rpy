@@ -52,10 +52,6 @@ label _hide_windows_override:
 
     return
 
-# label after_load:
-#     play sound "audio/sfx/clicktriangle.wav"
-#     pause 0.5
-#     return
 
 label start1:
 

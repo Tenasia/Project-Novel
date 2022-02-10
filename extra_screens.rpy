@@ -1,6 +1,6 @@
 screen tips_page():
     key "mousedown_3" action Return()
-    style_prefix "game_menu" tag menu
+    style_prefix "game_menu" tag case
 
     $ hours_played = convertSeconds( renpy.get_game_runtime() )[0]
     $ minutes_played = convertSeconds( renpy.get_game_runtime() )[1]
@@ -179,7 +179,7 @@ screen gallery():
     
     key "mousedown_3" action Return()
 
-    style_prefix "game_menu" tag menu
+    style_prefix "game_menu" tag case
 
     $ hours_played = convertSeconds( renpy.get_game_runtime() )[0]
     $ minutes_played = convertSeconds( renpy.get_game_runtime() )[1]
@@ -187,118 +187,168 @@ screen gallery():
     $ bgm_title = get_current_bgm_title()
     
     add "gui/game_frames/right_click_bg.png"
-    frame:
-        background None
+    ### The state of the notebook itself #########################################
+
+    if notebook_case == "bloody":
         add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
-        hbox:
-
-            imagebutton:
-                xoffset 530
-                yoffset 102.5
-                idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
-                hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-                selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
-                hover_sound None
-                activate_sound "audio/sfx/pageflip.wav"
-                action ShowMenu("tips_page", transition= None)
-        
-            imagebutton:
-                xoffset 30
-                yoffset 102.5
-                idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
-                hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-                selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
-                hover_sound None
-                activate_sound "audio/sfx/pageflip.wav"
-                action ShowMenu("game_menu", transition= None)
-    
+    else:
         frame:
-            xoffset 25
-            yoffset 65
-
             background None
-            add "gui/game_frames/notebook_paper_cases.png" xoffset 105 yoffset 85.5
+            add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
             hbox:
+
                 imagebutton:
-                    xoffset 335
-                    yoffset 25
-                    idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
-                    hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
-                    selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+                    xoffset 530
+                    yoffset 102.5
+                    idle "gui/gui_buttons/GUI notebook_buttons/tips_idle.png"
+                    hover "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
+                    selected_idle "gui/gui_buttons/GUI notebook_buttons/tips_selected.png"
                     hover_sound None
                     activate_sound "audio/sfx/pageflip.wav"
-                    action ShowMenu("gallery", transition= None)
-                    
-            $start = gallery_page * maxperpage
-            $end = min(start + maxperpage - 1, len(gallery_items) - 1)
+                    action ShowMenu("tips_page", transition= None)
+            
+                imagebutton:
+                    xoffset 30
+                    yoffset 102.5
+                    idle "gui/gui_buttons/GUI notebook_buttons/people_idle.png"
+                    hover "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
+                    selected_idle "gui/gui_buttons/GUI notebook_buttons/people_selected.png"
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    action ShowMenu("game_menu", transition= None)
+        
             frame:
+                xoffset 25
+                yoffset 65
                 background None
-                
-                xalign 0.20 
-                yalign 0.25
-                grid maxnumx maxnumy:
+                add "gui/game_frames/notebook_paper_cases.png" xoffset 105 yoffset 85.5
+                hbox:
+                    imagebutton:
+                        xoffset 335
+                        yoffset 25
+                        idle "gui/gui_buttons/GUI notebook_buttons/cases_idle.png"
+                        hover "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+                        selected_idle "gui/gui_buttons/GUI notebook_buttons/cases_selected.png"
+                        hover_sound None
+                        activate_sound "audio/sfx/pageflip.wav"
+                        action ShowMenu("gallery", transition= None)
 
-                    xspacing 150
-                    yspacing 100
-                    xalign 0.23
-                    yalign 0.35
-                    for i in range(start, end + 1):
-                        $gallery_items[i].refresh_lock()
-                        if gallery_items[i].is_locked:
-                            add gallery_items[i].locked:
-                                xsize 350
-                                ysize 250
-                        else:
-                            imagebutton idle gallery_items[i].thumb:
-                                xysize(350,250)
-                                action Show("gallery_closeup", dissolve, gallery_items[i].images)
+    ### The number of people and their profile sprites ############################################
 
-                                
-
-                    for i in range(end - start + 1, maxperpage):
-                        null 
-                grid maxnumx maxnumy:
-                    xspacing 275
-                    yspacing 300
-                    xalign 0.25
-                    yalign 0.65
-
-                    for i in range(start, end + 1):
-                        hbox:
+    if case_of_interest == 1:
+        add "gui/people_info/casefilephotom1.png" xpos 129 ypos 200       
+    elif case_of_interest == 2:
+        add "gui/people_info/casefilephotom2.png" xpos 129 ypos 200  
+    elif case_of_interest == 3:
+        add "gui/people_info/casefilephotom1.png" xpos 129 ypos 200  
+    elif case_of_interest == 4:
+        add "gui/people_info/casefilephotom2.png" xpos 129 ypos 200  
+    elif case_of_interest == 5:
+        add "gui/people_info/casefilephotom1.png" xpos 129 ypos 200  
+    elif case_of_interest == 6:
+        add "gui/people_info/casefilephotom2.png" xpos 129 ypos 200  
+    elif case_of_interest == 7:
+        add "gui/people_info/casefilephotom1.png" xpos 129 ypos 200  
+    elif case_of_interest == 8:
+        add "gui/people_info/casefilephotom2.png" xpos 129 ypos 200  
+    elif case_of_interest == 9:
+        add "gui/people_info/casefilephotom1.png" xpos 129 ypos 200  
+    elif case_of_interest == 10:
+        add "gui/people_info/casefilephotom2.png" xpos 129 ypos 200      
 
 
-                            xalign 0.20
-                            yalign 0.3 
-                            $total = gallery_items[i].num_images()
-                            $partial = gallery_items[i].num_unlocked
-                            text gallery_items[i].name:
-                                font "fonts/Kalam-Regular.ttf"
-                                color "#000"
-                            # text "[partial]/[total]"
-                    
-                    for i in range(end - start + 1, maxperpage):
-                        null
+    ### The number of buttons on the list of people ########################################
 
-            if gallery_page > 0:
-                imagebutton:
-                    idle "gui/gui_buttons/GUI notebook_buttons/left_idle.png"
-                    hover "gui/gui_buttons/GUI notebook_buttons/left.png"
-                    # style "chapter_name_label"
+    # if notebook_page_case == 1:
+    #     add None
+    
+    ### The pages flips ###############
 
-                    action SetVariable("gallery_page", gallery_page - 1)
-                    xalign 0.0875
-                    yalign 0.425
-            if (gallery_page + 1) * maxperpage < len(gallery_items):
-                imagebutton:
-                    idle "gui/gui_buttons/GUI notebook_buttons/right_idle.png"
-                    hover "gui/gui_buttons/GUI notebook_buttons/right.png"
-                    action SetVariable("gallery_page", gallery_page + 1)
-                    xalign 0.6
-                    yalign 0.425
-              
+    if available_page_case >= 2:
+        imagebutton:
+            # NEXT   
+            idle "gui/cases_ui/right.png"
+            hover "gui/cases_ui/right_hover.png"
+            xpos 600 ypos 875
+            hover_sound None
+            activate_sound "audio/sfx/pageflip.wav"
+            if case_of_interest == available_page_case:
+                action NullAction()
+            else:
+                action SetVariable("case_of_interest", case_of_interest + 1)
+        imagebutton:
+            # PREVIOUS
+            idle "gui/cases_ui/left.png"
+            hover "gui/cases_ui/left_hover.png"
+            xpos 500 ypos 875
+            hover_sound None
+            activate_sound "audio/sfx/pageflip.wav"
+            if case_of_interest == 1:
+                action NullAction()
+            else:
+                action SetVariable("case_of_interest", case_of_interest - 1)
 
-        default current_chapter = None
 
+    ### The content of each people's information per page ###################################
+
+    frame:
+        background None
+        xpadding 10
+        ypadding 10
+        xpos 725
+        ypos 200
+        xsize 482
+        ysize 725
+        if case_of_interest >= 1:
+            text str(case_of_interest) + "/" + str(available_page_case) size 32 font "fonts/Kalam-Regular.ttf" color "#000" yoffset 700
+        ### Information near the image sprite #######################
+
+
+
+        ### Information content about themselves ################################
+
+        viewport:
+            scrollbars "vertical"
+            xoffset 10
+            yoffset -7.5
+            mousewheel True
+            draggable True
+            side_yfill True
+
+            vbox:
+                if case_of_interest == 1:
+                    if case_note1 == True:
+                        add None
+                    if case_note1_1 == "first_note":
+                        null height 20
+                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
+                    elif case_note1_1 == "first_note_redacted":
+                        null height 20
+                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 30 font "fonts/Kalam-Regular.ttf"
+                    if case_note1_2 == "second_note":
+                        null height 20
+                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
+                    elif case_note1_2 == "second_note_redacted":
+                        null height 20
+                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 30 font "fonts/Kalam-Regular.ttf"
+                if case_of_interest == 2:
+                    if case_note2 == True:
+                        add None
+                    if case_note2_1 == "first_note":
+                        null height 20
+                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
+                    elif case_note2_1 == "first_note_redacted":
+                        null height 20
+                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 30 font "fonts/Kalam-Regular.ttf"
+                    if case_note2_2 == "second_note":
+                        null height 20
+                        text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
+                    elif case_note2_2 == "second_note_redacted":
+                        null height 20
+                        text "{color=#000}{s}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.{/s}, my first iteration was wrong," size 30 font "fonts/Kalam-Regular.ttf"
+    
+#### INFO PANEL ############################################# 
+    
     vbox style_suffix "chaptername_vbox":
         xalign 0.5
         xoffset 610
