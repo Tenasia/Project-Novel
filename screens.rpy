@@ -390,9 +390,10 @@ screen navigation():
                 insensitive "gui/gui_buttons/GUI main_buttons/blank_image.png"
                 hover_sound "audio/sfx/clickcool.wav"
                 activate_sound "audio/sfx/clicktriangle.wav"
-                action [SetField(no_rollback, "last_loaded_slot", newest_slot),
-                        FileLoad(newest_slot[1], confirm=False, page=newest_slot[0], newest=False),
-                        SensitiveIf(current_mode != "chapters")]
+                if newest_slot:
+                    action [SetField(no_rollback, "last_loaded_slot", newest_slot),
+                            FileLoad(newest_slot[1], confirm=False, page=newest_slot[0], newest=False),
+                            SensitiveIf(current_mode != "chapters")]
                 xalign 0.5
         
 
@@ -503,7 +504,7 @@ screen chapters():
             
             hbox at chapters_disappear(delay = 0):
                 add "gui/game_frames/arc_lines.png" xoffset 85
-                
+                # add ImageDissolve("gui/lineani.png", 1.0, 8)
                 imagebutton:
                     xoffset -75
                     idle "gui/gui_buttons/GUI main_buttons/arc1_idle.png"
@@ -790,7 +791,7 @@ screen game_menu():
     else:
         frame:
             background None
-            add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
+            add "gui/game_frames/black_image.png" xoffset 115 yoffset 160
 
             hbox:
                 imagebutton:

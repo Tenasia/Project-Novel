@@ -1,11 +1,5 @@
 
 label start:
-    # if persistent.firstchapter_clear:
-    #     jump prologue
-    # $ persistent.unlocked_text = [] 
-
-    
-    
     stop music fadeout 1.0
     stop movie
 
@@ -14,21 +8,6 @@ label start:
         set_info_scene("00")
         set_info_location("01")
         
-
-    # play music audio.maintheme
-    # scene black
-    # pause 3
-    # scene ecg pattern nor a large:
-    #     zoom 1.3
-    #     yalign 0.5
-    #     xalign 0.0
-    #     subpixel True
-    #     linear 150 xalign 1.0
-    # show smoke at smoke_rl(100, 0.6)
-    # with Dissolve(5)
-    # pause 1
-    # call discord_status ("Chapter 1", "2")
-
     play music audio.prologue
 
     scene bg war
@@ -63,31 +42,19 @@ label start:
 label prologue:
     scene bg living_room
 
-   
     python:
         set_info_scene("01")
         set_info_location("02")
         set_info_date(2, "May", "wed")
         set_info_time("day")
 
-    show img1 
-    show img2 
-    hide img1 
-    hide img2
-    $ renpy.music.play(audio.thin_purple, channel="music", fadeout=1.0, fadein = 2.0)
-
+    play music audio.thin_purple
     
 
-    # play music audio.thin_purple fadeout 2.0 fadein 1.0
-    
-    $ add_seen_words("1-1")
-    $ add_seen_words("1-2")
-    $ add_seen_words("1-3")
-    $ add_seen_words("2-1")
-    # scene bg unknown_place    
-    # scene bg japan
     show fuuji sigh 
+
     $ show_date()
+
     Fuuji "Sigh, Akane you need to stop doing this. You’re already almost an adult."
     show fuuji sigh_dark
     Thought "We’re having our usual breakfast, when a strong taste was mixed in my hot drink."
@@ -96,8 +63,8 @@ label prologue:
     show akane smirk at right 
 
     $ persistent.person_of_interests = 1
-    $ person_note1 = True
     $ person_of_interest = 1
+    $ person_note1 = True
     $ person1 = True
 
     Akane "What, you mean adding dried chilies in your coffee is immature? Hah."
@@ -107,11 +74,15 @@ label prologue:
     show img3
     hide img3
     $ show_people()
+
     Thought "My little sister, Akane. She has always been mischievous since childhood, and does things that will annoy anyone. Although she only does it to me, it gets tiring at times."
     hide fuuji
     hide akane 
+
     $ show_date()
+
     $ show_people()
+
     with fade
     $ person_note1_1 = "first_note"
     show rain_particle
@@ -182,6 +153,9 @@ label prologue:
     Thought "I smiled at mom. She clearly supports us as best as she can."
     Thought "Akane has been silent this whole time."
 
+    $ tip_of_interest = 1
+    $ tip1 = True
+    
     show akane sad 
     Akane "..."
     show akane sad_dark
@@ -237,14 +211,6 @@ label school:
     hide fuuji 
     Thought "My classmates are avoiding me again, it was always like this since my early childhood having no father to grow with, there was a lot of rumors that I was the cause and whatnot, I ignore them."
     
-    
-    # ("4-1")
-    # ("5-1")
-    # ("6-1")
-    # ("7-1")
-    # ("8-1")
-    # ("9-1")
-    # ("10-1")
 
     Thought "I know that I look unapproachable but I just can’t change it, I also don’t have any reason to make friends proactively."
     Thought "Of course, there were still some people who would talk to me, despite the rumors. But they didn’t take long to change their mind and believe it. The usual. Ah and well the bad ones let’s not forget them."

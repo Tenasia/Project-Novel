@@ -11,12 +11,9 @@ screen tips_page():
     add "gui/game_frames/right_click_bg.png"
     frame:
 
-        #notebook cover
         background None
-        add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
-
+        add "gui/game_frames/black_image.png" xoffset 115 yoffset 160
         hbox:
-            #notebook stubs
             xoffset 160        
             imagebutton:
                 xoffset 200
@@ -39,12 +36,10 @@ screen tips_page():
                 action ShowMenu("game_menu", transition= None)
 
         frame:
-            #notebook paper
             background None
-            # align (0.15, 0.5)
             xoffset 70
             yoffset 50
-            add "gui/game_frames/notebook_paper.png" xoffset 60 yoffset 100.5
+            add "gui/game_frames/notebook_paper_cases.png" xoffset 60 yoffset 100.5
             hbox: 
                 imagebutton:
                     xoffset 455
@@ -55,82 +50,301 @@ screen tips_page():
                     hover_sound None
                     activate_sound "audio/sfx/pageflip.wav"
                     action ShowMenu("tips_page", transition= None)
+    ### The number of people and their profile sprites ############################################
 
-    default current_word = None
+    if tip_of_interest == 1:
+        add None
+    elif tip_of_interest == 2:
+        add None
+    elif tip_of_interest == 3:
+        add None
+    elif tip_of_interest == 4:
+        add None
+    elif tip_of_interest == 5:
+        add None
+    elif tip_of_interest == 6:
+        add None
+    elif tip_of_interest == 7:
+        add None
+    elif tip_of_interest == 8:
+        add None
+    elif tip_of_interest == 9:
+        add None
+    elif tip_of_interest == 10:
+        add None    
 
+
+    ### The number of buttons on the list of people ########################################
+
+    if notebook_page_tip == 1:
+        vbox:
+            xpos 200 
+            ypos 242
+            if tip1 == True:
+                textbutton "Cut":
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    text_size 36
+                    if tip_of_interest == 1:
+                        action SetVariable("tip_of_interest", 1)
+                    else:
+                        action SetVariable("tip_of_interest", 1)
+            if tip2 == True:
+                textbutton "Test":
+                    yoffset -10
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 2:
+                        action SetVariable("tip_of_interest", 2) 
+                    else:
+                        action SetVariable("tip_of_interest", 2)  
+            if tip3 == True:
+                textbutton "TE":
+                    yoffset -15
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 3:
+                        action SetVariable("tip_of_interest", 3) 
+                    else:
+                        action SetVariable("tip_of_interest", 3) 
+            if tip4 == True:
+                textbutton "TBD":
+                    yoffset -20
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 4:
+                        action SetVariable("tip_of_interest", 4) 
+                    else:
+                        action SetVariable("tip_of_interest", 4)
+            if tip5 == True:
+                textbutton "Hikari":
+                    yoffset -25
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 5:
+                        action SetVariable("tip_of_interest", 5) 
+                    else:
+                        action SetVariable("tip_of_interest", 5)  
+            if tip6 == True:
+                textbutton "Maeda":
+                    yoffset -30
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 6:
+                        action SetVariable("tip_of_interest", 6) 
+                    else:
+                        action SetVariable("tip_of_interest", 6)
+            if tip7 == True:
+                textbutton "Tetsuro":
+                    yoffset -35
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 7:
+                        action SetVariable("tip_of_interest", 7) 
+                    else:
+                        action SetVariable("tip_of_interest", 7)
+            if tip8 == True:
+                textbutton "Kotani":
+                    yoffset -40
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 8:
+                        action SetVariable("tip_of_interest", 8) 
+                    else:
+                        action SetVariable("tip_of_interest", 8)
+            if tip9 == True:
+                textbutton "Eizo":
+                    yoffset -45
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 9:
+                        action SetVariable("tip_of_interest", 9) 
+                    else:
+                        action SetVariable("tip_of_interest", 9)
+            if tip10 == True:
+                textbutton "Genji":
+                    yoffset -50
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 10:
+                        action SetVariable("tip_of_interest", 10) 
+                    else:
+                        action SetVariable("tip_of_interest", 10)
+    elif notebook_page_people == 2:
+        vbox:
+            xpos 200 
+            ypos 242
+            if tip11 == True:
+                textbutton "Takumi":
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    text_size 36
+                    if tip_of_interest == 11:
+                        action SetVariable("tip_of_interest", 11)
+                    else:
+                        action SetVariable("tip_of_interest", 11)
+            if tip12 == True:
+                textbutton "Nakamura":
+                    yoffset -10
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 12:
+                        action SetVariable("tip_of_interest", 12) 
+                    else:
+                        action SetVariable("tip_of_interest", 12)  
+            if tip13 == True:
+                textbutton "Hiraku":
+                    yoffset -15
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 13:
+                        action SetVariable("tip_of_interest", 13) 
+                    else:
+                        action SetVariable("tip_of_interest", 13) 
+            if tip14 == True:
+                textbutton "TBD":
+                    yoffset -20
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 14:
+                        action SetVariable("tip_of_interest", 14) 
+                    else:
+                        action SetVariable("tip_of_interest", 14)
+            if tip15 == True:
+                textbutton "Hikari":
+                    yoffset -25
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 15:
+                        action SetVariable("tip_of_interest", 15) 
+                    else:
+                        action SetVariable("tip_of_interest", 15)  
+            if tip16 == True:
+                textbutton "Maeda":
+                    yoffset -30
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 16:
+                        action SetVariable("tip_of_interest", 16) 
+                    else:
+                        action SetVariable("tip_of_interest", 16)
+            if tip17 == True:
+                textbutton "Tetsuro":
+                    yoffset -35
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 17:
+                        action SetVariable("tip_of_interest", 17) 
+                    else:
+                        action SetVariable("tip_of_interest", 17)
+            if tip18 == True:
+                textbutton "Kotani":
+                    yoffset -40
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 18:
+                        action SetVariable("tip_of_interest", 18) 
+                    else:
+                        action SetVariable("tip_of_interest", 18)
+            if tip19 == True:
+                textbutton "Eizo":
+                    yoffset -45
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 19:
+                        action SetVariable("tip_of_interest", 19) 
+                    else:
+                        action SetVariable("tip_of_interest", 19)
+            if tip20 == True:
+                textbutton "Genji":
+                    yoffset -50
+                    hover_sound None
+                    activate_sound "audio/sfx/pageflip.wav"
+                    text_font "fonts/Kalam-Regular.ttf"
+                    if tip_of_interest == 20:
+                        action SetVariable("tip_of_interest", 20) 
+                    else:
+                        action SetVariable("tip_of_interest", 20)
     
+    ### The pages flips ###############
 
-    use menu_page_title(_("あらすじ"), (1.0, 0.03))
+    if available_page_tip >= 2:
+        imagebutton:
+            # NEXT   
+            idle "gui/cases_ui/right.png"
+            hover "gui/cases_ui/right_hover.png"
+            xpos 440 ypos 742
+            hover_sound None
+            activate_sound "audio/sfx/pageflip.wav"
+            if notebook_page_tip == available_page_tip:
+                action NullAction()
+            else:
+                action SetVariable("notebook_page_tip", notebook_page_tip + 1)
+        imagebutton:
+            # PREVIOUS
+            idle "gui/cases_ui/left.png"
+            hover "gui/cases_ui/left_hover.png"
+            xpos 305 ypos 723
+            hover_sound None
+            activate_sound "audio/sfx/pageflip.wav"
+            if notebook_page_tip == 1:
+                action NullAction()
+            else:
+                action SetVariable("notebook_page_tip", notebook_page_tip - 1)
 
-    if current_word:
-        label word_titles[current_word] style "chapter_name_label" align (0.51, 0.21) text_color "#000"
-        # text "________________________" xalign 0.51 yalign 0.24 color "#000" font "fonts/Kalam-Regular.ttf"
+
+    ### The content of each people's information per page ###################################
+
+    frame:
+        background None
+        xpadding 10
+        ypadding 10
+        xpos 725
+        ypos 198
+        xsize 482
+        ysize 722
+
+        ### Information content about themselves ################################
+
+        viewport:
+            scrollbars "vertical"
+            xoffset 10
+            yoffset -5
+            mousewheel True
+            draggable True
+            side_yfill True
+
+            vbox:
+
+                if tip_of_interest == 1:
+                    null height 20
+                    text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
+
+                if tip_of_interest == 2:
+                    null height 20
+                    text "{color=#000}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." size 30 font "fonts/Kalam-Regular.ttf"
+
+### INFO PANEL ####################
     
-    hbox:
-        spacing 50
-        xalign 0.225
-        yalign 0.60
-
-        frame:
-            style_prefix "chapter_buttons"
-            yoffset -10
-            ysize 600
-            has vpgrid:
-                cols 1
-                xfill True
-                spacing 0
-            
-            if seen_words:
-                # ysize 1000
-
-                if len(seen_words.keys()) >= 12:
-                    # ysize 1000
-                    scrollbars "vertical"
-                    mousewheel True
-                    draggable False
-
-
-                for k in sorted(seen_words.keys(), key=sort_word_buttons):
-                    button:
-                        text word_labels[k] font "fonts/Kalam-Regular.ttf"
-                        sensitive "#000"
-                        action [SetScreenVariable("current_word", k), SensitiveIf(current_word != k)] 
-                        
-                        
-
-        frame:
-            
-            style_prefix "chapter_contents"
-            yoffset 60
-            ysize 625
-            window:
-                has viewport:
-                    id "word_contents_window_vp"
-                    mousewheel True
-                    ysize 575
-                    yoffset -100
-
-                if current_word:
-
-                    $ height_separator = 20
-
-                    vbox:
-  
-                        null height height_separator
-
-                        for obj in seen_words[current_word]:
-                            text word_definition[current_word + "-" + obj] font "fonts/Kalam-Regular.ttf"
-                            null height height_separator
-
-            vbar:
-                value YScrollValue("word_contents_window_vp")
-                bar_invert True
-                unscrollable "hide"
-                xsize 25
-                ysize 575
-                yoffset -20
-                xalign 1.0
-
     vbox style_suffix "chaptername_vbox":
         xalign 0.5
         xoffset 610
@@ -144,6 +358,7 @@ screen tips_page():
             add get_time_icon() xsize 60 ysize 60 xoffset -5 yoffset 0
 
             text "[gameinfo_date]" style_suffix "date_text"
+
 
     on "show" action [Preference("auto-forward", "disable"), SetField(config, "skipping", None)]
 
@@ -194,7 +409,7 @@ screen gallery():
     else:
         frame:
             background None
-            add "gui/game_frames/black_image.png" xoffset 75 yoffset 140
+            add "gui/game_frames/black_image.png" xoffset 115 yoffset 160
             hbox:
 
                 imagebutton:
@@ -298,7 +513,7 @@ screen gallery():
         xpos 725
         ypos 200
         xsize 482
-        ysize 725
+        ysize 722
         if case_of_interest >= 1:
             text str(case_of_interest) + "/" + str(available_page_case) size 32 font "fonts/Kalam-Regular.ttf" color "#000" yoffset 700
         ### Information near the image sprite #######################

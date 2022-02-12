@@ -25,6 +25,12 @@ init:
     $ rain2 = ImageDissolve("images/transitions/rain2.jpg", 1.0, 8)
     $ snow1 = ImageDissolve("images/transitions/snow1.png", 1.0, 8)
     $ puzz = ImageDissolve("images/transitions/puzz.png", 1.0, 8)
+    $ white = ImageDissolve("images/transitions/whitefade.png", 1.0, 8)
+    $ white1 = ImageDissolve("images/transitions/whitefade1.png", 3.50, 100, 0.5)
+    $ white2 = ImageDissolve("images/transitions/whitefade2.png", 3.75, 100, 0.5)
+    $ white3 = ImageDissolve("images/transitions/whitefade3.png", 3.75, 100, 0.5)
+    $ smallimage = ImageDissolve("images/transitions/whitefade3.png",  3.75, 100, 0.5)
+
 
     $ w1 = ImageDissolve("images/transitions/1.jpg", 1.0, 8)
     $ w2 = ImageDissolve("images/transitions/2.png", 1.0, 8)
@@ -61,5 +67,5 @@ init:
     $ w33 = ImageDissolve("images/transitions/33.png", 1.0, 8)
     $ w34 = ImageDissolve("images/transitions/34.png", 1.0, 8)
     $ w35 = ImageDissolve("images/transitions/35.png", 1.0, 8)
-    $ w36 = ImageDissolve("images/transitions/36.png", 1.0, 8)
+    $ w36 = ImageDissolve("images/transitions/36.jpg", 1.0, 8)
     $ w37 = ImageDissolve("images/transitions/37.png", 1.0, 8)

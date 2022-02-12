@@ -256,7 +256,7 @@ init:
     $ notebook_page_case = 1
     $ case_of_interest = 0
     $ available_page_case = 1
-    $ persistent.cage_of_interests = 0
+    $ persistent.case_of_interests = 0
 
     # list of persons also the buttons for them
     define case1 = False
@@ -295,7 +295,24 @@ init:
     define case_note2_9 = None
     define case_note2_10 = None
 
+init: 
+    $ notebook_tip = None
+    $ notebook_page_tip = 1
+    $ tip_of_interest = 0
+    $ available_page_tip = 1
+    $ persistent.tip_of_interests = 0
 
+    # List of words
+    define tip1 = False
+    define tip2 = False
+    define tip3 = False
+    define tip4 = False
+    define tip5 = False
+    define tip6 = False
+    define tip7 = False
+    define tip8 = False
+    define tip9 = False
+    define tip10 = False
 
 #Title of the button you chose
 

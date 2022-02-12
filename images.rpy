@@ -979,6 +979,10 @@ image img5 = "gui/cases/unknown.png"
 
 
 image black= "#000"
+image white= "#fff"
+
+
+
 
 
 image lockedthumb = "gui/game_frames/photocard.png"

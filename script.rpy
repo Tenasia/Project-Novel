@@ -52,31 +52,31 @@ label _hide_windows_override:
 
     return
 
-
 label start1:
-
     $_dismiss_pause = False
 
     stop music fadeout 2.0
-    scene black
+    
+
+
+    scene white
     hide screen navigation
     hide screen chapters
     hide screen main_menu
-    $ renpy.transition(Dissolve(2))
+    $ renpy.transition(white3)
     $ renpy.pause(5, hard = True)
 
 
     $ renpy.run(Start())
 
 label chapter1:
-
     stop music fadeout 2.0
     $_dismiss_pause = False
-    scene black 
+    scene white
     hide screen navigation
     hide screen chapters
     hide screen main_menu 
-    $ renpy.transition(Dissolve(2))
+    $ renpy.transition(white3)
     $ renpy.pause(5, hard = True)
     $ renpy.run(Start("prologue"))
     # jump prologue
@@ -129,8 +129,8 @@ init -2 python:
             weekday != "???"):
             raise ValueError("No such a weekday: {0}.".format(weekday))
         
-        gameinfo_date = "{0} {1} ({2})".format(str(month).zfill(2), str.upper(day).zfill(2), weekday.upper())
-
+        gameinfo_date = "{0} {1} ({2})".format(month, day, weekday.upper())
+        # gameinfo_date = "{0:02d} {1:02d} ({2:s})".format(month, day, weekday.upper())
     def get_current_bgm_title():
             
             now_playing = renpy.music.get_playing()
@@ -487,7 +487,7 @@ init -3 python:
         t -= 1
         return t * t * ((BACK_S + 1) * t + BACK_S) + 1
 
-    def ComposedTransition(transition1, transition2=None, inbetween_color="#000", inbetween_time=DELAY_NORMAL):
+    def ComposedTransition(transition1, transition2=None, inbetween_color="#fff", inbetween_time=DELAY_NORMAL):
         inbetween_image = Solid(color=inbetween_color)
         return MultipleTransition([False,
             transition1, inbetween_image,
