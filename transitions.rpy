@@ -64,7 +64,7 @@ init:
     $ w30 = ImageDissolve("images/transitions/30.png", 1.0, 8)
     $ w31 = ImageDissolve("images/transitions/31.png", 1.0, 8)
     $ w32 = ImageDissolve("images/transitions/32.png", 1.0, 8)
-    $ w33 = ImageDissolve("images/transitions/33.png", 1.0, 8)
+    $ w33 = ImageDissolve("images/transitions/33.png", 3.0, 8)
     $ w34 = ImageDissolve("images/transitions/34.png", 1.0, 8)
     $ w35 = ImageDissolve("images/transitions/35.png", 1.0, 8)
     $ w36 = ImageDissolve("images/transitions/36.jpg", 1.0, 8)

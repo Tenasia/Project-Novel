@@ -45,7 +45,7 @@ label prologue:
     python:
         set_info_scene("01")
         set_info_location("02")
-        set_info_date(2, "May", "wed")
+        set_info_date(02, "May", "wed")
         set_info_time("day")
 
     play music audio.thin_purple
@@ -186,7 +186,7 @@ label school:
     python:
         set_info_scene("02")
         set_info_location("03")
-        set_info_date(2, "may", "wed")
+        set_info_date(02, "may", "wed")
         set_info_time("day")
 
     play music audio.day
@@ -235,7 +235,7 @@ label school:
     python:
         set_info_scene("02")
         set_info_location("04")
-        set_info_date(2, "may", "wed")
+        set_info_date(02, "may", "wed")
         set_info_time("evening")
 
     play sound "audio/sfx/punch1.mp3"

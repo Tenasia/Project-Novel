@@ -39,7 +39,7 @@ screen tips_page():
             background None
             xoffset 70
             yoffset 50
-            add "gui/game_frames/notebook_paper_cases.png" xoffset 60 yoffset 100.5
+            add "gui/game_frames/notebook_paper_tips.png" xoffset 60 yoffset 100.5
             hbox: 
                 imagebutton:
                     xoffset 455
